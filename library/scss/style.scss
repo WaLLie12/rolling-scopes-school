@@ -87,7 +87,7 @@ body{
 div>h1{
     color: #FFF;
     font-family: var(--second-font);
-    font-size: 30px;
+    font-size: 1.875rem;
     font-style: normal;
     font-weight: 400;
     line-height: 50px; /* 166.667% */
@@ -225,7 +225,6 @@ nav>ul{
     color: #000;
     text-align: center;
     font-size: 1.25rem;
-    font-style: normal;
     font-weight: 400;
     line-height: 40px;
     margin-bottom: 20px;
@@ -253,9 +252,8 @@ nav>ul{
     position: relative;
     width: 26px;
     height: 26px;
-    // margin: 5px;
     cursor: pointer;
-    transition: all .4s; /* Add a pointer cursor to indicate interactivity */
+    transition: all .4s;
   }
   
   .button__circle {
@@ -266,7 +264,7 @@ nav>ul{
     height: 26px;
     border-radius: 50%;
     background-color: transparent;
-    transition: all .4s; /* Set the background color of the clickable area to transparent */
+    transition: all .4s;
   }
   
   .button__circle::before {
@@ -278,7 +276,7 @@ nav>ul{
     height: 16px;
     border-radius: 50%;
     background-color: var(--first-color);
-    transition: all .4s; /* Set the default color of the circle */
+    transition: all .4s;
   }
 
 .button__circle.button__circle__first::before{
@@ -288,7 +286,7 @@ nav>ul{
    
 .button__circle:hover::before {
     background-color: var(--third-color);
-    transition: all .4s; /* Change the color of the circle inside on hover */
+    transition: all .4s;
 }
 
 /*FAVORITES*/
@@ -350,7 +348,6 @@ label{
 .text__input{
     position: relative;
     font-size: 1.25rem;
-    font-style: normal;
     font-weight: 400;
     padding: 5px;
 }
@@ -405,7 +402,6 @@ label{
 .description__subtitle{
     font-family: var(--second-font);
     font-size: 1.25rem;
-    font-style: normal;
     font-weight: 400;
     line-height: 2.5rem;
     letter-spacing: 0.125rem;
@@ -442,7 +438,6 @@ label{
 
 .description__text{
     font-size: 0.9375rem;
-    font-style: normal;
     font-weight: 400;
     line-height: 2.5rem;
     letter-spacing: 0.125rem;
@@ -466,7 +461,6 @@ label{
     cursor: pointer;
     border-radius: 2px;
     transition: all .4s;
-    // margin-top: auto;
 }
 
 .description__button:hover{
@@ -529,7 +523,6 @@ label{
     color: var(--third-color);
     font-family: var(--second-font);
     font-size: 2.5rem;
-    font-style: normal;
     font-weight: 400;
     line-height: 2.5rem;    
     letter-spacing: 0.125rem    ;
@@ -540,7 +533,6 @@ label{
     color: var(--third-color);
     font-family: var(--second-font);
     font-size: 2.5rem;
-    font-style: normal;
     font-weight: 400;
     line-height: 2.5rem;
     letter-spacing: 0.125rem;
@@ -569,7 +561,6 @@ label{
 
 .menu__dish{
     font-size: 1.25rem;
-    font-style: normal;
     font-weight: 400;
     line-height: 2.5rem;
     letter-spacing: 0.125rem;
@@ -588,7 +579,6 @@ label{
 .menu__price{
     font-size: 1.25rem;
     font-family: var(--second-font);
-    font-style: normal;
     font-weight: 400;
     line-height: 2.5rem;
     letter-spacing: 0.125rem;
@@ -597,7 +587,6 @@ label{
 }
 
  /*CONTACTS*/
-
 
 .contacts__information{
     display: flex;
@@ -702,7 +691,6 @@ label{
     flex-shrink: 0;
     border-radius: 10px;
     margin-bottom: 25px;
-    // padding: 13px 0 4px;
 }
 
 .user__info-input::placeholder{
