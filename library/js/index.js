@@ -51,3 +51,18 @@ console.log(`
 \t  - плавное изменение внешнего вида элемента при наведении и клике не влияет на соседние элементы +2.
 \t\t final band - 100
 `)
+
+const burger = document.querySelector('.header__burger')
+const nav = document.querySelector('.header__nav-navigation')
+
+burger.addEventListener('click', ()=>{
+    burger.classList.toggle('active')  
+    nav.classList.toggle('active')
+})
+
+document.querySelectorAll('.navigation__link').forEach((item) => {
+    item.addEventListener('click', ()=>{
+        burger.classList.remove('active')  
+        nav.classList.remove('active')
+    })
+})
