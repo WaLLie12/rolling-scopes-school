@@ -63,6 +63,7 @@ section:nth-child(6){
 
 body{
     font-family: var(--body-font);
+    min-width: 639px;
 }
 
 .wrapper{
@@ -197,14 +198,15 @@ nav>ul{
     }
   
     .header__nav-navigation{
-        position: fixed;
+        position: absolute;
         right:0;
-        top: -100%;
+        top: 100%;
+        transform: translateX(100%);
         width: 332px;
-        height: 570px;
+        height: 480px;
         background: #0C0C0E;
-        padding: 100px 107px;
-        transition: all 0.5s ease 0s;
+        padding: 10px 107px;
+        transition: all 0.7s ease 0s;
         overflow: auto;
         text-align: center;
     }  
@@ -232,7 +234,8 @@ nav>ul{
     }
   
     .header__nav-navigation.active{
-      top: 0;
+        transform: translateX(0);
+        transition: .7s;
     }
   
     .navigation__list{
@@ -341,17 +344,27 @@ nav>ul{
     position: relative;
 }
 
-.slider__prev-arrow,
-.slider__next-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 14px;
-  height: 23px;
+.slider__controls {
+    position: absolute;
+    top: 53%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-39%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 57px;
+    box-sizing: border-box;
+  }
+
+.slider__prev-button,
+.slider__next-button {
+  background-color: rgba($color: var(--fourth-color), $alpha: 1.0);
+  border: none;
+  cursor: pointer;
 }
 
 .slider__prev-arrow {
-  left: 51px;
+  left: 58px;
   background-image: url("../images/Carret_Left.svg");
   background-size: cover;
 }
@@ -362,10 +375,9 @@ nav>ul{
   background-size: cover;
 }
 
-.slider__prev-arrow,
-   .slider__next-arrow{
-    display: none;
-   }
+.slider__controls{
+    visibility: hidden;
+}
 
 @media (max-width: 1024px) {
     .first__hidden{
@@ -378,9 +390,14 @@ nav>ul{
         display: none;
     }
 
-   .slider__prev-arrow,
-   .slider__next-arrow{
-    display: block;
+   .slider__controls{
+    visibility: visible;
+   }
+}
+
+@media (max-width: 660px) {
+   .slider__controls{
+        padding: 0 40px;
    }
 }
 
@@ -443,6 +460,13 @@ nav>ul{
     display: none;
 }
 
+
+@media (max-width: 1024px) {
+    .fourth__circle{
+        display: block;
+       }   
+}
+
 @media (max-width: 768px) {
     .hidden__circle{
         display: block;
@@ -457,6 +481,12 @@ nav>ul{
     margin: 0 0 37px -5px;
 }
 
+@media (max-width: 736px) {
+    .favorites__inputs{
+        column-gap: 50px;
+        align-items: center;
+    }
+}
 
 label{
     display: inline-flex;
@@ -889,9 +919,12 @@ label{
         text-align: center;
     }
 
-    // .contacts__map > img{
-    //     width: 100%; 
-    // }
+    .contacts__map > img{
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: 0 16px;
+    }
 }
 
  /*LIBRARY CARD*/

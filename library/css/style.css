@@ -60,6 +60,7 @@ section:nth-child(6) {
 /*GENERAL CLASSES*/
 body {
   font-family: var(--body-font);
+  min-width: 639px;
 }
 
 .wrapper {
@@ -221,15 +222,17 @@ nav > ul {
     transition: all 0.5s ease 0s;
   }
   .header__nav-navigation {
-    position: fixed;
+    position: absolute;
     right: 0;
-    top: -100%;
+    top: 100%;
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
     width: 332px;
-    height: 570px;
+    height: 480px;
     background: #0C0C0E;
-    padding: 100px 107px;
-    -webkit-transition: all 0.5s ease 0s;
-    transition: all 0.5s ease 0s;
+    padding: 10px 107px;
+    -webkit-transition: all 0.7s ease 0s;
+    transition: all 0.7s ease 0s;
     overflow: auto;
     text-align: center;
   }
@@ -254,7 +257,10 @@ nav > ul {
             transform: scale(0);
   }
   .header__nav-navigation.active {
-    top: 0;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    -webkit-transition: 0.7s;
+    transition: 0.7s;
   }
   .navigation__list {
     display: -webkit-box;
@@ -382,18 +388,32 @@ nav > ul {
   position: relative;
 }
 
-.slider__prev-arrow,
-.slider__next-arrow {
+.slider__controls {
   position: absolute;
-  top: 50%;
+  top: 53%;
   -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  width: 14px;
-  height: 23px;
+  transform: translateY(-39%);
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0 57px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.slider__prev-button,
+.slider__next-button {
+  background-color: rgba(var(--fourth-color), 1);
+  border: none;
+  cursor: pointer;
 }
 
 .slider__prev-arrow {
-  left: 51px;
+  left: 58px;
   background-image: url("../images/Carret_Left.svg");
   background-size: cover;
 }
@@ -404,9 +424,8 @@ nav > ul {
   background-size: cover;
 }
 
-.slider__prev-arrow,
-.slider__next-arrow {
-  display: none;
+.slider__controls {
+  visibility: hidden;
 }
 
 @media (max-width: 1024px) {
@@ -418,9 +437,13 @@ nav > ul {
   .second__hidden {
     display: none;
   }
-  .slider__prev-arrow,
-  .slider__next-arrow {
-    display: block;
+  .slider__controls {
+    visibility: visible;
+  }
+}
+@media (max-width: 660px) {
+  .slider__controls {
+    padding: 0 40px;
   }
 }
 .slider__circles {
@@ -492,6 +515,11 @@ nav > ul {
   display: none;
 }
 
+@media (max-width: 1024px) {
+  .fourth__circle {
+    display: block;
+  }
+}
 @media (max-width: 768px) {
   .hidden__circle {
     display: block;
@@ -508,6 +536,16 @@ nav > ul {
   margin: 0 0 37px -5px;
 }
 
+@media (max-width: 736px) {
+  .favorites__inputs {
+    -webkit-column-gap: 50px;
+       -moz-column-gap: 50px;
+            column-gap: 50px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
 label {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -996,6 +1034,12 @@ label {
   }
   .contacts__map {
     text-align: center;
+  }
+  .contacts__map > img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0 16px;
   }
 }
 /*LIBRARY CARD*/
