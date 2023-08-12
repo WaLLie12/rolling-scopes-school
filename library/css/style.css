@@ -1421,3 +1421,7 @@ input[type=text] {
 .footer__basement__user > a {
   color: var(--fourth-color);
 }
+
+.froze-scroll {
+  overflow: hidden;
+}

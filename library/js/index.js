@@ -52,17 +52,43 @@ console.log(`
 \t\t final band - 100
 `)
 
-const burger = document.querySelector('.header__burger')
-const nav = document.querySelector('.header__nav-navigation')
+const burger = document.querySelector('.header__burger');
+const nav = document.querySelector('.header__nav-navigation');
+const body = document.body;
 
-burger.addEventListener('click', ()=>{
-    burger.classList.toggle('active')  
-    nav.classList.toggle('active')
-})
+burger.addEventListener('click', (event) => {
+    event.stopPropagation();
+    burger.classList.toggle('active');
+    if (burger.classList.contains('active')) {
+        disableScroll();
+    } else {
+        enableScroll();
+    }
+    nav.classList.toggle('active');
+});
+
+body.addEventListener('click', (event) => {
+    if (!event.target.closest('.header__nav-navigation')) {
+        closeNav();
+    }
+});
 
 document.querySelectorAll('.navigation__link').forEach((item) => {
-    item.addEventListener('click', ()=>{
-        burger.classList.remove('active')  
-        nav.classList.remove('active')
-    })
-})
+    item.addEventListener('click', () => {
+        closeNav();
+    });
+});
+
+function closeNav() {
+    burger.classList.remove('active');
+    nav.classList.remove('active');
+    enableScroll();
+}
+
+function disableScroll() {
+    body.classList.add('froze-scroll');
+}
+
+function enableScroll() {
+    body.classList.remove('froze-scroll');
+}
