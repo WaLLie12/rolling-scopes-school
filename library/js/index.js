@@ -62,3 +62,37 @@ function disableScroll() {
 function enableScroll() {
     body.classList.remove('froze-scroll');
 }
+
+const swiper = new Swiper('.swiper', {
+    spaceBetween: 26,
+    keyboard: true,
+    slidesPerView: 3,
+    autoplay:{
+        delay: 2000,
+        stopOnLastSlide: true,
+        disableOnInteraction: false
+    },
+    speed: 700,
+    breakpoints:{
+        260: {
+            slidesPerView: 1
+        },
+        769: {
+            slidesPerView: 2
+        },
+        1200:{
+            slidesPerView: 3
+        }
+    },
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+    // Navigation arrows
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      clickable: true,
+    },
+    
+  });
