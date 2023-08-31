@@ -546,6 +546,10 @@ nav > ul {
   margin: 0 0 37px -5px;
 }
 
+.favorites__inputs label {
+  cursor: pointer;
+}
+
 @media (max-width: 736px) {
   .favorites__inputs {
     -webkit-column-gap: 50px;
@@ -806,10 +810,45 @@ label {
   border-radius: 2px;
 }
 
-.invisible {
+.favorite__books_half {
+  /* Стили блока */
+  opacity: 1;
+  height: auto;
+  overflow: hidden;
+  -webkit-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
   display: none;
 }
 
+.fade-in {
+  display: block;
+  opacity: 1;
+}
+
+.fade {
+  -webkit-animation-name: fade;
+          animation-name: fade;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+}
+
+@-webkit-keyframes fade {
+  from {
+    opacity: 0.1;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.1;
+  }
+  to {
+    opacity: 1;
+  }
+}
 /*COFFEE SHOP*/
 .shop__text {
   text-align: center;

@@ -1,3 +1,5 @@
+window.addEventListener("DOMContentLoaded", () =>{
+
 console.log(`
 1.Вёрстка соответствует макету. Ширина экрана 768px +26 \n
 \t блок <header> +2
@@ -94,5 +96,35 @@ const swiper = new Swiper('.swiper', {
         prevEl: '.swiper-button-prev',
       clickable: true,
     },
-    
   });
+
+  const radioButtons = document.querySelectorAll('.custom__input');
+  const contentBlocks = document.querySelectorAll('.favorite__books_half');
+  const blocksPerPage = 4;
+  
+  function updateBlocksVisibility(selectedIndex) {
+      contentBlocks.forEach((block, index) => {
+              if (index >= selectedIndex * blocksPerPage && index < (selectedIndex + 1) * blocksPerPage) {
+                  // setTimeout(() => {
+                      block.classList.add('fade-in', 'fade');
+                  // }, 100);
+              } else {
+                  block.classList.remove('fade-in', 'fade');
+              }   
+      });
+  }
+  
+  radioButtons.forEach((radioButton, index) => {
+      radioButton.addEventListener('change', () => {
+       updateBlocksVisibility(index);
+    
+          
+      });
+  });
+  
+  // При загрузке страницы показываем содержимое для первой вкладки
+  updateBlocksVisibility(0);
+  
+  
+  })
+  
