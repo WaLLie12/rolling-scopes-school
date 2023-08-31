@@ -547,7 +547,18 @@ nav > ul {
 }
 
 .favorites__inputs label {
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
   cursor: pointer;
+}
+
+.favorites__inputs-label1:hover,
+.favorites__inputs-label2:hover,
+.favorites__inputs-label3:hover,
+.favorites__inputs-label4:hover {
+  color: var(--fifth-color);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 @media (max-width: 736px) {

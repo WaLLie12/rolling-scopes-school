@@ -474,10 +474,20 @@ pointer-events: none;
     display: flex;
     column-gap: 82px;
     margin: 0 0 37px -5px;
+    
 }
 
 .favorites__inputs label{
+    transition:  all .5s ease ;
     cursor: pointer;
+}
+
+.favorites__inputs-label1:hover,
+.favorites__inputs-label2:hover,
+.favorites__inputs-label3:hover,
+.favorites__inputs-label4:hover{
+    color: var(--fifth-color);
+    transition:  all .3s ease ;
 }
 
 @media (max-width: 736px) {
