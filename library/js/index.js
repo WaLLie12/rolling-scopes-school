@@ -105,9 +105,7 @@ const swiper = new Swiper('.swiper', {
   function updateBlocksVisibility(selectedIndex) {
       contentBlocks.forEach((block, index) => {
               if (index >= selectedIndex * blocksPerPage && index < (selectedIndex + 1) * blocksPerPage) {
-                  // setTimeout(() => {
                       block.classList.add('fade-in', 'fade');
-                  // }, 100);
               } else {
                   block.classList.remove('fade-in', 'fade');
               }   
@@ -117,8 +115,6 @@ const swiper = new Swiper('.swiper', {
   radioButtons.forEach((radioButton, index) => {
       radioButton.addEventListener('change', () => {
        updateBlocksVisibility(index);
-    
-          
       });
   });
   
