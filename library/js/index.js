@@ -37,6 +37,7 @@ burger.addEventListener('click', (event) => {
         enableScroll();
     }
     nav.classList.toggle('active');
+    closeAuthMenu()
 });
 
 body.addEventListener('click', (event) => {
@@ -63,6 +64,10 @@ function disableScroll() {
 
 function enableScroll() {
     body.classList.remove('froze-scroll');
+}
+
+function closeAuthMenu () {
+    navProfile.classList.remove('header__profile__list-active')
 }
 
 const swiper = new Swiper('.swiper', {
@@ -129,11 +134,13 @@ const swiper = new Swiper('.swiper', {
         if(event.currentTarget === imgProfileBtn){
         navProfile.classList.toggle('header__profile__list-active')
         }
+        burger.classList.remove('active');
+        nav.classList.remove('active');
     })
 
     body.addEventListener('click', (event) => {
         if (!event.target.closest('.header__profile__list')){
-            navProfile.classList.remove('header__profile__list-active')
+            closeAuthMenu ()
         } 
     });
 })
