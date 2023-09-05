@@ -40,9 +40,9 @@ burger.addEventListener('click', (event) => {
 });
 
 body.addEventListener('click', (event) => {
-    if (!event.target.closest('.header__nav-navigation')) {
-        closeNav();
-    }
+    if (!event.target.closest('.header__nav-navigation')){
+        closeNav()
+    } 
 });
 
 document.querySelectorAll('.navigation__link').forEach((item) => {
@@ -120,7 +120,21 @@ const swiper = new Swiper('.swiper', {
   
   // При загрузке страницы показываем содержимое для первой вкладки
   updateBlocksVisibility(0);
-  
-  
-  })
+
+    const navProfile = document.querySelector('.header__profile__list')
+    const imgProfileBtn = document.querySelector('.header__profile__img')
+
+    imgProfileBtn.addEventListener('click', (event)=>{
+        event.stopPropagation()
+        if(event.currentTarget === imgProfileBtn){
+        navProfile.classList.toggle('header__profile__list-active')
+        }
+    })
+
+    body.addEventListener('click', (event) => {
+        if (!event.target.closest('.header__profile__list')){
+            navProfile.classList.remove('header__profile__list-active')
+        } 
+    });
+})
   

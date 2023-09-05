@@ -284,6 +284,80 @@ nav > ul {
     z-index: 2;
   }
 }
+.header__profile__list {
+  position: absolute;
+  right: 20px;
+  top: 70px;
+  background-color: var(--fourth-color);
+  padding: 5px 16px 20px 16px;
+  visibility: hidden;
+}
+
+.header__profile__list-active {
+  visibility: visible;
+}
+
+.header__profile__list-text {
+  position: relative;
+  display: block;
+  text-align: center;
+  font-size: 0.9375rem;
+  line-height: 20px; /* 133.333% */
+  margin-bottom: 20px;
+}
+
+.header__profile__list-text::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 40px;
+  height: 1px;
+  background-color: var(--third-color);
+}
+
+.header__profile__list-item {
+  text-align: center;
+  font-size: 0.9375rem;
+  line-height: 20px;
+}
+
+.header__profile__list-item:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.header__profile__list-register,
+.header__profile__list-login {
+  background-color: transparent;
+  text-align: center;
+  font-size: 0.9375rem;
+  line-height: 20px;
+  font-size: var(--body-font);
+  cursor: pointer;
+}
+
+.header__profile__img {
+  cursor: pointer;
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+
+.header__profile__img img:hover {
+  fill: var(--third-color);
+}
+
+.header__img svg {
+  cursor: pointer;
+}
+
+.header__img svg:hover path {
+  fill: var(--third-color);
+}
+
 /*WELCOME*/
 .welcome {
   height: 600px;
@@ -528,7 +602,7 @@ nav > ul {
   top: var(--swiper-pagination-top, 265px);
   left: 0;
   width: 100%;
-  position: revert; /*Видалити паддінг та подивитися на результат, адже є маржин топ 31рх, також придивитися на розташування стрілок та змінити колір активних кругів. Звірити все на піксель перфект*/
+  position: revert;
 }
 
 .swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet {
@@ -553,6 +627,11 @@ nav > ul {
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
   cursor: pointer;
+  opacity: 1;
+}
+
+.favorites__inputs label:hover {
+  opacity: 0.8;
 }
 
 @media (max-width: 769px) {
