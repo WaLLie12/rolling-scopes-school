@@ -757,13 +757,14 @@
                         <span>
                             E-mail or readers card
                         </span>
-                        <input class="popup__label-input-name" type="text">
+                        <input class="popup__label-input-name input-email" type="email" required>
                     </label>
                     <label class="popup__label">
                         <span>
                             Password
                         </span>
-                        <input class="popup__label-input-password" type="password">
+                        <span class="password-error"></span>
+                        <input class="popup__label-input-password input-password" type="password" required>
                     </label>
                     <button class="popup__login-btn" type="submit">Log In</button>
                 </form>
@@ -791,27 +792,29 @@
                         <span>
                             First name
                         </span>
-                        <input class="popup__label-input-name" type="text">
+                        <input class="popup__label-input-name" type="text" required>
                     </label>
                     <label class="popup__label">
                         <span>
                             Last name
                         </span>
-                        <input class="popup__label-input-password" type="text">
+                        <input class="popup__label-input-name" type="text" required>
                     </label>
                     <label class="popup__label">
                         <span>
                             E-mail
                         </span>
-                        <input class="popup__label-input-password" type="mailto">
+                        <input class="popup__label-input-name input-email" type="email" required>
+                        <span class="email-error"></span>
                     </label>
                     <label class="popup__label">
                         <span>
                             Password
                         </span>
-                        <input class="popup__label-input-password" type="password">
+                        <input class="popup__label-input-password input-password" type="password" required>
+                        <span class="password-error"></span>
                     </label>
-                    <button class="popup__login-btn" type="submit">Sign Up</button>
+                    <button class="popup__login-btn sign__up-btn" type="submit">Sign Up</button>
                 </form>
                 <span class="popup__text-login-register">
                     Already have an account?

@@ -1461,7 +1461,7 @@ pointer-events: none;
     flex-direction: column;
 }
 
-.popup__label > span{
+.popup__label > span:not(:last-child){
     font-size: 1.066rem;
     line-height: 20px; /* 133.333% */
     letter-spacing: 0.3px;
@@ -1518,7 +1518,8 @@ pointer-events: none;
 }
 
 input[type="text"],
-input[type= "password"]{
+input[type= "password"],
+input[type= "email"]{
     padding: 2px 4px;
 }
 
@@ -1535,3 +1536,8 @@ input {
     transition: outline-color 0.3s, box-shadow 0.3s;
 }
 
+.error{
+    font-size: 0.6rem;
+    color: red;
+    margin-top: 10px;
+}
