@@ -5,12 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="./images/favicon-32x32.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="./css/style.css">
     <title>Library</title>
 </head>
 <body>
     <div class="wrapper container">
-        <header class="header">
+        <header class="header lock-padding">
             <div class="container">
                 <div class="header__position">
                     <h1>
@@ -27,7 +28,14 @@
                             </ul>
                         </nav>
                         <div class="header__img">
-                            <img src="./images/icon_profile.svg" alt="profile image">
+                            <svg  class="header__profile__img" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M28 14C28 21.732 21.732 28 14 28C6.26801 28 0 21.732 0 14C0 6.26801 6.26801 0 14 0C21.732 0 28 6.26801 28 14ZM18.6667 7.77778C18.6667 10.3551 16.5774 12.4444 14.0001 12.4444C11.4227 12.4444 9.33339 10.3551 9.33339 7.77778C9.33339 5.20045 11.4227 3.11111 14.0001 3.11111C16.5774 3.11111 18.6667 5.20045 18.6667 7.77778ZM19.4998 16.2781C20.9584 17.7367 21.7778 19.715 21.7778 21.7778H14L6.22225 21.7778C6.22225 19.715 7.0417 17.7367 8.50031 16.2781C9.95893 14.8194 11.9372 14 14 14C16.0628 14 18.0411 14.8194 19.4998 16.2781Z" fill="white"/>
+                            </svg>
+                            <ul class="header__profile__list">
+                                <b class="header__profile__list-text">Profile</b>
+                                <li class="header__profile__list-item"> <button class="header__profile__list-login popup__link-login">Log In</button></li>
+                                <li class="header__profile__list-item"> <button class="header__profile__list-register popup__link-register">Register</button></li>
+                            </ul>
                         </div>
                         <div class="header__burger">
                             <span></span> 
@@ -51,46 +59,38 @@
                 <p class="about__text">
                     The Brooklyn Library is a free workspace, a large number of books and a cozy coffee shop inside 
                 </p>
-                <div class="about__images image">
+                <div class="about__images image swiper">
                     <div class="slider__controls">
-                        <button class="slider__prev-button" aria-label="Previous Slide">
-                          <img src="./images/Carret_Left.svg" alt="Previous">
+                        <button class="  btn__reset swiper-button-next" aria-label="Previous Slide">
+                            <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 17.5L15 12.5L9 7.5" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                         </button>
-                        <button class="slider__next-button" aria-label="Next Slide">
-                          <img src="./images/Carret_Right.svg" alt="Next">
+                        <button class=" btn__reset swiper-button-prev" aria-label="Next Slide">
+                            <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 7.5L9 12.5L15 17.5" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                         </button>
-                      </div>
-                    <div class="image__girl">
-                        <img src="./images/girl.png" alt="girl in the library">
                     </div>
-                    <div class="image__girl second__hidden">
-                        <img src="./images/philosophers.png" alt="philosophers">
+                    <div class="slider__wrapper swiper-wrapper">
+                        <div class="image__girl swiper-slide">
+                            <img src="./images/girl.png" alt="girl in the library">
+                        </div>
+                        <div class="image__girl second__hidden swiper-slide">
+                            <img src="./images/philosophers.png" alt="philosophers">
+                        </div>
+                        <div class="image__girl first__hidden swiper-slide">
+                            <img src="./images/library1.png" alt="library">
+                        </div>
+                        <div class="image__girl swiper-slide">
+                            <img src="./images/library2.png" alt="library">
+                        </div>
+                        <div class="image__girl swiper-slide">
+                            <img src="./images/museum.png" alt="building">
+                        </div>
                     </div>
-                    <div class="image__girl first__hidden">
-                        <img src="./images/library1.png" alt="library">
-                    </div>
-                    <div class="image__hidden">
-                        <img src="./images/library2.png" alt="library">
-                    </div>
-                    <div class="image__hidden">
-                        <img src="./images/museum.png" alt="building">
-                    </div>
-                </div>
-                <div class="slider__circles">
-                    <div class="button__circle__container">
-                      <div class="button__circle button__circle__first" ></div>
-                    </div>
-                    <div class="button__circle__container">
-                      <div class="button__circle" ></div>
-                    </div>
-                    <div class="button__circle__container">
-                      <div class="button__circle" ></div>
-                    </div>
-                    <div class="button__circle__container hidden__circle fourth__circle">
-                        <div class="button__circle" ></div>
-                    </div>
-                    <div class="button__circle__container hidden__circle">
-                        <div class="button__circle" ></div>
+                    <div class="slider__circles swiper-pagination">
+                    
                     </div>
                 </div>
             </section>
@@ -102,22 +102,22 @@
                     Pick favorites of season
                 </p>
                 <div class="favorites__inputs">
-                    <label>
+                    <label class="favorites__inputs-label1">
                         <input type="radio" name="num1" class="custom__input" checked >
                         <span class="check__style"></span>
                         <span class="text__input">Winter</span>
                     </label>
-                    <label>
+                    <label class="favorites__inputs-label2">
                         <input type="radio" name="num1" class="custom__input">
                         <span class="check__style"></span>
                         <span class="text__input">Spring</span>
                     </label>
-                    <label>
+                    <label class="favorites__inputs-label2">
                         <input type="radio" name="num1" class="custom__input">
                         <span class="check__style"></span>
                         <span class="text__input">Summer</span>
                     </label>
-                    <label>
+                    <label class="favorites__inputs-label3">
                         <input type="radio" name="num1" class="custom__input">
                         <span class="check__style"></span>
                         <span class="text__input">Autumn</span>
@@ -693,8 +693,8 @@
                             You will be able to see a reader card after logging into account or you can register a new account
                         </p>
                         <div class="card__getting__buttons">
-                            <button class="card__getting__button__1">Sign Up</button>
-                            <button class="card__getting__button__2">Log in</button>
+                            <button class="card__getting__button__1  popup__link-register">Sign Up</button>
+                            <button class="card__getting__button__2  popup__link-login">Log in</button>
                         </div>
                     </div>
                 </div>
@@ -740,6 +740,90 @@
             </div>
         </footer>
     </div>
+    <div class="popup__login modal">
+        <div class="popup__body">
+            <div class="popup__content">
+                <button class="popup__close">
+                    <svg width="19" height="19" viewBox="0 0 19 19" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 16.8507L17 2.00003" stroke="#0C0C0E" stroke-width="3"/>
+                        <path d="M2 2.14926L17 17" stroke="#0C0C0E" stroke-width="3"/>
+                    </svg>    
+                </button>
+                <div class="popup__title">
+                    Login
+                </div>
+                <form class="popup__form">
+                    <label class="popup__label">
+                        <span>
+                            E-mail or readers card
+                        </span>
+                        <input class="popup__label-input-name input-email" type="email" required>
+                    </label>
+                    <label class="popup__label">
+                        <span>
+                            Password
+                        </span>
+                        <span class="password-error"></span>
+                        <input class="popup__label-input-password input-password" type="password" required>
+                    </label>
+                    <button class="popup__login-btn" type="submit">Log In</button>
+                </form>
+                <span class="popup__text-login-register">
+                    Don’t have an account?
+                    <button class="popup__login-register popup__link-register"> Register</button>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="popup__register modal">
+        <div class="popup__body">
+            <div class="popup__content">
+                <button class="popup__close">
+                    <svg width="19" height="19" viewBox="0 0 19 19" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 16.8507L17 2.00003" stroke="#0C0C0E" stroke-width="3"/>
+                        <path d="M2 2.14926L17 17" stroke="#0C0C0E" stroke-width="3"/>
+                    </svg>    
+                </button>
+                <div class="popup__title">
+                    Register
+                </div>
+                <form class="popup__form">
+                    <label class="popup__label">
+                        <span>
+                            First name
+                        </span>
+                        <input id="input-name" class="popup__label-input-name" type="text" required>
+                    </label>
+                    <label class="popup__label">
+                        <span>
+                            Last name
+                        </span>
+                        <input id="input-surname" class="popup__label-input-name" type="text" required>
+                    </label>
+                    <label class="popup__label">
+                        <span>
+                            E-mail
+                        </span>
+                        <input id="email-input" class="popup__label-input-name input-email" type="email" required>
+                        <span class="email-error"></span>
+                    </label>
+                    <label class="popup__label">
+                        <span>
+                            Password
+                        </span>
+                        <input id="password-input" class="popup__label-input-password input-password" type="password" required>
+                        <span class="password-error"></span>
+                    </label>
+                    <button id="register-button-submit" class="popup__login-btn sign__up-btn" type="submit">Sign Up</button>
+                </form>
+                <span class="popup__text-login-register">
+                    Already have an account?
+                <button class="popup__login-register popup__link-login">Login</button>
+                </span>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script src="./js/index.js"></script>
 </body>
 </html>
