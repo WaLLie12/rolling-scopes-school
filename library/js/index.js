@@ -1,3 +1,5 @@
+window.addEventListener("DOMContentLoaded", () =>{
+
 console.log(`
 1.Вёрстка соответствует макету. Ширина экрана 768px +26 \n
 \t блок <header> +2
@@ -35,12 +37,13 @@ burger.addEventListener('click', (event) => {
         enableScroll();
     }
     nav.classList.toggle('active');
+    closeAuthMenu()
 });
 
 body.addEventListener('click', (event) => {
-    if (!event.target.closest('.header__nav-navigation')) {
-        closeNav();
-    }
+    if (!event.target.closest('.header__nav-navigation')){
+        closeNav()
+    } 
 });
 
 document.querySelectorAll('.navigation__link').forEach((item) => {
@@ -62,3 +65,259 @@ function disableScroll() {
 function enableScroll() {
     body.classList.remove('froze-scroll');
 }
+
+function closeAuthMenu () {
+    navProfile.classList.remove('header__profile__list-active')
+}
+
+const swiper = new Swiper('.swiper', {
+    spaceBetween: 26,
+    keyboard: true,
+    slidesPerView: 3,
+    autoplay:{
+        delay: 2000,
+        stopOnLastSlide: true,
+        disableOnInteraction: false
+    },
+    speed: 700,
+    breakpoints:{
+        260: {
+            slidesPerView: 1
+        },
+        769: {
+            slidesPerView: 2
+        },
+        1200:{
+            slidesPerView: 3
+        }
+    },
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+    // Navigation arrows
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      clickable: true,
+    },
+  });
+
+  const radioButtons = document.querySelectorAll('.custom__input');
+  const contentBlocks = document.querySelectorAll('.favorite__books_half');
+  const blocksPerPage = 4;
+  
+  function updateBlocksVisibility(selectedIndex) {
+      contentBlocks.forEach((block, index) => {
+              if (index >= selectedIndex * blocksPerPage && index < (selectedIndex + 1) * blocksPerPage) {
+                      block.classList.add('fade-in', 'fade');
+              } else {
+                  block.classList.remove('fade-in', 'fade');
+              }   
+      });
+  }
+  
+  radioButtons.forEach((radioButton, index) => {
+      radioButton.addEventListener('change', () => {
+       updateBlocksVisibility(index);
+      });
+  });
+  
+  // При загрузке страницы показываем содержимое для первой вкладки
+  updateBlocksVisibility(0);
+
+    const navProfile = document.querySelector('.header__profile__list')
+    const imgProfileBtn = document.querySelector('.header__profile__img')
+
+    imgProfileBtn.addEventListener('click', (event)=>{
+        event.stopPropagation()
+        if(event.currentTarget === imgProfileBtn){
+        navProfile.classList.toggle('header__profile__list-active')
+        }
+        burger.classList.remove('active');
+        nav.classList.remove('active');
+    })
+
+    body.addEventListener('click', (event) => {
+        if (!event.target.closest('.header__profile__list')){
+            closeAuthMenu ()
+        } 
+    });
+
+    const popupLinkLogin = document.querySelectorAll('.popup__link-login')
+    const popupLinkRegister = document.querySelectorAll('.popup__link-register')
+    const popupWindowLogin = document.querySelector('.popup__login')
+    const popupWindowRegister = document.querySelector('.popup__register')
+    // const lockPadding = document.querySelectorAll('.lock-padding')
+
+    let unlock = true
+
+    if (popupLinkLogin.length > 0){
+        for(let i =0; i < popupLinkLogin.length; i++){
+            const elements = popupLinkLogin[i]
+            elements.addEventListener(('click'), (e)=>{
+                popupOpenLogin(popupWindowLogin);
+                popupClose(popupWindowRegister)
+                closeAuthMenu ()
+                bodyLock()
+                e.preventDefault()
+            })
+        }
+    }
+    
+    if (popupLinkRegister.length > 0){
+        for(let i =0; i < popupLinkRegister.length; i++){
+            const elements = popupLinkRegister[i]
+            elements.addEventListener(('click'), (e)=>{
+                popupOpenRegister(popupWindowRegister);
+                popupClose(popupWindowLogin)
+                bodyLock()
+                closeAuthMenu ()
+                e.preventDefault()
+            })
+        }
+    }
+
+    const popupCloseIcon = document.querySelectorAll('.popup__close')
+    if(popupCloseIcon.length > 0){
+        popupCloseIcon.forEach(el => {
+            el.addEventListener(('click'), (e) => {
+                popupClose(el.closest('.modal'))
+                e.preventDefault()
+            })
+        })
+    }
+
+    function popupOpenLogin(currentPopupLogin){
+        if(currentPopupLogin && unlock){
+            const popupActive = document.querySelector('.popup__login.open')
+            // if(popupActive){
+            //     popupClose(popupActive, false)
+            // }else{
+            //     bodyLock()
+            // }
+            currentPopupLogin.classList.add('open')
+            currentPopupLogin.addEventListener(('click'), (e) =>{
+                if(!e.target.closest('.popup__content')){
+                    popupClose(e.target.closest('.modal'))
+                }
+            })
+        }
+    }
+
+    function popupOpenRegister(currentPopupRegister){
+        if(currentPopupRegister && unlock){
+            const popupActive = document.querySelector('.popup__register.open')
+            // if(popupActive){
+            //     popupClose(popupActive, false)
+            // }else{
+            //     bodyLock()
+            // }
+            currentPopupRegister.classList.add('open')
+            currentPopupRegister.addEventListener(('click'), (e) =>{
+                if(!e.target.closest('.popup__content')){
+                    popupClose(e.target.closest('.modal'))
+                }
+            })
+        }
+    }
+
+    function popupClose(popupActive, doUnlock = true) {
+        if(unlock){
+            popupActive.classList.remove('open')
+            if(doUnlock){
+                bodyUnlock()
+            }
+        }
+    }
+
+    function bodyLock() {
+        // const  lockPaddingValue = window.innerWidth - document.querySelector('.wrapper').offsetWidth + 'px'
+        // // for (let i = 0; i < lockPadding.length; i++) {
+        // //     const el = lockPadding[i];
+        // //     el.style.paddingRight = lockPaddingValue
+        // // }
+        // body.style.paddingRight = lockPaddingValue
+        body.classList.add('lock')
+
+        unlock = false
+        setTimeout( function () {
+            unlock = true
+        }, 600)
+    }
+
+    function bodyUnlock() {
+        // setTimeout( function () {
+        // for (let i = 0; i < lockPadding.length; i++) {
+        //     const el = lockPadding[i];
+        //     el.style.paddingRight = '0px'
+        //     }
+            body.classList.remove('lock')
+        // }, 600)
+    }
+
+
+    const inputEmail = document.querySelectorAll('.input-email');
+    const inputPassword = document.querySelectorAll('.input-password')
+    const passwordError = document.querySelectorAll('.password-error')  
+    const emailError = document.querySelector('.email-error')
+    const EMAIL_REGEXP = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+    function validEmail (value){
+        return EMAIL_REGEXP.test(value)
+    }
+
+    function validPassword (value){
+        return passwordRegex.test(value)
+    }
+
+    inputPassword.forEach(el=>{
+        el.addEventListener(('input'), ()=>{
+            const password = el.value
+                if(password.length < 8){
+                passwordError.forEach(el =>{
+                    el.classList.add('error')
+                    el.innerHTML = 'Passwords must be eight characters or more'
+                })
+            } else{
+                passwordError.forEach(el =>{
+                    el.innerHTML = ' '
+                })
+            }
+        })
+    })
+
+    inputEmail.forEach(el=>{
+        el.addEventListener(('input'), ()=>{
+            const email = el.value
+            if(!validEmail(email)){
+                emailError.classList.add('error')
+                    emailError.innerHTML = 'Invalid Email'
+            } else{
+                emailError.innerHTML = ' '
+            }
+        })
+    })
+
+    const signUpBtn = document.getElementById('register-button-submit')
+
+    signUpBtn.addEventListener(('click'), (e) =>{
+       e.preventDefault()
+    
+    const firstName = document.getElementById('input-name').value
+    const lastName = document.getElementById('input-surname').value
+    const email = document.getElementById('email-input').value
+    const password = document.getElementById('password-input').value
+
+    const userData = { firstName, lastName, email, password };
+    localStorage.setItem('user_data', JSON.stringify(userData));
+
+
+        
+    })
+
+
+})
+  
