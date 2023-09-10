@@ -257,48 +257,67 @@ const swiper = new Swiper('.swiper', {
     }
 
 
-        const inputEmail = document.querySelectorAll('.input-email');
-        const inputPassword = document.querySelectorAll('.input-password')
-        const passwordError = document.querySelectorAll('.password-error')  
-        const emailError = document.querySelector('.email-error')
-        const EMAIL_REGEXP = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    const inputEmail = document.querySelectorAll('.input-email');
+    const inputPassword = document.querySelectorAll('.input-password')
+    const passwordError = document.querySelectorAll('.password-error')  
+    const emailError = document.querySelector('.email-error')
+    const EMAIL_REGEXP = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+    function validEmail (value){
+        return EMAIL_REGEXP.test(value)
+    }
+
+    function validPassword (value){
+        return passwordRegex.test(value)
+    }
+
+    inputPassword.forEach(el=>{
+        el.addEventListener(('input'), ()=>{
+            const password = el.value
+                if(password.length < 8){
+                passwordError.forEach(el =>{
+                    el.classList.add('error')
+                    el.innerHTML = 'Passwords must be eight characters or more'
+                })
+            } else{
+                passwordError.forEach(el =>{
+                    el.innerHTML = ' '
+                })
+            }
+        })
+    })
+
+    inputEmail.forEach(el=>{
+        el.addEventListener(('input'), ()=>{
+            const email = el.value
+            if(!validEmail(email)){
+                emailError.classList.add('error')
+                    emailError.innerHTML = 'Invalid Email'
+            } else{
+                emailError.innerHTML = ' '
+            }
+        })
+    })
+
+    const signUpBtn = document.getElementById('register-button-submit')
+
+    signUpBtn.addEventListener(('click'), (e) =>{
+       e.preventDefault()
+    
+    const firstName = document.getElementById('input-name').value
+    const lastName = document.getElementById('input-surname').value
+    const email = document.getElementById('email-input').value
+    const password = document.getElementById('password-input').value
+
+    const userData = { firstName, lastName, email, password };
+    localStorage.setItem('user_data', JSON.stringify(userData));
+
+
         
-        const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    })
 
-        function validEmail (value){
-            return EMAIL_REGEXP.test(value)
-        }
 
-        function validPassword (value){
-            return passwordRegex.test(value)
-        }
-
-        inputPassword.forEach(el=>{
-            el.addEventListener(('input'), ()=>{
-                const password = el.value
-                 if(password.length < 8){
-                    passwordError.forEach(el =>{
-                        el.classList.add('error')
-                        el.innerHTML = 'Passwords must be eight characters or more'
-                    })
-                } else{
-                    passwordError.forEach(el =>{
-                        el.innerHTML = ' '
-                    })
-                }
-            })
-        })
-
-        inputEmail.forEach(el=>{
-            el.addEventListener(('input'), ()=>{
-                const email = el.value
-                if(!validEmail(email)){
-                    emailError.classList.add('error')
-                     emailError.innerHTML = 'Invalid Email'
-                } else{
-                    emailError.innerHTML = ' '
-                }
-            })
-        })
 })
   

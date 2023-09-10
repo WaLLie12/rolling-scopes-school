@@ -302,6 +302,12 @@ nav > ul {
   transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
 }
 
+@media (max-width: 1024px) {
+  .header__profile__list {
+    top: 39px;
+    right: 0px;
+  }
+}
 .header__profile__list-active {
   visibility: visible;
   opacity: 1;
