@@ -1830,3 +1830,33 @@ input {
   color: red;
   margin-top: 10px;
 }
+
+.account__btn {
+  background-color: transparent;
+}
+
+.account__btn-after-register {
+  font: var(--body-font);
+  color: var(--third-color);
+  background-color: var(--fourth-color);
+  font-size: 0.8rem;
+  border-radius: 20px;
+  -webkit-transition: opacity 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+}
+
+@media (min-width: 1025px) {
+  .account__btn-after-register:hover {
+    background-color: rgba(255, 255, 255, 0.16);
+  }
+}
+.account__btn-after-register:active {
+  opacity: 0.7;
+}
+
+.nav__profile-after-login {
+  padding: 5px 5px 20px;
+}
