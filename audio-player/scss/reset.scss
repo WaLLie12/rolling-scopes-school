@@ -1,0 +1,63 @@
+
+:root{
+--body-font: 'Exo 2', sans-serif;
+--bigger-font-size: 2.25rem;
+--big-font-size: 1.5rem;
+--h1-font-size: 1.5rem;
+--h2-font-size: 1.25rem;
+--h3-font-size: 1rem;
+--normal-font-size: .938rem;
+--small-font-size: .813rem;
+--smaller-font-size: .75rem;
+
+    /*========== Font weight ==========*/
+    --font-regular: 400;
+    --font-semi-bold: 600;
+    --font-bold: 700;
+  
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+  
+html {
+    scroll-behavior: smooth;
+}
+  
+  input,
+  button,
+  body {
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+}
+  
+body {
+    min-width: 250px;
+  }
+  
+input,
+button {
+    border: none;
+    outline: none;
+}
+  
+h1, h2, h3, h4 {
+    font-family: var(--body-font);
+    font-weight: var(--font-semi-bold);
+}
+  
+ul {
+    list-style: none;
+}
+  
+a {
+    text-decoration: none;
+}
+  
+img {
+    max-width: 100%;
+    height: auto;
+}
