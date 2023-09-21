@@ -43,8 +43,7 @@ const playBtn = document.querySelector(".ri-play-circle-fill");
 
 const time = (t) => {
     if (isNaN(t)) {
-        return "00:00"; // Handle NaN gracefully
-        
+        return "02:05"; // Handle NaN gracefully
       }
       
   let min = Math.floor(t / 60);
@@ -65,7 +64,20 @@ const listMusic = (key) => {
   document.querySelector('body').style.background = `url(${song.cover})no-repeat center / cover`
   document.querySelector(".name h1").innerHTML = song.artist;
   document.querySelector(".name p").innerHTML = song.name;
-
+  const imgContainer = document.querySelector("img");
+  
+  // Скрываем текущее изображение
+  imgContainer.classList.add("hidden__img");
+  
+  setTimeout(() => {
+    // Устанавливаем новое изображение
+    imgContainer.innerHTML = `<img src="${song.cover}" alt="">`;
+    
+    // Убираем класс hidden для плавного появления
+    imgContainer.classList.remove("hidden__img");
+    
+    // ... другой код
+  }, 500)
   setTimeout(() => {
     inputSlider.max = audio.duration;
     document.querySelector(".time-two").innerHTML = time(audio.duration);
@@ -106,28 +118,39 @@ nextBtn.addEventListener("click", () => {
 });
 
 setInterval(() => {
-  inputSlider.value = audio.currentTime;
-  document.querySelector(".time-one").innerHTML = time(audio.currentTime);
+    if (!isNaN(audio.duration)) {
+        inputSlider.max = audio.duration;
+        document.querySelector('.time-two').innerHTML = time(audio.duration);
+    }
+    if (!isNaN(audio.currentTime)) {
+    inputSlider.value = audio.currentTime;
+    document.querySelector('.time-one').innerHTML = time(audio.currentTime);
+    }
+  
+    if (audio.currentTime >= inputSlider.max) {
+      if (musicCounting >= songs.length - 1) musicCounting = 0;
+      else musicCounting++;
+      listMusic(musicCounting);
+      playMusic();
+    }
+  }, 500);
+  
 
-  if (audio.currentTime === inputSlider.max) {
-    musicCounting = (musicCounting + 1) % songs.length;
-    listMusic(musicCounting);
-    playMusic();
-  }
-}, 500);
-
+inputSlider.addEventListener(('change'),()=>{
+    audio.currentTime = inputSlider.value
+})
 
 listMusic(0)
 
-inputSlider.addEventListener("click", (event) => {
-    // Calculate the clicked position as a percentage of the progress bar's width
-    const clickedX = event.clientX - inputSlider.getBoundingClientRect().left;
-    const progressBarWidth = inputSlider.offsetWidth;
-    const percentage = clickedX / progressBarWidth;
+// inputSlider.addEventListener("click", (event) => {
+//     // Calculate the clicked position as a percentage of the progress bar's width
+//     const clickedX = event.clientX - inputSlider.getBoundingClientRect().left;
+//     const progressBarWidth = inputSlider.offsetWidth;
+//     const percentage = clickedX / progressBarWidth;
   
-    // Set the audio's currentTime based on the percentage
-    audio.currentTime = audio.duration * percentage;
-  });
+//     // Set the audio's currentTime based on the percentage
+//     audio.currentTime = audio.duration * percentage;
+//   });
 
 
 });
