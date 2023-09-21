@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./img/favicon.png"> <!--Don`t forget to change-->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>audio-player</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="player__wrapper">
+            <div class="player__wrapper-content player__content">
+                <div class="player__content-image">
+                    <img class="album__image" src="./img/Nevergonnagiveyouup.webp" alt="">
+                </div>
+                <div class="player__content-navigation navigation">
+                    <div class="navigation__song">
+                        <div class="navigation__play">
+                           <button class="navigation__play-button"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM10.6219 8.41459C10.5562 8.37078 10.479 8.34741 10.4 8.34741C10.1791 8.34741 10 8.52649 10 8.74741V15.2526C10 15.3316 10.0234 15.4088 10.0672 15.4745C10.1897 15.6583 10.4381 15.708 10.6219 15.5854L15.5008 12.3328C15.5447 12.3035 15.5824 12.2658 15.6117 12.2219C15.7343 12.0381 15.6846 11.7897 15.5008 11.6672L10.6219 8.41459Z"></path></svg></button>
+                            <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM9 9V15H11V9H9ZM13 9V15H15V9H13Z"></path></svg> -->
+                        </div>
+                        <div class="navigation__text">
+                            <p class="navigation__actor">Rick Astley</p>
+                            <p class="navigation__name-song">Never gonna give you up
+                        </div>
+                        </p>
+                        <div class="navigation__next-prev">
+                            <button class="navigation__prev-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.001 10.6665L21.2237 4.51811C21.4534 4.36493 21.7639 4.42702 21.917 4.65679C21.9718 4.73892 22.001 4.83542 22.001 4.93414V19.0656C22.001 19.3418 21.7772 19.5656 21.501 19.5656C21.4023 19.5656 21.3058 19.5364 21.2237 19.4816L12.001 13.3332V19.0656C12.001 19.3418 11.7772 19.5656 11.501 19.5656C11.4023 19.5656 11.3058 19.5364 11.2237 19.4816L0.625047 12.4159C0.395282 12.2627 0.333196 11.9523 0.486372 11.7225C0.522989 11.6676 0.570121 11.6205 0.625047 11.5839L11.2237 4.51811C11.4534 4.36493 11.7639 4.42702 11.917 4.65679C11.9718 4.73892 12.001 4.83542 12.001 4.93414V10.6665Z"></path></svg></button>
+                           <button class="navigation__next-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 13.3332L2.77735 19.4816C2.54759 19.6348 2.23715 19.5727 2.08397 19.3429C2.02922 19.2608 2 19.1643 2 19.0656V4.93408C2 4.65794 2.22386 4.43408 2.5 4.43408C2.59871 4.43408 2.69522 4.4633 2.77735 4.51806L12 10.6665V4.93408C12 4.65794 12.2239 4.43408 12.5 4.43408C12.5987 4.43408 12.6952 4.4633 12.7774 4.51806L23.376 11.5838C23.6057 11.737 23.6678 12.0474 23.5146 12.2772C23.478 12.3321 23.4309 12.3792 23.376 12.4158L12.7774 19.4816C12.5476 19.6348 12.2372 19.5727 12.084 19.3429C12.0292 19.2608 12 19.1643 12 19.0656V13.3332Z"></path></svg></button>
+                        </div>
+                    </div>
+                    <div class="navigation__progressive-bar">
+                        <div class="progress"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/index.js"></script>
+</body>
+</html>
