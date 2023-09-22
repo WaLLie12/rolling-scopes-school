@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="shortcut icon" href="./img/favicon-32x32.png">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>audio-player</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="player__wrapper">
+            <div class="player__wrapper-content player__content">
+                <div class="player__content-image img">
+                    <img class="album__image" src="" alt="album__image">
+                </div>
+                <div class="player__content-navigation navigation">
+                    <div class="navigation__text name">
+                        <h1 class="navigation__actor">Rick Astley</h1>
+                        <p class="navigation__name-song">Never gonna give you up</p>
+                    </div>
+                    <div class="navigation__song">
+                        <audio class="audio" src=""></audio>
+                        <div class="navigation__next-prev">
+                            <i class="ri-rewind-fill"></i>
+                            <i class="ri-pause-circle-fill hidden"></i>
+                            <i class="ri-play-circle-fill"></i>
+                            <i class="ri-speed-fill"></i>
+                        </div>
+                        <div class="volume">
+                            <i class="ri-volume-down-fill"></i>
+                            <input type="range" class="input__volume">
+                            <i class="ri-volume-up-fill"></i>
+                        </div>
+                    </div>
+                    <div class="slider">
+                        <p class="time-one">00:00</p>
+                        <input type="range" class="input__slider">
+                        <p class="time-two">00:00</p>
+                    </div>
+                    <ul class="footer__position">
+                        <li class="footer__item"> <a class="footer__rs" href="https://rs.school/js-stage0/"></a></li>
+                        <li class="footer__item"> <span class="footer__year">2023</span></li>
+                        <li class="footer__item"> <a href="https://github.com/WaLLie12"><i class="ri-github-fill"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/index.js"></script>
+</body>
+</html>

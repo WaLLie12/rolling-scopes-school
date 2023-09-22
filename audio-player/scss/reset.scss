@@ -1,0 +1,56 @@
+
+:root{
+--body-font: 'Exo 2', sans-serif;
+
+    /*========== Font weight ==========*/
+    --font-regular: 400;
+    --font-semi-bold: 600;
+    --font-bold: 700;
+  
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+  
+html {
+    scroll-behavior: smooth;
+}
+  
+  input,
+  button,
+  body {
+    font-family: var(--body-font);
+    font-size: 1rem;
+}
+  
+body {
+    min-width: 250px;
+    transition: all .3s ease;
+  }
+  
+input,
+button {
+    border: none;
+    outline: none;
+}
+  
+h1, h2, h3, h4 {
+    font-family: var(--body-font);
+    font-weight: var(--font-semi-bold);
+}
+  
+ul {
+    list-style: none;
+}
+  
+a {
+    text-decoration: none;
+}
+  
+img {
+    max-width: 100%;
+    height: auto;
+}
