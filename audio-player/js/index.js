@@ -64,10 +64,8 @@ const listMusic = (key) => {
   audio.src = song.path;
   document.querySelector(".name h1").innerHTML = song.artist;
   document.querySelector(".name p").innerHTML = song.name;
-  // const imgContainer = document.querySelector("img");
   let img = new Image();
   img.onload = () => {
-    // Once the image has loaded, set it as the body background
     document.body.style.background = `url(${song.cover}) no-repeat center / cover`;
   };
   img.src = song.cover;
@@ -103,16 +101,14 @@ prevBtn.addEventListener("click", () => {
   musicCounting = (musicCounting - 1 + songs.length) % songs.length;
   listMusic(musicCounting);
   playMusic();
-  imgContainer.classList.add('anime')
-  document.body.classList.add('anime')
+  document.body.classList.add('animation')
 });
 
 nextBtn.addEventListener("click", () => {
   musicCounting = (musicCounting + 1) % songs.length;
   listMusic(musicCounting);
   playMusic();
-  imgContainer.classList.add('anime')
-  document.body.classList.add('anime')
+  document.body.classList.add('animation')
 });
 
 setInterval(() => {
