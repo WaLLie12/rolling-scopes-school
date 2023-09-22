@@ -150,6 +150,7 @@ img {
 }
 
 .navigation__text {
+  font-size: 1.125rem;
   padding: 0 0 20px 0;
 }
 
@@ -160,7 +161,7 @@ img {
 }
 
 .navigation__actor {
-  font-size: var(--big-font-size);
+  font-size: 1.5rem;
   font-weight: var(--font-bold);
   padding-bottom: 5px;
 }
@@ -285,6 +286,7 @@ img.hidden__img {
   -webkit-column-gap: 50px;
      -moz-column-gap: 50px;
           column-gap: 50px;
+  margin-bottom: 20px;
 }
 
 .footer__year {
