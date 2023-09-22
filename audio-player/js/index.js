@@ -40,6 +40,7 @@ const prevBtn = document.querySelector(".ri-rewind-fill");
 const nextBtn = document.querySelector(".ri-speed-fill");
 const pauseBtn = document.querySelector(".ri-pause-circle-fill");
 const playBtn = document.querySelector(".ri-play-circle-fill");
+const imgContainer = document.querySelector("img");
 
 const time = (t) => {
     if (isNaN(t)) {
@@ -61,23 +62,16 @@ const listMusic = (key) => {
   const song = songs[key];
   document.querySelector(".img img").src = song.cover;
   audio.src = song.path;
-  document.querySelector('body').style.background = `url(${song.cover})no-repeat center / cover`
   document.querySelector(".name h1").innerHTML = song.artist;
   document.querySelector(".name p").innerHTML = song.name;
-  const imgContainer = document.querySelector("img");
+  // const imgContainer = document.querySelector("img");
+  let img = new Image();
+  img.onload = () => {
+    // Once the image has loaded, set it as the body background
+    document.body.style.background = `url(${song.cover}) no-repeat center / cover`;
+  };
+  img.src = song.cover;
   
-  // Скрываем текущее изображение
-  imgContainer.classList.add("hidden__img");
-  
-  setTimeout(() => {
-    // Устанавливаем новое изображение
-    imgContainer.innerHTML = `<img src="${song.cover}" alt="">`;
-    
-    // Убираем класс hidden для плавного появления
-    imgContainer.classList.remove("hidden__img");
-    
-    // ... другой код
-  }, 500)
   setTimeout(() => {
     inputSlider.max = audio.duration;
     document.querySelector(".time-two").innerHTML = time(audio.duration);
@@ -109,12 +103,16 @@ prevBtn.addEventListener("click", () => {
   musicCounting = (musicCounting - 1 + songs.length) % songs.length;
   listMusic(musicCounting);
   playMusic();
+  imgContainer.classList.add('anime')
+  document.body.classList.add('anime')
 });
 
 nextBtn.addEventListener("click", () => {
   musicCounting = (musicCounting + 1) % songs.length;
   listMusic(musicCounting);
   playMusic();
+  imgContainer.classList.add('anime')
+  document.body.classList.add('anime')
 });
 
 setInterval(() => {
@@ -141,16 +139,5 @@ inputSlider.addEventListener(('change'),()=>{
 })
 
 listMusic(0)
-
-// inputSlider.addEventListener("click", (event) => {
-//     // Calculate the clicked position as a percentage of the progress bar's width
-//     const clickedX = event.clientX - inputSlider.getBoundingClientRect().left;
-//     const progressBarWidth = inputSlider.offsetWidth;
-//     const percentage = clickedX / progressBarWidth;
-  
-//     // Set the audio's currentTime based on the percentage
-//     audio.currentTime = audio.duration * percentage;
-//   });
-
 
 });
