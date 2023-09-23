@@ -53,6 +53,14 @@
                             Welcome <br> to the Brooklyn Library
                         </h3>
                     </div>
+                    <button class="local__clear" style="cursor: pointer;">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="14" cy="14" r="14" fill="blue"/>
+                            <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="white" font-size="12">
+                                Initials
+                            </text>
+                        </svg>
+                    </button>
             </section>
             <section class="about" id="About">
                 <h2 class="section__title">
@@ -678,8 +686,8 @@
                                     Brooklyn Public Library
                                 </p>
                                 <form class="user__info-form">
-                                    <input class="user__info-input" placeholder="Reader's name" type="text" required pattern="^[a-zA-Z]+$">
-                                    <input class="user__info-input" placeholder="Card number" type="text" required pattern="[A-Z]{1}[0-9]+$">
+                                    <input class="user__info-input input-reader__name" placeholder="Reader's name" type="text" required pattern="^[a-zA-Z]+$">
+                                    <input class="user__info-input input-card__number" placeholder="Card number" type="text" required pattern="[A-Z]{1}[0-9]+$">
                                 </form>
                             </div>
                             <div class="user__info__click">
@@ -698,17 +706,6 @@
                             <button class="card__getting__button__1  popup__link-register">Sign Up</button>
                             <button class="card__getting__button__2  popup__link-login">Log in</button>
                         </div>
-                        <button class="local__clear">
-                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Ваша окружность профиля -->
-                            <circle cx="14" cy="14" r="14" fill="blue"/>
-                        
-                            <!-- Инициалы имени и фамилии пользователя -->
-                            <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="white" font-size="12">
-                                Initials
-                            </text>
-                        </svg>
-                    </button>
                     </div>
                 </div>
             </section>

@@ -1860,3 +1860,54 @@ input {
 .nav__profile-after-login {
   padding: 5px 5px 20px;
 }
+
+.input-reader__name,
+.input-card__number {
+  display: block;
+  background-color: var(--fourth-color);
+  padding: 20px;
+  font-size: 1.7rem;
+  font-family: var(--second-font);
+  justify-items: center;
+  color: var(--third-color);
+}
+
+.user__info-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-column-gap: 35px;
+     -moz-column-gap: 35px;
+          column-gap: 35px;
+}
+
+.user__info-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  row-gap: 10px;
+}
+
+.user__info-item svg {
+  width: 25px;
+  height: 25px;
+}
+
+.user__info-item span {
+  font-size: 0.7rem;
+  line-height: 1.25rem; /* 200% */
+  letter-spacing: 0.0125rem;
+}
