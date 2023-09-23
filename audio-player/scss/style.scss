@@ -44,7 +44,7 @@
     height: 100%;
     border-radius: 10%;
     background-blend-mode: multiply;
-    transition: background-image 1s ease-in-out;
+    transition: all 10s ease-in-out;
 }
 
 .player__content-navigation {
@@ -144,16 +144,6 @@ input[type='range']{
 .hidden{
     display: none;
 }
-
-img {
-    opacity: 1;
-    transform: opacity 0.5 ease;
-  }
-  
-  img.hidden__img {
-    opacity: 0;
-    transition: opacity 0.5s ease
-  }
 
   .animation{
     transition: all .5s ease-in-out;
