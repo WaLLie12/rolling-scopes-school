@@ -434,7 +434,7 @@ final band - 50
       const logOutBtn = document.querySelector(".log__out");
 
       if (logOutBtn) {
-        addEventListener("click", () => {
+        logOutBtn.addEventListener("click", () => {
           localStorage.removeItem("userAuthorized");
           location.reload();
         });
