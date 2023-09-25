@@ -53,14 +53,6 @@
                             Welcome <br> to the Brooklyn Library
                         </h3>
                     </div>
-                    <button class="local__clear" style="cursor: pointer;">
-                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="14" cy="14" r="14" fill="blue"/>
-                            <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="white" font-size="12">
-                                Initials
-                            </text>
-                        </svg>
-                    </button>
             </section>
             <section class="about" id="About">
                 <h2 class="section__title">
@@ -216,8 +208,8 @@
                             <p class="description__text">
                                 A timely and revelatory new biography of Queen Elizabeth (and her family) exploring how the Windsors have evolved and thrived as the modern world has changed around them.
                             </p>
-                            <button disabled class="description__button__inactive">
-                                Own
+                            <button class="description__button"> <!--__inactive-->
+                                Buy
                             </button>
                             
                         </div>
@@ -309,7 +301,7 @@
                                 A fascinating story of a teenage girl who marries a man twice her age with the promise to bring her to America. Her marriage is an opportunity for her family to eventually immigrate. For fans of Isabel Allende and Julia Alvarez.
                             </p>
                             <button disabled class="description__button__inactive">
-                                Own
+                                Buy
                             </button>
                             
                         </div>
@@ -882,16 +874,22 @@
                     <li class="rented__books-item">The Last Queen, Clive Irving</li>
                     <li class="rented__books-item">Dominicana, Angie Cruz</li>
                 </ul>
-                <p class="card__number-text">Card number <span class="card__number"></span> <svg class="copy__btn" width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <p class="card__number-text">Card number <span id="textToCopy" class="card__number"></span> <svg id="copyButton" class="copy__btn" width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="2.46826" y="0.25" width="10.5917" height="9.5" rx="0.75" stroke="black" stroke-width="0.5"/>
                     <rect x="0.25" y="2.25" width="10.5917" height="9.5" rx="0.75" fill="white" stroke="black" stroke-width="0.5"/>
                     </svg>
-                    </p>
+                </p>
+                <div id="copySuccessMessage" style="display: none;">Text copied to clipboard!</div>
                 </div>
             </div>
         </div>
     </div>
-   
+   <!-- Add an element with the text you want to copy -->
+<div id="textToCopy">This is the text you want to copy.</div>
+
+<!-- Create a button to trigger the copy operation -->
+<button id="copyButton">Copy Text</button>
+
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script src="./js/index.js"></script>
 </body>

@@ -1,6 +1,5 @@
-window.addEventListener("DOMContentLoaded", () =>{
-
-console.log(`
+window.addEventListener("DOMContentLoaded", () => {
+  console.log(`
 1.Вёрстка соответствует макету. Ширина экрана 768px +26 \n
 \t блок <header> +2
 \t секция Welcome +2
@@ -22,334 +21,278 @@ console.log(`
 \t\t ссылки в адаптивном меню работают, обеспечивая плавную прокрутку по якорям при нажатии, а само адаптивное меню при этом плавно скрывается +2
 \t\t размеры открытого бургер-меню соответствуют макету, так же открытое бургер-меню проверяется на PixelPerfect +2 \n
 final band - 50
-`)
+`);
 
-const burger = document.querySelector('.header__burger');
-const nav = document.querySelector('.header__nav-navigation');
-const body = document.body;
-// let accountBtn = document.querySelector('.account__btn')
-const navProfile = document.querySelector('.header__profile__list')
-let imgProfileBtn = document.querySelector('.account__btn')
+  const burger = document.querySelector(".header__burger");
+  const nav = document.querySelector(".header__nav-navigation");
+  const body = document.body;
+  // let accountBtn = document.querySelector('.account__btn')
+  const navProfile = document.querySelector(".header__profile__list");
+  let imgProfileBtn = document.querySelector(".account__btn");
 
-
-burger.addEventListener('click', (event) => {
+  burger.addEventListener("click", (event) => {
     event.stopPropagation();
-    burger.classList.toggle('active');
-    if (burger.classList.contains('active')) {
-        disableScroll();
+    burger.classList.toggle("active");
+    if (burger.classList.contains("active")) {
+      disableScroll();
     } else {
-        enableScroll();
+      enableScroll();
     }
-    nav.classList.toggle('active');
-    closeAuthMenu()
-});
+    nav.classList.toggle("active");
+    closeAuthMenu();
+  });
 
-body.addEventListener('click', (event) => {
-    if (!event.target.closest('.header__nav-navigation')){
-        closeNav()
-    } 
-});
+  body.addEventListener("click", (event) => {
+    if (!event.target.closest(".header__nav-navigation")) {
+      closeNav();
+    }
+  });
 
-document.querySelectorAll('.navigation__link').forEach((item) => {
-    item.addEventListener('click', () => {
-        closeNav();
+  document.querySelectorAll(".navigation__link").forEach((item) => {
+    item.addEventListener("click", () => {
+      closeNav();
     });
-});
+  });
 
-function closeNav() {
-    burger.classList.remove('active');
-    nav.classList.remove('active');
+  function closeNav() {
+    burger.classList.remove("active");
+    nav.classList.remove("active");
     enableScroll();
-}
+  }
 
-function disableScroll() {
-    body.classList.add('froze-scroll');
-}
+  function disableScroll() {
+    body.classList.add("froze-scroll");
+  }
 
-function enableScroll() {
-    body.classList.remove('froze-scroll');
-}
+  function enableScroll() {
+    body.classList.remove("froze-scroll");
+  }
 
-function closeAuthMenu () {
-    navProfile.classList.remove('header__profile__list-active')
-}
+  function closeAuthMenu() {
+    navProfile.classList.remove("header__profile__list-active");
+  }
 
-const swiper = new Swiper('.swiper', {
+  const swiper = new Swiper(".swiper", {
     spaceBetween: 26,
     keyboard: true,
     slidesPerView: 3,
-    autoplay:{
-        delay: 2000,
-        stopOnLastSlide: true,
-        disableOnInteraction: false
+    autoplay: {
+      delay: 2000,
+      stopOnLastSlide: true,
+      disableOnInteraction: false,
     },
     speed: 700,
-    breakpoints:{
-        260: {
-            slidesPerView: 1
-        },
-        769: {
-            slidesPerView: 2
-        },
-        1200:{
-            slidesPerView: 3
-        }
+    breakpoints: {
+      260: {
+        slidesPerView: 1,
+      },
+      769: {
+        slidesPerView: 2,
+      },
+      1200: {
+        slidesPerView: 3,
+      },
     },
     pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
+      el: ".swiper-pagination",
+      clickable: true,
+    },
     // Navigation arrows
     navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
       clickable: true,
     },
   });
 
-  const radioButtons = document.querySelectorAll('.custom__input');
-  const contentBlocks = document.querySelectorAll('.favorite__books_half');
+  const radioButtons = document.querySelectorAll(".custom__input");
+  const contentBlocks = document.querySelectorAll(".favorite__books_half");
   const blocksPerPage = 4;
-  
+
   function updateBlocksVisibility(selectedIndex) {
-      contentBlocks.forEach((block, index) => {
-              if (index >= selectedIndex * blocksPerPage && index < (selectedIndex + 1) * blocksPerPage) {
-                      block.classList.add('fade-in', 'fade');
-              } else {
-                  block.classList.remove('fade-in', 'fade');
-              }   
-      });
+    contentBlocks.forEach((block, index) => {
+      if (
+        index >= selectedIndex * blocksPerPage &&
+        index < (selectedIndex + 1) * blocksPerPage
+      ) {
+        block.classList.add("fade-in", "fade");
+      } else {
+        block.classList.remove("fade-in", "fade");
+      }
+    });
   }
-  
+
   radioButtons.forEach((radioButton, index) => {
-      radioButton.addEventListener('change', () => {
-       updateBlocksVisibility(index);
-      });
+    radioButton.addEventListener("change", () => {
+      updateBlocksVisibility(index);
+    });
   });
-  
+
   // При загрузке страницы показываем содержимое для первой вкладки
   updateBlocksVisibility(0);
 
+  imgProfileBtn.addEventListener("click", (event) => {
+    event.stopPropagation();
+    if (event.currentTarget === imgProfileBtn) {
+      navProfile.classList.toggle("header__profile__list-active");
+    }
+    burger.classList.remove("active");
+    nav.classList.remove("active");
+  });
 
+  body.addEventListener("click", (event) => {
+    if (!event.target.closest(".header__profile__list")) {
+      closeAuthMenu();
+    }
+  });
 
-    imgProfileBtn.addEventListener('click', (event)=>{
-        event.stopPropagation()
-        if(event.currentTarget === imgProfileBtn){
-        navProfile.classList.toggle('header__profile__list-active')
-        }
-        burger.classList.remove('active');
-        nav.classList.remove('active');
-    })
+  const popupLinkLogin = document.querySelectorAll(".popup__link-login");
+  const popupLinkRegister = document.querySelectorAll(".popup__link-register");
+  const popupWindowLogin = document.querySelector(".popup__login");
+  const popupWindowRegister = document.querySelector(".popup__register");
+  // const lockPadding = document.querySelectorAll('.lock-padding')
 
-    body.addEventListener('click', (event) => {
-        if (!event.target.closest('.header__profile__list')){
-            closeAuthMenu ()
-        } 
+  let unlock = true;
+
+  if (popupLinkLogin.length > 0) {
+    for (let i = 0; i < popupLinkLogin.length; i++) {
+      const elements = popupLinkLogin[i];
+      elements.addEventListener("click", (e) => {
+        popupOpenLogin(popupWindowLogin);
+        popupClose(popupWindowRegister);
+        closeAuthMenu();
+        bodyLock();
+        e.preventDefault();
+      });
+    }
+  }
+
+  if (popupLinkRegister.length > 0) {
+    for (let i = 0; i < popupLinkRegister.length; i++) {
+      const elements = popupLinkRegister[i];
+      elements.addEventListener("click", (e) => {
+        popupOpenRegister(popupWindowRegister);
+        popupClose(popupWindowLogin);
+        bodyLock();
+        closeAuthMenu();
+        e.preventDefault();
+      });
+    }
+  }
+
+  const popupCloseIcon = document.querySelectorAll(".popup__close");
+  if (popupCloseIcon.length > 0) {
+    popupCloseIcon.forEach((el) => {
+      el.addEventListener("click", (e) => {
+        popupClose(el.closest(".modal"));
+        e.preventDefault();
+      });
     });
+  }
 
-    const popupLinkLogin = document.querySelectorAll('.popup__link-login')
-    const popupLinkRegister = document.querySelectorAll('.popup__link-register')
-    const popupWindowLogin = document.querySelector('.popup__login')
-    const popupWindowRegister = document.querySelector('.popup__register')
-    // const lockPadding = document.querySelectorAll('.lock-padding')
-
-    let unlock = true
-
-    if (popupLinkLogin.length > 0){
-        for(let i =0; i < popupLinkLogin.length; i++){
-            const elements = popupLinkLogin[i]
-            elements.addEventListener(('click'), (e)=>{
-                popupOpenLogin(popupWindowLogin);
-                popupClose(popupWindowRegister)
-                closeAuthMenu ()
-                bodyLock()
-                e.preventDefault()
-            })
+  function popupOpenLogin(currentPopupLogin) {
+    if (currentPopupLogin && unlock) {
+      const popupActive = document.querySelector(".popup__login.open");
+      currentPopupLogin.classList.add("open");
+      currentPopupLogin.addEventListener("click", (e) => {
+        if (!e.target.closest(".popup__content")) {
+          popupClose(e.target.closest(".modal"));
         }
+      });
     }
-    
-    if (popupLinkRegister.length > 0){
-        for(let i =0; i < popupLinkRegister.length; i++){
-            const elements = popupLinkRegister[i]
-            elements.addEventListener(('click'), (e)=>{
-                popupOpenRegister(popupWindowRegister);
-                popupClose(popupWindowLogin)
-                bodyLock()
-                closeAuthMenu ()
-                e.preventDefault()
-            })
+  }
+
+  function popupOpenRegister(currentPopupRegister) {
+    if (currentPopupRegister && unlock) {
+      const popupActive = document.querySelector(".popup__register.open");
+      currentPopupRegister.classList.add("open");
+      currentPopupRegister.addEventListener("click", (e) => {
+        if (!e.target.closest(".popup__content")) {
+          popupClose(e.target.closest(".modal"));
         }
+      });
     }
+  }
 
-    const popupCloseIcon = document.querySelectorAll('.popup__close')
-    if(popupCloseIcon.length > 0){
-        popupCloseIcon.forEach(el => {
-            el.addEventListener(('click'), (e) => {
-                popupClose(el.closest('.modal'))
-                e.preventDefault()
-            })
-        })
+  function popupClose(popupActive, doUnlock = true) {
+    if (unlock) {
+      popupActive.classList.remove("open");
+      if (doUnlock) {
+        bodyUnlock();
+      }
     }
+  }
 
-    function popupOpenLogin(currentPopupLogin){
-        if(currentPopupLogin && unlock){
-            const popupActive = document.querySelector('.popup__login.open')
-            // if(popupActive){
-            //     popupClose(popupActive, false)
-            // }else{
-            //     bodyLock()
-            // }
-            currentPopupLogin.classList.add('open')
-            currentPopupLogin.addEventListener(('click'), (e) =>{
-                if(!e.target.closest('.popup__content')){
-                    popupClose(e.target.closest('.modal'))
-                }
-            })
-        }
-    }
+  function bodyLock() {
+    body.classList.add("lock");
+    unlock = false;
+    setTimeout(function () {
+      unlock = true;
+    }, 600);
+  }
 
-    function popupOpenRegister(currentPopupRegister){
-        if(currentPopupRegister && unlock){
-            const popupActive = document.querySelector('.popup__register.open')
-            // if(popupActive){
-            //     popupClose(popupActive, false)
-            // }else{
-            //     bodyLock()
-            // }
-            currentPopupRegister.classList.add('open')
-            currentPopupRegister.addEventListener(('click'), (e) =>{
-                if(!e.target.closest('.popup__content')){
-                    popupClose(e.target.closest('.modal'))
-                }
-            })
-        }
-    }
+  function bodyUnlock() {
+    body.classList.remove("lock");
+  }
 
-    function popupClose(popupActive, doUnlock = true) {
-        if(unlock){
-            popupActive.classList.remove('open')
-            if(doUnlock){
-                bodyUnlock()
-            }
-        }
-    }
-
-    function bodyLock() {
-        // const  lockPaddingValue = window.innerWidth - document.querySelector('.wrapper').offsetWidth + 'px'
-        // // for (let i = 0; i < lockPadding.length; i++) {
-        // //     const el = lockPadding[i];
-        // //     el.style.paddingRight = lockPaddingValue
-        // // }
-        // body.style.paddingRight = lockPaddingValue
-        body.classList.add('lock')
-
-        unlock = false
-        setTimeout( function () {
-            unlock = true
-        }, 600)
-    }
-
-    function bodyUnlock() {
-        // setTimeout( function () {
-        // for (let i = 0; i < lockPadding.length; i++) {
-        //     const el = lockPadding[i];
-        //     el.style.paddingRight = '0px'
-        //     }
-            body.classList.remove('lock')
-        // }, 600)
-    }
-
-    if (localStorage.getItem('userRegistered') !== 'true' && localStorage.getItem('userAuthorized') !== 'true' || localStorage.getItem('userRegistered') === 'true' && localStorage.getItem('userAuthorized') !== 'true') {
-
-        imgProfileBtn.innerHTML = `
+  if (
+    (localStorage.getItem("userRegistered") !== "true" &&
+      localStorage.getItem("userAuthorized") !== "true") ||
+    (localStorage.getItem("userRegistered") === "true" &&
+      localStorage.getItem("userAuthorized") !== "true")
+  ) {
+    imgProfileBtn.innerHTML = `
         <svg  class="header__profile__img account__btn" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M28 14C28 21.732 21.732 28 14 28C6.26801 28 0 21.732 0 14C0 6.26801 6.26801 0 14 0C21.732 0 28 6.26801 28 14ZM18.6667 7.77778C18.6667 10.3551 16.5774 12.4444 14.0001 12.4444C11.4227 12.4444 9.33339 10.3551 9.33339 7.77778C9.33339 5.20045 11.4227 3.11111 14.0001 3.11111C16.5774 3.11111 18.6667 5.20045 18.6667 7.77778ZM19.4998 16.2781C20.9584 17.7367 21.7778 19.715 21.7778 21.7778H14L6.22225 21.7778C6.22225 19.715 7.0417 17.7367 8.50031 16.2781C9.95893 14.8194 11.9372 14 14 14C16.0628 14 18.0411 14.8194 19.4998 16.2781Z" fill="white"/>
         </svg>
-      `
-    //     accountList.innerHTML = `
-    //     <strong class="account__list-text">Profile</strong>
-    //     <li class="account__list-item"><button class="account__list-button account__list-button-login btn-reset">Log In</button></li>
-    //     <li class="account__list-item"><button class="account__list-button account__list-button-register btn-reset">Register</button></li>
-    //   `
-    }
+      `;
+    /* Don't  forget to back nav to first state */
+  }
 
-    if (localStorage.getItem('userRegistered') === 'true' && localStorage.getItem('userAuthorized') === 'true') {
+  if (
+    localStorage.getItem("userRegistered") === "true" &&
+    localStorage.getItem("userAuthorized") === "true"
+  ) {
+    //получить инициалы юзера
+    let profileNameInitial = localStorage.getItem("UserName");
+    let profileSurNameInitial = localStorage.getItem("UserLastName");
+    let initials = `${profileNameInitial[0]}${profileSurNameInitial[0]}`;
 
-        //получить инициалы юзера
-        let profileNameInitial = localStorage.getItem('UserName')
-        let profileSurNameInitial = localStorage.getItem('UserLastName')
-        let initials = `${profileNameInitial[0]}${profileSurNameInitial[0]}`
-        
-    
-    //     let cardBoxInfo = document.querySelector('.card__content');
-    
-    //     cardBoxInfo.innerHTML = `
-    //   <div class="card__left flex">
-    //   <h3 class="card__left-subtitle">Your Library card</h3>
-    //   <div class="card__left-bottom">
-    //     <div class="card__left-info">
-    //       <span class="card__name">Brooklyn Public Library</span>
-    //       <span class= "card__user-name">${localStorage.getItem('userName')} ${localStorage.getItem('userSurName')}</span>
-    //       <span class= "card__user-number">${localStorage.getItem('cardNumber')}</span>
-    //     </div>
-    //     <ul class="card__left-info-list list-reset info-list">
-    //       <li class="info-list__item">
-    //         <span class="info-list-name">Visits</span>
-    //         <svg>
-    //           <use xlink:href="img/sprite.svg#visits"></use>
-    //         </svg>
-    //         <span class="info-list-count info-list-count-visits">${localStorage.getItem('userVisits')}</span>
-    //       </li>
-    //       <li class="info-list__item">
-    //         <span class="info-list-name">Bonuses</span>
-    //         <svg>
-    //           <use xlink:href="img/sprite.svg#bonuses"></use>
-    //         </svg>
-    //         <span class="info-list-count">1240</span>
-    //       </li>
-    //       <li class="info-list__item">
-    //         <span class="info-list-name">Books</span>
-    //         <svg>
-    //           <use xlink:href="img/sprite.svg#books"></use>
-    //         </svg>
-    //         <span class="info-list-count info-list-count-books">${localStorage.getItem('userOwnBooks')}</span>
-    //       </li>
-    //     </ul>
-    //   </div>
-    // </div>
-    // <div class="card__right flex">
-    //   <h3 class="card__right-subtitle">Visit your profile</h3>
-    //   <p class="card__right-descr">With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.</p>
-    //   <div class="card__right-bottom flex">
-    //     <button class="btn-reset card__right-btn card__right-btn-profile">Profile</button>
-    //   </div>
-    // </div>
-    // `
-    
-        //если юзернейм есть в БД, то вместо свг иконки в кнопке юзера вставить его инициалы
-        if (localStorage.getItem('UserName')) {
-            //заменить содержимый код кнопки юзера на его инициалы
-            imgProfileBtn.innerHTML = initials;
-            imgProfileBtn.setAttribute('title', `${localStorage.getItem('UserName')} ${localStorage.getItem('UserLastName')}`);
-            imgProfileBtn.classList.add('account__btn-after-register');
-    
-            //заменить содержимый код дроп-листа на дроп-лист после авторизации
-            navProfile.classList.add('nav__profile-after-login')
-            navProfile.innerHTML = `
-            <b class="header__profile__list-text">${localStorage.getItem('CardNumber')}</b>
-            <li class="header__profile__list-item"> <button class="header__profile__list-login popup__link-login myprofie__popup">My profile</button></li>
-            <li class="header__profile__list-item"> <button class="header__profile__list-register popup__link-register">Log out</button></li>
-            `
-            const myProfile = document.querySelector('.myprofie__popup')
-            myProfile.addEventListener('click', () =>{
+    /* replace content here */
 
-            })
+    //если юзернейм есть в БД, то вместо свг иконки в кнопке юзера вставить его инициалы
+    if (localStorage.getItem("UserName")) {
+      //заменить содержимый код кнопки юзера на его инициалы
+      imgProfileBtn.innerHTML = initials;
+      imgProfileBtn.setAttribute(
+        "title",
+        `${localStorage.getItem("UserName")} ${localStorage.getItem(
+          "UserLastName"
+        )}`
+      );
+      imgProfileBtn.classList.add("account__btn-after-register");
 
-            document.querySelector('.card__number').innerHTML = `${localStorage.getItem('CardNumber')}`
-            document.querySelector('.aside__initials').innerHTML = initials
-            document.querySelector('.aside__name-sur').innerHTML = `${localStorage.getItem('UserName')} ${localStorage.getItem('UserLastName')}`
+      //заменить содержимый код дроп-листа на дроп-лист после авторизации
+      navProfile.classList.add("nav__profile-after-login");
+      navProfile.innerHTML = `
+            <b class="header__profile__list-text">${localStorage.getItem(
+              "CardNumber"
+            )}</b>
+            <li class="header__profile__list-item"> <button class="header__profile__list-login my__profile-popup">My profile</button></li>
+            <li class="header__profile__list-item"> <button class="header__profile__list-register log__out">Log out</button></li>
+            `;
 
-            document.querySelector('.card__getting').innerHTML = `
+      document.querySelector(
+        ".card__number"
+      ).innerHTML = `${localStorage.getItem("CardNumber")}`;
+      document.querySelector(".aside__initials").innerHTML = initials;
+      document.querySelector(
+        ".aside__name-sur"
+      ).innerHTML = `${localStorage.getItem("UserName")} ${localStorage.getItem(
+        "UserLastName"
+      )}`;
+
+      document.querySelector(".card__getting").innerHTML = `
             <p class="card__getting__title">
                 Visit your profile
             </p>
@@ -357,17 +300,21 @@ const swiper = new Swiper('.swiper', {
             With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.
             </p>
             <div class="card__getting__buttons">
-                <button class="card__getting__button__1  popup__link-register">Profile</button>
+                <button class="card__getting__button__1  popup__link-register my__profile-popup">Profile</button>
             </div>
-            <button class="local__clear">`
-            document.querySelector('.card__searching__bg').innerHTML = `
+            <button class="local__clear">`;
+      document.querySelector(".card__searching__bg").innerHTML = `
             <div class="user__info">
                 <p class="user__info__title">
                     Brooklyn Public Library
                 </p>
                 <div class="user__info-form">
-                    <span class="user__info-input input-reader__name"> ${localStorage.getItem('UserName')} ${localStorage.getItem('UserLastName')}</span>
-                    <span class="user__info-input input-card__number"> ${localStorage.getItem('CardNumber')} </span>
+                    <span class="user__info-input input-reader__name"> ${localStorage.getItem(
+                      "UserName"
+                    )} ${localStorage.getItem("UserLastName")}</span>
+                    <span class="user__info-input input-card__number"> ${localStorage.getItem(
+                      "CardNumber"
+                    )} </span>
                 </div>
             </div>
             <div class="user__info__click">
@@ -396,115 +343,193 @@ const swiper = new Swiper('.swiper', {
                         <span>0</span>
                     </li>
                 </ul>                        
-            </div>
-             `
-        ;
+            </div>`;
+
+      const popupWindowProfile = document.querySelector(".popup__profile");
+      const popupLinkProfile = document.querySelectorAll(".my__profile-popup");
+      console.log(popupLinkProfile[0]);
+
+      let unlock = true;
+
+      if (popupLinkProfile.length > 0) {
+        for (let i = 0; i < popupLinkProfile.length; i++) {
+          const elements = popupLinkProfile[i];
+          elements.addEventListener("click", (e) => {
+            popupOpenProfile(popupWindowProfile);
+            closeAuthMenu();
+            bodyLock();
+            e.preventDefault();
+          });
+        }
+      }
+
+      function popupOpenProfile(currentPopupRegister) {
+        if (currentPopupRegister && unlock) {
+          const popupActive = document.querySelector(".popup__profile.open");
+          currentPopupRegister.classList.add("open");
+          currentPopupRegister.addEventListener("click", (e) => {
+            if (!e.target.closest(".content")) {
+              popupClose(e.target.closest(".modal"));
             }
-            
+          });
+        }
+      }
+
+      const popupCloseIcon = document.querySelectorAll(".popup__close");
+      if (popupCloseIcon.length > 0) {
+        popupCloseIcon.forEach((el) => {
+          el.addEventListener("click", (e) => {
+            popupClose(el.closest(".modal"));
+            e.preventDefault();
+          });
+        });
+      }
+
+      function popupClose(popupActive, doUnlock = true) {
+        if (unlock) {
+          popupActive.classList.remove("open");
+          if (doUnlock) {
+            bodyUnlock();
+          }
+        }
+      }
+
+      function bodyLock() {
+        body.classList.add("lock");
+        unlock = false;
+        setTimeout(function () {
+          unlock = true;
+        }, 600);
+      }
+
+      function bodyUnlock() {
+        body.classList.remove("lock");
+      }
+
+      const textToCopyElement = document.getElementById("textToCopy");
+      const copyButton = document.getElementById("copyButton");
+
+      // Add a click event listener to the button
+      const copySuccessMessage = document.getElementById("copySuccessMessage");
+
+      copyButton.addEventListener("click", function () {
+        const textToCopy = textToCopyElement.innerText;
+        const input = document.createElement("input");
+        input.setAttribute("value", textToCopy);
+        document.body.appendChild(input);
+        input.select();
+        input.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+        document.body.removeChild(input);
+
+        // Display the success message
+        copySuccessMessage.style.display = "block";
+
+        // Automatically hide the success message after a few seconds (e.g., 3 seconds)
+        setTimeout(function () {
+          copySuccessMessage.style.display = "none";
+        }, 3000);
+      });
+
+      const logOutBtn = document.querySelector(".log__out");
+
+      if (logOutBtn) {
+        addEventListener("click", () => {
+          localStorage.removeItem("userAuthorized");
+          location.reload();
+        });
+      }
     }
-    ;
+  }
+  const firstName = document.querySelector("#input-name");
+  const lastName = document.querySelector("#input-surname");
+  const inputEmail = document.querySelector(".input-email");
+  const inputPassword = document.querySelector(".input-password");
 
-    const firstName = document.querySelector('#input-name');
-    const lastName = document.querySelector('#input-surname');
-    const inputEmail = document.querySelector('.input-email');
-    const inputPassword = document.querySelector('.input-password');
-   
-    const passwordError = document.querySelector('.password-error')  
-    const emailError = document.querySelector('.email-error')
-    const nameError = document.querySelector('.name-error')
-    const surNameError = document.querySelector('.last-name-error')
-    // const EMAIL_REGEXP = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  const passwordError = document.querySelector(".password-error");
+  const emailError = document.querySelector(".email-error");
+  const nameError = document.querySelector(".name-error");
+  const surNameError = document.querySelector(".last-name-error");
+  // const EMAIL_REGEXP = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
-    const signUpBtn = document.getElementById('register-button-submit')
+  const signUpBtn = document.getElementById("register-button-submit");
 
-    signUpBtn.addEventListener(('click'), (e) =>{
+  signUpBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    disableScroll();
+    e.preventDefault();
 
-        e.stopPropagation()
-        disableScroll()
-        e.preventDefault()
+    let firstNameValue = firstName.value.split(/\s+/).join("");
+    let lastNameValue = lastName.value.split(/\s+/).join("");
+    let emailValue = inputEmail.value.split(/\s+/).join("");
+    let passwordValue = inputPassword.value.split(/\s+/).join("");
 
-        let firstNameValue = firstName.value.split(/\s+/).join('');
-        let lastNameValue = lastName.value.split(/\s+/).join('');
-        let emailValue = inputEmail.value.split(/\s+/).join('');
-        let passwordValue = inputPassword.value.split(/\s+/).join('');
-   
-    // const userData = { firstName, lastName, email, password };
-    // localStorage.setItem('user_data', JSON.stringify(userData));
-
-    //     const userSurname = localStorage.getItem(userData)
-    //     console.log(userSurname)
-    // })
-
-    let validRegistration = false
-        nameError.textContent = ''
-    if(firstNameValue.length <= 3){
-        nameError.classList.add('error')
-        nameError.textContent = 'must be at least 3 characters'
-        validRegistration = true
+    let validRegistration = false;
+    nameError.textContent = "";
+    if (firstNameValue.length <= 3) {
+      nameError.classList.add("error");
+      nameError.textContent = "must be at least 3 characters";
+      validRegistration = true;
     } else {
-        registerNameValue = `${firstNameValue[0].toUpperCase()}${firstNameValue.slice(1).toLowerCase()}`
-        localStorage.setItem('UserName', registerNameValue)
+      registerNameValue = `${firstNameValue[0].toUpperCase()}${firstNameValue
+        .slice(1)
+        .toLowerCase()}`;
+      localStorage.setItem("UserName", registerNameValue);
     }
-    surNameError.textContent = ''
-    if(lastNameValue.length <= 3){
-        surNameError.classList.add('error')
-        surNameError.textContent = 'must be at least 3 characters'
-        validRegistration = true
+    surNameError.textContent = "";
+    if (lastNameValue.length <= 3) {
+      surNameError.classList.add("error");
+      surNameError.textContent = "must be at least 3 characters";
+      validRegistration = true;
     } else {
-        registerLastNameValue = `${lastNameValue[0].toUpperCase()}${lastNameValue.slice(1).toLowerCase()}`
-        localStorage.setItem('UserLastName', registerLastNameValue)
+      registerLastNameValue = `${lastNameValue[0].toUpperCase()}${lastNameValue
+        .slice(1)
+        .toLowerCase()}`;
+      localStorage.setItem("UserLastName", registerLastNameValue);
     }
 
-    emailError.textContent = ''
-    if(emailValue.length <= 3){
-        emailError.classList.add('error')
-        emailError.textContent = 'must be at least 3 characters'
-        validRegistration = true
-    } else if(!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+$/.test(emailValue)) {
-
-        emailError.classList.add('error');
-        emailError.textContent = 'Email address is incorrect';
-        validRegistration = true;
-
-    }  else if (emailValue === localStorage.getItem('UserEmail')) {
-        emailError.classList.add('error')
-        emailError.textContent = 'This email address is already registered'
-        validRegistration = true
-    } 
-    else {
-        localStorage.setItem('UserMail', emailValue)
+    emailError.textContent = "";
+    if (emailValue.length <= 3) {
+      emailError.classList.add("error");
+      emailError.textContent = "must be at least 3 characters";
+      validRegistration = true;
+    } else if (
+      !/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+$/.test(emailValue)
+    ) {
+      emailError.classList.add("error");
+      emailError.textContent = "Email address is incorrect";
+      validRegistration = true;
+    } else if (emailValue === localStorage.getItem("UserEmail")) {
+      emailError.classList.add("error");
+      emailError.textContent = "This email address is already registered";
+      validRegistration = true;
+    } else {
+      localStorage.setItem("UserMail", emailValue);
     }
-    passwordError.textContent = ''
-    if(passwordValue.length < 8){
-        passwordError.classList.add('error')
-        passwordError.textContent = 'Passwords must be eight characters or more'
-        validRegistration = true
-    } else{
-        localStorage.setItem('UserPassword', passwordValue)
+    passwordError.textContent = "";
+    if (passwordValue.length < 8) {
+      passwordError.classList.add("error");
+      passwordError.textContent = "Passwords must be eight characters or more";
+      validRegistration = true;
+    } else {
+      localStorage.setItem("UserPassword", passwordValue);
     }
 
-    const randomDecimal = Math.floor(Math.random() * 0x1FFFFFE);
+    const randomDecimal = Math.floor(Math.random() * 0x1fffffe);
 
     // Преобразуем случайное десятичное число в 16-ричное представление и добавляем нули спереди, чтобы получить 9 символов
-    const randomHex = randomDecimal.toString(16).toUpperCase().padStart(9, '0');
+    const randomHex = randomDecimal.toString(16).toUpperCase().padStart(9, "0");
 
-    localStorage.setItem('CardNumber', randomHex)
-    
+    localStorage.setItem("CardNumber", randomHex);
+
     if (validRegistration === true) {
-
-        return;
-
+      return;
     }
 
-    popupClose(popupWindowRegister)
-    location.reload() 
+    popupClose(popupWindowRegister);
+    location.reload();
 
-    localStorage.setItem('userRegistered', true);
-    localStorage.setItem('userAuthorized', true);
-    })
-    const localClear = document.querySelector('.local__clear')
-    localClear.addEventListener(('click'), () =>{
-        localStorage.removeItem('userAuthorized')
-        location.reload();
-    })
-})
+    localStorage.setItem("userRegistered", true);
+    localStorage.setItem("userAuthorized", true);
+  });
+});
