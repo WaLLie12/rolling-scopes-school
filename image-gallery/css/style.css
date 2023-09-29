@@ -173,3 +173,31 @@ img {
   cursor: pointer;
   font-size: 1.25rem;
 }
+
+.main__container {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 20px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-top: 40px;
+  padding: 20px;
+}
+
+.main__image {
+  width: 400px;
+  height: 450px;
+}
+
+.main__image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
