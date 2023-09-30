@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700&family=Raleway:wght@400;500;700&display=swap");
 :root {
   --body-font: "Exo 2", sans-serif;
@@ -42,6 +43,7 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  overflow-x: hidden;
 }
 
 input,
@@ -61,11 +63,6 @@ ul {
 
 a {
   text-decoration: none;
-}
-
-img {
-  width: 100%;
-  height: 100%;
 }
 
 .header__container {
@@ -174,30 +171,47 @@ img {
   font-size: 1.25rem;
 }
 
-.main__container {
-  max-width: 1440px;
-  margin: 0 auto;
+.main__row {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  gap: 20px;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  margin-top: 40px;
-  padding: 20px;
 }
 
-.main__image {
-  width: 400px;
-  height: 450px;
+.col-md-4 {
+  -ms-flex-preferred-size: calc(33.33% - 20px);
+      flex-basis: calc(33.33% - 20px); /* Adjust the width as needed */
+  margin-bottom: 20px; /* Adjust the gap between columns as needed */
 }
 
-.main__image img {
+.distance {
+  margin-top: 0.75rem; /* You can adjust the value as needed */
+}
+
+.main__container {
   width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 20px;
+  overflow-x: hidden;
+}
+
+img {
+  border-radius: 10px;
+}
+img:hover {
+  -webkit-transform: scale(1.01);
+          transform: scale(1.01);
+}
+
+.ps {
+  padding-start: 0.75rem; /* Замените значение на требуемый размер отступа */
+}
+
+.pe {
+  padding-end: 0.75rem;
 }
