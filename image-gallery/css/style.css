@@ -188,7 +188,6 @@ a {
   -ms-flex-preferred-size: calc(33.33% - 20px);
       flex-basis: calc(33.33% - 20px);
   margin-bottom: 20px;
-  overflow: hidden;
 }
 
 .distance {
@@ -209,10 +208,18 @@ img {
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 10px;
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
 }
 img:hover {
   -webkit-transform: scale(1.01);
           transform: scale(1.01);
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
 }
 
 .zero__images {

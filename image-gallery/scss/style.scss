@@ -133,7 +133,6 @@
 .col-md-4 {
   flex-basis: calc(33.33% - 20px); 
   margin-bottom: 20px; 
-  overflow: hidden;
 }
 
 .distance{
@@ -153,8 +152,10 @@ img{
   height: auto;
   object-fit: cover;
   border-radius: 10px;
+  transition: transform .3s ease;
   &:hover{
     transform: scale(1.01);
+    transition: transform .3s ease;
   }
 }
 
