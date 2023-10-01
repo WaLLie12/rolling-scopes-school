@@ -46,8 +46,11 @@ function showImage() {
 
     imageArray.forEach((el, index)=>{
 
+        console.log(el)
+
         let image = document.createElement('img')
         image.src = el
+        image.alt = `${inputValue} image`
         image.className = 'distance'
         image.setAttribute("width", "100%")
 
