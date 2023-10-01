@@ -1,0 +1,298 @@
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700&family=Raleway:wght@400;500;700&display=swap");
+:root {
+  --body-font: "Exo 2", sans-serif;
+  /*========== Font weight ==========*/
+  --font-regular: 400;
+  --font-semi-bold: 600;
+  --font-bold: 700;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+input,
+button,
+body {
+  font-family: var(--body-font);
+  font-size: 1rem;
+}
+
+body {
+  min-width: 250px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  width: 100vw;
+  height: 100vh;
+  background: #0D1117;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  overflow-x: hidden;
+}
+
+input,
+button {
+  border: none;
+  outline: none;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--body-font);
+  font-weight: var(--font-semi-bold);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.header__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 40px;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-column-gap: 10px;
+     -moz-column-gap: 10px;
+          column-gap: 10px;
+  margin: 30px 0 40px 0;
+}
+
+.header__logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-column-gap: 50px;
+     -moz-column-gap: 50px;
+          column-gap: 50px;
+}
+
+.header__logo-text {
+  color: azure;
+  font-weight: var(--font-semi-bold);
+  font-size: 1.5rem;
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+  width: 100%;
+  max-width: 300px;
+  letter-spacing: 1px;
+}
+
+.header__logo-img > img {
+  border-radius: 40px;
+  width: 100px;
+  height: 100px;
+}
+
+.header__searching-form {
+  width: 100%;
+  max-width: 400px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  position: relative;
+}
+
+.input__search {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  height: 60px;
+  border-radius: 20px 0 0 20px;
+  padding: 10px 20px;
+  position: relative;
+  background-color: #f4faf9;
+  color: #009879;
+  font-size: 1.25rem;
+}
+
+.input__search::-webkit-input-placeholder {
+  color: #8cc6ba;
+}
+
+.input__search::-moz-placeholder {
+  color: #8cc6ba;
+}
+
+.input__search:-ms-input-placeholder {
+  color: #8cc6ba;
+}
+
+.input__search::-ms-input-placeholder {
+  color: #8cc6ba;
+}
+
+.input__search::placeholder {
+  color: #8cc6ba;
+}
+
+.header__searching-btn {
+  width: 40px;
+  background: #f4faf9;
+  color: #009879;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 0 20px 20px 0;
+  cursor: pointer;
+  font-size: 1.25rem;
+}
+
+.main__row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.col-md-4 {
+  -ms-flex-preferred-size: calc(33.33% - 20px);
+      flex-basis: calc(33.33% - 20px);
+  margin-bottom: 20px;
+}
+
+.distance {
+  margin-top: 0.75rem;
+}
+
+.main__container {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 20px;
+  overflow-x: hidden;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 10px;
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+img:hover {
+  -webkit-transform: scale(1.01);
+          transform: scale(1.01);
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+
+.zero__images {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: rgb(255, 255, 255);
+}
+
+.zero__images > h2 {
+  color: #009879;
+  font-size: 2rem;
+  letter-spacing: 0.02rem;
+}
+
+.zero__images span {
+  color: #f4faf9;
+}
+
+.footer__container {
+  width: 100%;
+  max-width: 1400px;
+  padding: 80px 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin: 0 auto;
+}
+
+.footer__container a {
+  cursor: pointer;
+}
+
+.github__logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-column-gap: 5px;
+     -moz-column-gap: 5px;
+          column-gap: 5px;
+}
+
+.github__logo svg {
+  width: 50px;
+  fill: #596260;
+  cursor: pointer;
+  -webkit-transition: fill 0.3s ease-in-out;
+  transition: fill 0.3s ease-in-out;
+}
+
+.github__logo svg:hover {
+  fill: #8e8e8e;
+  -webkit-transition: fill 0.3s ease-in-out;
+  transition: fill 0.3s ease-in-out;
+}
+
+.github__logo span {
+  font-size: 1.25rem;
+  text-align: end;
+  color: #596260;
+  padding: 0 0 5px 0;
+}
