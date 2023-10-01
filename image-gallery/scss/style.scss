@@ -58,19 +58,13 @@
     text-decoration: none;
   }
   
-  // img {
-  //   // width: 100%;
-  //   // // max-width: 100%;
-  //   // height: 100%;
-  // }
-  
 .header__container{
   display: flex;
   align-items: center;
   padding: 0 40px;
   justify-content: space-around;
   column-gap: 10px;
-  margin-top: 30px;
+  margin: 30px 0 40px 0;
 }
 
 .header__logo{
@@ -106,7 +100,6 @@
   flex-grow: 1;
   height: 60px;
   border-radius: 20px 0 0 20px;
-  // border: 1px 0 1px 1px solid #009879 ;
   padding: 10px 20px;
   position: relative;
   background-color: #f4faf9;
@@ -130,45 +123,21 @@
   font-size: 1.25rem;
 }
 
-// .main__container{
-//   max-width: 1440px;
-//   margin: 0 auto;
-//   // border: 1px solid white;
-//   display: flex;
-//   // flex-direction: column;
-//   justify-content: space-between;
-//   gap: 20px;
-//   flex-wrap: wrap;
-//   margin-top: 40px;
-//   padding: 20px;
-// }
-
-// .main__image{
-//   width: 400px;
-//   height: 450px;
-  
-// }
-
-// .main__image img{
-//   width: 100%;
-//   height: 100%;
-//   object-fit: cover;
-// }
-
-
 .main__row {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: flex-start;
 }
 
 .col-md-4 {
-  flex-basis: calc(33.33% - 20px); /* Adjust the width as needed */
-  margin-bottom: 20px; /* Adjust the gap between columns as needed */
+  flex-basis: calc(33.33% - 20px); 
+  margin-bottom: 20px; 
+  overflow: hidden;
 }
 
 .distance{
-  margin-top: 0.75rem; /* You can adjust the value as needed */
+  margin-top: 0.75rem; 
 }
 
 .main__container{
@@ -180,16 +149,28 @@
 }
 
 img{
+  width: 100%;
+  height: auto;
+  object-fit: cover;
   border-radius: 10px;
   &:hover{
     transform: scale(1.01);
   }
 }
 
-.ps{
-  padding-start: 0.75rem; /* Замените значение на требуемый размер отступа */
+.zero__images{
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  color: rgb(255, 255, 255);
 }
 
-.pe{
-  padding-end: 0.75rem;
+.zero__images > h2{
+  color: #009879;
+  font-size: 2rem;
+  letter-spacing: 0.02rem;
+}
+
+.zero__images span{
+  color: #f4faf9;
 }

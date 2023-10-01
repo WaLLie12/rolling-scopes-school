@@ -1,50 +1,51 @@
-const inputSearch = document.querySelector('.input__search')
-const searchBtn = document.querySelector('.header__searching-btn')
-let images = document.querySelectorAll('.main__image img')
-const column1 = document.getElementById('col-1')
-const column2 = document.getElementById('col-2')
-const column3 = document.getElementById('col-3')
-const inputValue = inputSearch.value
+const inputSearch = document.querySelector('.input__search');
+const searchBtn = document.querySelector('.header__searching-btn');
+let images = document.querySelectorAll('.main__image img');
+const column1 = document.getElementById('col-1');
+const column2 = document.getElementById('col-2');
+const column3 = document.getElementById('col-3');
+let inputValue = ''; 
 
-const apiKey = 'r-Tu2RtR9_xFbVGl9XLmQ3UdftZ3YEtiyt3zs48JwcU'
-const reqUrl = 'https://api.unsplash.com/photos/?client_id='+apiKey+'&per_page=28&page=1'
-let searchUrl = 'https://api.unsplash.com/search/photos/?client_id='+apiKey+'&per_page=30&page=1&query='
+const apiKey = 'r-Tu2RtR9_xFbVGl9XLmQ3UdftZ3YEtiyt3zs48JwcU';
+const reqUrl = 'https://api.unsplash.com/photos/?client_id=' + apiKey + '&per_page=40&page=1';
+let searchUrl = 'https://api.unsplash.com/search/photos/?client_id=' + apiKey + '&per_page=40&page=1&query=';
 
-window.onload = (event) =>{
-    getData()
+window.onload = (event) => {
+    inputSearch.focus();
+    getData();
 }
 
-let imageArray = []
+let imageArray = [];
 
 const getData = async () => {
     const res = await fetch(reqUrl);
     const data = await res.json();
-    // console.log(data)   
-    data.forEach(el =>{
-    imageArray.push(el.urls.regular)
-        // if(el.description === null || el.description === ""){
-        //     images[index].alt = 'Image'
-        // } else{
-        //     images[index].alt = el.description;
-        // }
-    })
-    showImage()
-
+    data.forEach(el => {
+        imageArray.push(el.urls.regular);
+    });
+    showImage();
 }
 
-function showImage(){
-    const errorImages = document.querySelector('.zero__images')
-    errorImages.innerHTML = ''
-    if(imageArray.length === 0){
-        return errorImages.innerHTML = '<h3> Unable to find searching value</h3>'
+function showImage() {
+    let errorImages = document.querySelector('.zero__images');
+    errorImages.innerHTML = '';
+
+    if (imageArray.length === 0) {
+        column1.innerHTML = '';
+        column2.innerHTML = '';
+        column3.innerHTML = '';
+        errorImages.innerHTML = `<h2>There are no results for "<span>${inputValue}</span>". <br> Start refining your search query.</h2>`;
+        return;
     }
-     
-    column1.innerHTML = ''
-    column2.innerHTML = ''
-    column3.innerHTML = ''
+
+    console.log(inputValue);
+
+    column1.innerHTML = '';
+    column2.innerHTML = '';
+    column3.innerHTML = '';
 
     imageArray.forEach((el, index)=>{
-       
+
         let image = document.createElement('img')
         image.src = el
         image.className = 'distance'
@@ -63,20 +64,20 @@ function showImage(){
 }
 
 searchBtn.addEventListener('click', (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (inputSearch.value !== '') {
-      getSearchData(inputSearch.value);
-      inputSearch.value = ''
+        inputValue = inputSearch.value; // Capture the input value here
+        getSearchData(inputValue);
     }
-  });
+});
 
 const getSearchData = async (key) => {
-    imageArray = []
-    const res = await fetch(searchUrl+key);
+    imageArray = [];
+    const res = await fetch(searchUrl + key);
     const data = await res.json();
-    console.log(data)
-    data.results.forEach(el =>{ 
-        imageArray.push(el.urls.regular)
-    })
-    showImage()
+    console.log(data);
+    data.results.forEach(el => {
+        imageArray.push(el.urls.regular);
+    });
+    showImage();
 }
