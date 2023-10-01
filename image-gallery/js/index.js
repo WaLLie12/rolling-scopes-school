@@ -6,9 +6,9 @@ const column2 = document.getElementById('col-2');
 const column3 = document.getElementById('col-3');
 let inputValue = ''; 
 
-const apiKey = 'r-Tu2RtR9_xFbVGl9XLmQ3UdftZ3YEtiyt3zs48JwcU';
-const reqUrl = 'https://api.unsplash.com/photos/?client_id=' + apiKey + '&per_page=40&page=1';
-let searchUrl = 'https://api.unsplash.com/search/photos/?client_id=' + apiKey + '&per_page=40&page=1&query=';
+const apiKey = 'aJLLa2RQM97biaUZjlMUq6aQe1IGydSI9mH31U8MFsc';
+const reqUrl = 'https://api.unsplash.com/photos/?client_id=' + apiKey + '&per_page=30&page=1';
+let searchUrl = 'https://api.unsplash.com/search/photos/?client_id=' + apiKey + '&per_page=30&page=1&query=';
 
 window.onload = (event) => {
     inputSearch.focus(); /*or input autofocus*/
