@@ -54,13 +54,13 @@ function showImage() {
         image.className = 'distance'
         image.setAttribute("width", "100%")
 
-        if ((index + 1) %3 == 0) {
+        if ((index + 3) %3 == 0) {
          column1.appendChild(image)   
         }
         if ((index + 2) %3 == 0) {
             column2.appendChild(image)   
         }
-        if ((index + 3) %3 == 0) {
+        if ((index + 1) %3 == 0) {
         column3.appendChild(image)   
         }
     })
