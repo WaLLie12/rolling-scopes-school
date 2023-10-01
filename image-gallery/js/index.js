@@ -11,7 +11,7 @@ const reqUrl = 'https://api.unsplash.com/photos/?client_id=' + apiKey + '&per_pa
 let searchUrl = 'https://api.unsplash.com/search/photos/?client_id=' + apiKey + '&per_page=40&page=1&query=';
 
 window.onload = (event) => {
-    inputSearch.focus();
+    inputSearch.focus(); /*or input autofocus*/
     getData();
 }
 
@@ -66,7 +66,7 @@ function showImage() {
 searchBtn.addEventListener('click', (e) => {
     e.preventDefault();
     if (inputSearch.value !== '') {
-        inputValue = inputSearch.value; // Capture the input value here
+        inputValue = inputSearch.value; 
         getSearchData(inputValue);
     }
 });

@@ -237,3 +237,55 @@ img:hover {
 .zero__images span {
   color: #f4faf9;
 }
+
+.footer__container {
+  width: 100%;
+  max-width: 1400px;
+  padding: 80px 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin: 0 auto;
+}
+
+.footer__container a {
+  cursor: pointer;
+}
+
+.github__logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-column-gap: 5px;
+     -moz-column-gap: 5px;
+          column-gap: 5px;
+}
+
+.github__logo svg {
+  width: 50px;
+  fill: #596260;
+  cursor: pointer;
+  -webkit-transition: fill 0.3s ease-in-out;
+  transition: fill 0.3s ease-in-out;
+}
+
+.github__logo svg:hover {
+  fill: #8e8e8e;
+  -webkit-transition: fill 0.3s ease-in-out;
+  transition: fill 0.3s ease-in-out;
+}
+
+.github__logo span {
+  font-size: 1.25rem;
+  text-align: end;
+  color: #596260;
+  padding: 0 0 5px 0;
+}
