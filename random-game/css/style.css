@@ -64,12 +64,12 @@ ul {
   position: absolute;
   bottom: 1%;
   left: 1%;
-  height: 35%;
+  height: 22%;
 }
 
 .cactus {
   position: absolute;
-  bottom: 1%;
+  bottom: 0.3%;
   right: 0;
   height: 20%;
 }
