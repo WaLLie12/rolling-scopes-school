@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
 * {
   padding: 0;
   margin: 0;
@@ -7,7 +7,7 @@
 }
 
 body {
-  font-family: "Pixelify Sans", cursive;
+  font-family: "VT323", monospace;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -45,10 +45,16 @@ ul {
   border-bottom: 1px solid black;
 }
 
-.score {
+.scoreboard {
   position: absolute;
   right: 0;
   font-size: 1.5em;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-column-gap: 50px;
+     -moz-column-gap: 50px;
+          column-gap: 50px;
 }
 
 .start {

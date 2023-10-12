@@ -2,12 +2,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const dino = document.querySelector(".dino");
   const startKey = document.querySelector(".start");
   const runnerContainer = document.querySelector(".runner__container");
+  const score = document.getElementById('score')
+  const highScore = document.getElementById('high')
   let isJumping = false;
   let jumpHeight = 0;
   let gameOver = false;
   let lastCactusTime = 0;
-  const minGap = 800;
+  const minGap = 700;
   const maxRandomDelay = 2000;
+  let number = 0;
+  let timeCounting;
 
   document.addEventListener("keydown", function (event) {
     if (event.keyCode === 32 && !isJumping && !gameOver) {
@@ -42,6 +46,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         lastCactusTime = currentTime;
 
+        if (!timeCounting) {
+          timeCounting = setInterval(() => {
+            number ++ ;
+            score.innerHTML = number
+            console.log(number);
+          }, 100);
+        }
+
         const moveCactus = () => {
           if (!gameOver) {
             const cactusPosition = parseInt(cactus.style.left, 10);
@@ -53,8 +65,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             if (cactusPosition > 0 && cactusPosition < 45 && jumpHeight < 35) {
-              alert("Game over");
+              highScore.innerHTML = number
+              console.log('GAME OVER')
               gameOver = true;
+              clearInterval(timeCounting);
             }
           }
         };
