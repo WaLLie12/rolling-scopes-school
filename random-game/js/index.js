@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const runnerContainer = document.querySelector(".runner__container");
   const score = document.getElementById('score')
   const highScore = document.getElementById('high')
+  const finish = document.querySelector('.game__over')
   let isJumping = false;
   let jumpHeight = 0;
   let gameOver = false;
@@ -21,6 +22,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+//   function resetGame() {
+// //   // Clear any existing game state and reset variables
+// //   gameOver = false;
+// //   jumpHeight = 0;
+// //   number = 0;
+// //   score.innerHTML = number;
+// //   finish.style.display = 'none';
+// //   // Remove any cacti from the screen
+
+// //   // Start the game again
+// //   startGame();
+// // }
+
   function jump() {
     isJumping = true;
     jumpHeight = 120;
@@ -37,6 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function createCactus() {
     if (!gameOver) {
       const currentTime = new Date().getTime();
+      console.log(currentTime)
       if (currentTime - lastCactusTime > minGap) {
         const cactus = document.createElement("img");
         cactus.src = "./image/cactus.png";
@@ -69,7 +84,9 @@ document.addEventListener("DOMContentLoaded", () => {
               console.log('GAME OVER')
               gameOver = true;
               clearInterval(timeCounting);
-            }
+              finish.style.display = 'block'
+            resetGame()           
+           }
           }
         };
 

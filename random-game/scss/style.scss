@@ -66,3 +66,13 @@ ul {
 .hide{
     display: none;
 }
+
+.game__over{
+    position: absolute;
+    font-size: 1.8em;
+    top: 29%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    letter-spacing: 10px;
+    display: none;
+}
