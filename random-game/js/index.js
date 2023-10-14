@@ -2,9 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const dino = document.querySelector(".dino");
   const startKey = document.querySelector(".start");
   const runnerContainer = document.querySelector(".runner__container");
-  const points = document.getElementById('score');
-  const highScore = document.getElementById('high');
-  const finish = document.querySelector('.game__over');
+  const points = document.getElementById("score");
+  const highScore = document.getElementById("high");
+  const finish = document.querySelector(".game__over");
+  const result = document.querySelectorAll(".top__result");
   let isJumping = false;
   let jumpHeight = 0;
   let gameOver = false;
@@ -13,6 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const maxRandomDelay = 2000;
   let number = 0;
   let timeCounting;
+  let scoresArr = JSON.parse(localStorage.getItem("scores")) || [];
+  console.log(scoresArr);
 
   document.addEventListener("keydown", function (event) {
     if (event.keyCode === 32 && !isJumping && !gameOver) {
@@ -35,15 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1);
   }
 
-  function score(){
-    if (!timeCounting) {
-      timeCounting = setInterval(() => {
-        number++;
-        points.innerHTML = number;
-      }, 100);
-    }
-  }
-
   function createCactus() {
     if (!gameOver) {
       const currentTime = new Date().getTime();
@@ -64,17 +58,29 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
               runnerContainer.removeChild(cactus);
             }
-            score()
+            if (!timeCounting) {
+              timeCounting = setInterval(() => {
+                number++;
+                points.innerHTML = number;
+              }, 30);
+            }
             if (cactusPosition > 0 && cactusPosition < 45 && jumpHeight < 35) {
-              highScore.innerHTML = number;
+              scoresInArr();
+              if (number > parseInt(highScore.innerHTML)) {
+                highScore.innerHTML = number;
+              }
+              console.log(scoresArr);
+              setTimeout(()=>{
+            },100)
+              console.log(number);
               gameOver = true;
               clearInterval(timeCounting);
-              finish.style.display = 'block';
-              document.addEventListener("keydown", function (event) {
-                if (event.keyCode === 32 && gameOver) {
-                  restartGame();
-                }
-              });
+              finish.style.display = "block";
+                document.addEventListener("keyup", function (event) {
+                  if (event.keyCode === 32 && gameOver) {
+                    restartGame();
+                  }
+                });
             }
           }
         };
@@ -89,14 +95,24 @@ document.addEventListener("DOMContentLoaded", () => {
   function restartGame() {
     gameOver = false;
     jumpHeight = 0;
-    number = 0
+    number = 0;
     timeCounting = setInterval(() => {
       number++;
       points.innerHTML = number;
-    }, 100);
-    finish.style.display = 'none';
+    }, 30);
+    finish.style.display = "none";
     const cacti = document.querySelectorAll(".cactus");
-    cacti.forEach(cactus => cactus.remove());
+    cacti.forEach((cactus) => cactus.remove());
     createCactus();
   }
-});
+
+  function scoresInArr() {
+    scoresArr.push(number);
+
+    if (scoresArr.length > 10) {
+      scoresArr.shift();
+    }
+
+    localStorage.setItem("scores", JSON.stringify(scoresArr));
+  }
+})
