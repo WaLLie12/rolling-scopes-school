@@ -2,9 +2,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const dino = document.querySelector(".dino");
   const startKey = document.querySelector(".start");
   const runnerContainer = document.querySelector(".runner__container");
-  const score = document.getElementById('score')
-  const highScore = document.getElementById('high')
-  const finish = document.querySelector('.game__over')
+  const points = document.getElementById('score');
+  const highScore = document.getElementById('high');
+  const finish = document.querySelector('.game__over');
   let isJumping = false;
   let jumpHeight = 0;
   let gameOver = false;
@@ -22,19 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-//   function resetGame() {
-// //   // Clear any existing game state and reset variables
-// //   gameOver = false;
-// //   jumpHeight = 0;
-// //   number = 0;
-// //   score.innerHTML = number;
-// //   finish.style.display = 'none';
-// //   // Remove any cacti from the screen
-
-// //   // Start the game again
-// //   startGame();
-// // }
-
   function jump() {
     isJumping = true;
     jumpHeight = 120;
@@ -48,26 +35,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1);
   }
 
+  function score(){
+    if (!timeCounting) {
+      timeCounting = setInterval(() => {
+        number++;
+        points.innerHTML = number;
+      }, 100);
+    }
+  }
+
   function createCactus() {
     if (!gameOver) {
       const currentTime = new Date().getTime();
-      console.log(currentTime)
       if (currentTime - lastCactusTime > minGap) {
         const cactus = document.createElement("img");
         cactus.src = "./image/cactus.png";
         cactus.classList.add("cactus");
         runnerContainer.appendChild(cactus);
         cactus.style.left = "800px";
-
         lastCactusTime = currentTime;
-
-        if (!timeCounting) {
-          timeCounting = setInterval(() => {
-            number ++ ;
-            score.innerHTML = number
-            console.log(number);
-          }, 100);
-        }
 
         const moveCactus = () => {
           if (!gameOver) {
@@ -78,15 +64,18 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
               runnerContainer.removeChild(cactus);
             }
-
+            score()
             if (cactusPosition > 0 && cactusPosition < 45 && jumpHeight < 35) {
-              highScore.innerHTML = number
-              console.log('GAME OVER')
+              highScore.innerHTML = number;
               gameOver = true;
               clearInterval(timeCounting);
-              finish.style.display = 'block'
-            resetGame()           
-           }
+              finish.style.display = 'block';
+              document.addEventListener("keydown", function (event) {
+                if (event.keyCode === 32 && gameOver) {
+                  restartGame();
+                }
+              });
+            }
           }
         };
 
@@ -95,5 +84,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
       setTimeout(createCactus, Math.random() * maxRandomDelay + 1000);
     }
+  }
+
+  function restartGame() {
+    gameOver = false;
+    jumpHeight = 0;
+    number = 0
+    timeCounting = setInterval(() => {
+      number++;
+      points.innerHTML = number;
+    }, 100);
+    finish.style.display = 'none';
+    const cacti = document.querySelectorAll(".cactus");
+    cacti.forEach(cactus => cactus.remove());
+    createCactus();
   }
 });
