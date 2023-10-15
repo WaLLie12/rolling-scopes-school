@@ -14,7 +14,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const maxRandomDelay = 2000;
   let number = 0;
   let timeCounting;
-  let scoresArr = JSON.parse(localStorage.getItem("scores")) || [];
+  let scoresArr = JSON.parse(localStorage.getItem("scores"));
+
+  if (!scoresArr) {
+    scoresArr = Array(10).fill(0);
+  }  
+  
   console.log(scoresArr);
 
   document.addEventListener("keydown", function (event) {
