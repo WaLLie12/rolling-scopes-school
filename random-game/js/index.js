@@ -15,8 +15,9 @@ document.addEventListener("DOMContentLoaded", () => {
   let timeCounting;
   let scoresArr = JSON.parse(localStorage.getItem("scores"));
   let highScoreStorage = localStorage.getItem("highScore");
-  audioContent = ['audio/jump.mp3', 'audio/die.mp3']
+  audioContent = ['audio/jump.mp3', 'audio/die.mp3', 'audio/ortal_combat_toasty.mp3', 'audio/01 - Don\'t Make Me Laugh.mp3' ]
   let audio = new Audio()
+
 
   if (!scoresArr) {
     scoresArr = Array(10).fill(0);
@@ -27,8 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   highScore.innerHTML = highScoreStorage;
-
-  console.log(scoresArr);
 
   document.addEventListener("keydown", function (event) {
     if (event.keyCode === 32 && !isJumping && !gameOver) {
@@ -68,7 +67,15 @@ document.addEventListener("DOMContentLoaded", () => {
           if (!gameOver) {
             const cactusPosition = parseInt(cactus.style.left, 10);
             if (cactusPosition > -60) {
-              cactus.style.left = cactusPosition - 4 + "px";
+              if (number === 1001) {
+                cactus.style.left = cactusPosition - 6 + "px";
+              } else if(number === 1352){
+                cactus.style.left = cactusPosition - 8 + "px";
+              } else if(number === 2500){
+                cactus.style.left = cactusPosition - 10 + "px";
+              } else{
+                cactus.style.left = cactusPosition - 4 + "px";
+              }
               requestAnimationFrame(moveCactus);
             } else {
               runnerContainer.removeChild(cactus);
@@ -85,14 +92,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 highScoreStorage = number;
                 localStorage.setItem("highScore", highScoreStorage);
                 highScore.innerHTML = highScoreStorage;
-                console.log("New high score achieved:", highScoreStorage);
               }
-              console.log(scoresArr);
-              setTimeout(() => {}, 100);
-              console.log(number);
               gameOver = true;
               audio.src = audioContent[1]
-              audio.play()
+                audio.play()
               clearInterval(timeCounting);
               finish.style.display = "block";
               document.addEventListener("keyup", function (event) {
@@ -146,5 +149,4 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   updateScoreTable();
-  console.log("Initial high score:", highScoreStorage);
 });
