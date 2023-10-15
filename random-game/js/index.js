@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const points = document.getElementById("score");
   const highScore = document.getElementById("high");
   const finish = document.querySelector(".game__over");
-  const result = document.querySelectorAll(".top__result");
   let isJumping = false;
   let jumpHeight = 0;
   let gameOver = false;
@@ -15,10 +14,19 @@ document.addEventListener("DOMContentLoaded", () => {
   let number = 0;
   let timeCounting;
   let scoresArr = JSON.parse(localStorage.getItem("scores"));
+  let highScoreStorage = (localStorage.getItem('highScore'));
+
+
 
   if (!scoresArr) {
     scoresArr = Array(10).fill(0);
   }  
+
+  if (!highScoreStorage) {
+    highScoreStorage = 0
+  }
+
+  highScore.innerHTML = highScoreStorage;
   
   console.log(scoresArr);
 
@@ -71,8 +79,11 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             if (cactusPosition > 0 && cactusPosition < 45 && jumpHeight < 35) {
               scoresInArr();
-              if (number > parseInt(highScore.innerHTML)) {
-                highScore.innerHTML = number;
+              if (number > highScoreStorage) {
+                highScoreStorage = number;
+                localStorage.setItem('highScore', highScoreStorage);
+                highScore.innerHTML = highScoreStorage; 
+                console.log("New high score achieved:", highScoreStorage);
               }
               console.log(scoresArr);
               setTimeout(()=>{
@@ -132,4 +143,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   updateScoreTable();
+  console.log("Initial high score:", highScoreStorage);
+
 });
