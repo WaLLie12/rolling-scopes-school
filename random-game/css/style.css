@@ -96,12 +96,32 @@ ul {
   display: none;
 }
 
-.top__result1, .top__result2 {
-  width: 50%; /* Set the width to 50% for two columns */
-  float: left; /* Float the elements to create two columns */
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box; /* Include padding and border in the width calculation */
-  padding: 10px; /* Adjust padding as needed */
-  border: 1px solid #ccc; /* Add borders for clarity */
-  clear: both; /* Clear the float to avoid issues with following content */
+#score-table {
+  font-size: 1.2em;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 10px 0;
+}
+
+.score__list {
+  font-size: 1.5rem;
+}
+
+.list__item:not(:last-child) {
+  margin-bottom: 5px;
+}
+
+.results__title {
+  margin-bottom: 20px;
+  font-size: 1.2em;
+  letter-spacing: 1px;
 }

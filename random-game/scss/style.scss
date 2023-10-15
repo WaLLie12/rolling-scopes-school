@@ -77,3 +77,29 @@ ul {
     letter-spacing: 10px;
     display: none;
 }
+
+
+#score-table{
+    font-size: 1.2em;
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px 0;
+}
+
+.score__list{
+    font-size: 1.5rem;
+}
+
+.list__item:not(:last-child) {
+    margin-bottom: 5px;
+}
+
+.results__title{
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    letter-spacing: 1px;
+}

@@ -108,11 +108,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function scoresInArr() {
     scoresArr.push(number);
+    scoresArr.sort((a,b)=>b-a)
 
     if (scoresArr.length > 10) {
-      scoresArr.shift();
+      scoresArr.splice(10);
     }
 
     localStorage.setItem("scores", JSON.stringify(scoresArr));
+
+    updateScoreTable();
   }
-})
+
+  function updateScoreTable() {
+    for (let i = 0; i < scoresArr.length; i++) {
+      const scoreElement = document.getElementById(`score${i + 1}`);
+      scoreElement.textContent = `${i + 1}. ${scoresArr[i]}`;
+    }
+  }
+
+  updateScoreTable();
+});
