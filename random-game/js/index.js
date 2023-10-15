@@ -14,20 +14,20 @@ document.addEventListener("DOMContentLoaded", () => {
   let number = 0;
   let timeCounting;
   let scoresArr = JSON.parse(localStorage.getItem("scores"));
-  let highScoreStorage = (localStorage.getItem('highScore'));
-
-
+  let highScoreStorage = localStorage.getItem("highScore");
+  audioContent = ['audio/jump.mp3', 'audio/die.mp3']
+  let audio = new Audio()
 
   if (!scoresArr) {
     scoresArr = Array(10).fill(0);
-  }  
+  }
 
   if (!highScoreStorage) {
-    highScoreStorage = 0
+    highScoreStorage = 0;
   }
 
   highScore.innerHTML = highScoreStorage;
-  
+
   console.log(scoresArr);
 
   document.addEventListener("keydown", function (event) {
@@ -40,6 +40,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function jump() {
     isJumping = true;
+    audio.src = audioContent[0]
+    audio.play()
     jumpHeight = 120;
     let jumpInterval = setInterval(() => {
       if (jumpHeight === 0) {
@@ -47,8 +49,8 @@ document.addEventListener("DOMContentLoaded", () => {
         isJumping = false;
       }
       dino.style.bottom = jumpHeight + "px";
-      jumpHeight -= 1;
-    }, 1);
+      jumpHeight -= 1.5;
+    }, 5);
   }
 
   function createCactus() {
@@ -81,22 +83,23 @@ document.addEventListener("DOMContentLoaded", () => {
               scoresInArr();
               if (number > highScoreStorage) {
                 highScoreStorage = number;
-                localStorage.setItem('highScore', highScoreStorage);
-                highScore.innerHTML = highScoreStorage; 
+                localStorage.setItem("highScore", highScoreStorage);
+                highScore.innerHTML = highScoreStorage;
                 console.log("New high score achieved:", highScoreStorage);
               }
               console.log(scoresArr);
-              setTimeout(()=>{
-            },100)
+              setTimeout(() => {}, 100);
               console.log(number);
               gameOver = true;
+              audio.src = audioContent[1]
+              audio.play()
               clearInterval(timeCounting);
               finish.style.display = "block";
-                document.addEventListener("keyup", function (event) {
-                  if (event.keyCode === 32 && gameOver) {
-                    restartGame();
-                  }
-                });
+              document.addEventListener("keyup", function (event) {
+                if (event.keyCode === 32 && gameOver) {
+                  restartGame();
+                }
+              });
             }
           }
         };
@@ -124,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function scoresInArr() {
     scoresArr.push(number);
-    scoresArr.sort((a,b)=>b-a)
+    scoresArr.sort((a, b) => b - a);
 
     if (scoresArr.length > 10) {
       scoresArr.splice(10);
@@ -144,5 +147,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   updateScoreTable();
   console.log("Initial high score:", highScoreStorage);
-
 });
