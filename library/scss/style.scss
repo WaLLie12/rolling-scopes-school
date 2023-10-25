@@ -1372,7 +1372,8 @@ pointer-events: none;
 
 .popup__login,
 .popup__register,
-.popup__profile
+.popup__profile,
+.popup__purchase
 {
     position: fixed;
     width: 100%;
@@ -1792,4 +1793,105 @@ input {
     100% {
         opacity: 0;
     }
+}
+
+.popup__content-purchase{
+    width: max-content;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--fourth-color);
+    position: relative;
+    opacity: 0;
+    transition: all 0.6s ease 0s;
+    transform: translate(0px, - 100%);
+}
+
+.popup__title-purchase{
+    font-family: var(--second-font);
+    font-size: 2.5rem;
+    font-weight: 500;
+    line-height: 1.25rem; /* 50% */
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+    padding: 20px 0;
+    background: var(--first-color);
+    color: var(--fourth-color);
+    text-align: center;
+}
+
+.popup__close-purchase{
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    background: none;
+}
+
+#mySvg path{
+    stroke: var(--fourth-color);
+    transition: stroke .3s ease;
+}
+
+#mySvg:hover path{
+    stroke: var(--third-color);
+    transition: stroke .3s ease;
+}
+
+.popup__purchase-general-information{
+    display: flex;
+    padding:  35px;
+}
+
+.popup__test-purchase-right{
+    order: 2;
+}
+
+.purchase__text{
+    color: var(--fifth-color);
+    font-size: 0.9375rem;
+    line-height: 20px;
+    letter-spacing: 2px;
+    max-width: 330px;
+    width: 100%;
+}
+
+.popup__form-purchase{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0 40px 0 0;
+}
+
+.double__input{
+    display: flex;
+    column-gap: 10px;
+}
+
+.purchase__input{
+    border: none;
+    outline: 1px solid var(--third-color);
+    color: rgb(34, 34, 34);
+    font-size: 100%;
+    max-width: 45px;
+    width: 100%;
+}
+
+.purchase__price{
+    display: inline-flex;
+    position: relative;
+}
+
+.purchase__cost{
+    color: var(--first-color);
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    position: absolute;
+    top: 25px;
+    right: 23px;
 }
