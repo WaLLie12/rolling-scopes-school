@@ -502,10 +502,13 @@ window.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("UserPassword", passwordValue);
     }
 
-    const randomDecimal = Math.floor(Math.random() * 0x1fffffe);
+    const randomDecimal = Math.floor(Math.random() * 900000000) + 100000000;
 
-    // Преобразуем случайное десятичное число в 16-ричное представление и добавляем нули спереди, чтобы получить 9 символов
-    const randomHex = randomDecimal.toString(16).toUpperCase().padStart(9, "0");
+    const randomHex = randomDecimal.toString(16).toUpperCase();
+
+    while (randomHex.length < 9){
+      randomHex = '0' + randomHex
+    }
 
     localStorage.setItem("CardNumber", randomHex);
 
