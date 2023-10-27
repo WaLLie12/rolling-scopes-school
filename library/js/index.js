@@ -504,7 +504,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     const randomDecimal = Math.floor(Math.random() * 900000000) + 100000000;
 
-    const randomHex = randomDecimal.toString(16).toUpperCase();
+    let randomHex = randomDecimal.toString(16).toUpperCase();
 
     while (randomHex.length < 9){
       randomHex = '0' + randomHex
