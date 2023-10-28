@@ -229,6 +229,38 @@ window.addEventListener("DOMContentLoaded", () => {
         el.classList.add('popup__link-login')
       })
 
+      const cardForm = document.querySelector('.card__searching__bg')
+
+      const cardName = document.querySelector('.input-reader__name')
+      const cardNumber =  document.querySelector('.input-card__number')
+
+      const nameError = document.querySelector('.card__name-error')
+      const numberError = document.querySelector('.card__number-error')
+
+      const checkCardBtn = document.querySelector('.user__info__button')
+
+      checkCardBtn.addEventListener(('click'), (e) =>{
+
+          e.stopPropagation()
+
+        let cardNameValue = cardName.value.replace(/(^|\s)\S/g, function(a) {
+          return a.toUpperCase()
+        })
+        
+        const cardNumberValue = cardNumber.value.toUpperCase()
+
+        cardNameValue = '';
+        if (cardNameValue === '') {
+          nameError.textContent = 'Please, fill the area'
+        } else if (cardNameValue !== `${localStorage.getItem('UserName')} ${localStorage.getItem('UserLastName')}`) {
+         nameError.textContent = 'Please enter a valid first name and last name'
+        } else{
+          2
+        }
+      })
+
+
+
     /* Don't  forget to back nav to first state */
   }
 
