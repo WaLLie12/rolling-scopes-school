@@ -1286,13 +1286,20 @@ nav > ul {
           flex-direction: column;
 }
 
+.user__info-label {
+  margin-bottom: 25px;
+}
+
+.input__margin {
+  margin-bottom: 25px;
+}
+
 .user__info-input {
   width: 520px;
   height: 66px;
   -ms-flex-negative: 0;
       flex-shrink: 0;
   border-radius: 10px;
-  margin-bottom: 25px;
 }
 
 .user__info-input::-webkit-input-placeholder {
@@ -2246,4 +2253,12 @@ input {
   position: absolute;
   top: 25px;
   right: 23px;
+}
+
+.card__number-error,
+.card__name-error {
+  color: #ff0000;
+  font-size: 0.8rem;
+  display: block;
+  padding: 10px 0 0 5px;
 }

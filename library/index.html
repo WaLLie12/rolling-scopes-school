@@ -678,10 +678,14 @@
                                     Brooklyn Public Library
                                 </p>
                                 <form class="user__info-form">
-                                    <input class="user__info-input input-reader__name" placeholder="Reader's name" type="text" required pattern="^[a-zA-Z]+$">
-                                    <span class="card__name-error"></span>
-                                    <input class="user__info-input input-card__number" placeholder="Card number" type="text" required pattern="[A-Z]{1}[0-9]+$">
-                                    <span class="card__number-error"></span>
+                                    <label class="user__info-label">
+                                        <input class="user__info-input input-reader__name" placeholder="Reader's name" type="text" required pattern="^[a-zA-Z]+$">
+                                        <span class="card__name-error"></span>
+                                    </label>
+                                    <label  class="user__info-label">
+                                        <input class="user__info-input input-card__number" placeholder="Card number" type="text" required pattern="[A-Z]{1}[0-9]+$">
+                                        <span class="card__number-error"></span>
+                                    </label>
                                 </form>
                             </div>
                             <div class="user__info__click">
