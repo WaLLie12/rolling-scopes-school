@@ -212,6 +212,11 @@ window.addEventListener("DOMContentLoaded", () => {
     body.classList.remove("lock");
   }
 
+  const increaseUserVisits = (userVisits) => {
+    userVisits += 1;
+    localStorage.setItem('UserVisits', userVisits)
+  }
+
   if (
     (localStorage.getItem("userRegistered") !== "true" &&
       localStorage.getItem("userAuthorized") !== "true") ||
@@ -258,8 +263,6 @@ window.addEventListener("DOMContentLoaded", () => {
         } else if (cardNameValue !== `${localStorage.getItem('UserName')} ${localStorage.getItem('UserLastName')}`) {
          nameError.textContent = 'Please enter a valid first name and last name'
           falseValidation = true
-        } else{
-          console.log('u r done')
         }
 
         numberError.textContent = ''
@@ -269,9 +272,7 @@ window.addEventListener("DOMContentLoaded", () => {
         } else if (cardNumberValue !== `${localStorage.getItem('CardNumber')}`){
           numberError.textContent = 'Please, enter a valid card number'
           falseValidation = true
-        } else{
-          console.log('u r done')
-        }
+        } 
 
         if (falseValidation === true) {
           return
@@ -303,7 +304,7 @@ window.addEventListener("DOMContentLoaded", () => {
                     <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 10C13.2614 10 15.5 7.76142 15.5 5C15.5 2.23858 13.2614 0 10.5 0C7.73858 0 5.5 2.23858 5.5 5C5.5 7.76142 7.73858 10 10.5 10ZM17.5711 13.9289C19.4464 15.8043 20.5 18.3478 20.5 21H10.5L0.5 21C0.5 18.3478 1.55357 15.8043 3.42893 13.9289C5.3043 12.0536 7.84784 11 10.5 11C13.1522 11 15.6957 12.0536 17.5711 13.9289Z" fill="#BB945F"/>
                     </svg>
-                    <span>1</span>
+                    <span>${localStorage.getItem('UserVisits')}</span>
                 </li>
                 <li class="user__info-item">
                     <span>Bonuses</span>
@@ -346,10 +347,6 @@ window.addEventListener("DOMContentLoaded", () => {
       </div>`
       location.reload()
         }, 10000)
-
-
-
-
       })
 
     /* Don't  forget to back nav to first state */
@@ -419,10 +416,10 @@ window.addEventListener("DOMContentLoaded", () => {
                     Brooklyn Public Library
                 </p>
                 <div class="user__info-form">
-                    <span class="user__info-input input-reader__name"> ${localStorage.getItem(
+                    <span class="user__info-input input-reader__name input__margin"> ${localStorage.getItem(
                       "UserName"
                     )} ${localStorage.getItem("UserLastName")}</span>
-                    <span class="user__info-input input-card__number"> ${localStorage.getItem(
+                    <span class="user__info-input input-card__number input__margin"> ${localStorage.getItem(
                       "CardNumber"
                     )} </span>
                 </div>
@@ -434,7 +431,7 @@ window.addEventListener("DOMContentLoaded", () => {
                         <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 10C13.2614 10 15.5 7.76142 15.5 5C15.5 2.23858 13.2614 0 10.5 0C7.73858 0 5.5 2.23858 5.5 5C5.5 7.76142 7.73858 10 10.5 10ZM17.5711 13.9289C19.4464 15.8043 20.5 18.3478 20.5 21H10.5L0.5 21C0.5 18.3478 1.55357 15.8043 3.42893 13.9289C5.3043 12.0536 7.84784 11 10.5 11C13.1522 11 15.6957 12.0536 17.5711 13.9289Z" fill="#BB945F"/>
                         </svg>
-                        <span>1</span>
+                        <span>${localStorage.getItem('UserVisits')}</span>
                     </li>
                     <li class="user__info-item">
                         <span>Bonuses</span>
@@ -454,6 +451,8 @@ window.addEventListener("DOMContentLoaded", () => {
                     </li>
                 </ul>                        
             </div>`;
+
+      // Pop-up for profile
 
       const popupWindowProfile = document.querySelector(".popup__profile");
       const popupLinkProfile = document.querySelectorAll(".my__profile-popup");
@@ -551,6 +550,7 @@ window.addEventListener("DOMContentLoaded", () => {
       }
     }
   }
+
   const firstName = document.querySelector("#input-name");
   const lastName = document.querySelector("#input-surname");
   const inputEmail = document.querySelector(".input-email");
@@ -639,10 +639,64 @@ window.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    localStorage.removeItem('UserVisits')
+
+    let userVisits = Number(localStorage.getItem('UserVisits'))
+   increaseUserVisits(userVisits)
+
     popupClose(popupWindowRegister);
     location.reload();
 
     localStorage.setItem("userRegistered", true);
     localStorage.setItem("userAuthorized", true);
   });
+
+  let mailInputLogin = document.querySelector('.popup__label-input-name')
+  let passwordInputLogin = document.querySelector('.popup__label-input-password')
+  let mailInputLoginError = document.querySelector('.email-error-login')
+  let passwordInputLoginError = document.querySelector('.password-error-login')
+
+  const loginBtn = document.querySelector('.popup__login-btn')
+
+  loginBtn.addEventListener(('click'), (e) => {
+
+    e.stopPropagation()
+    e.preventDefault()
+
+    let inputMailLoginValue = mailInputLogin.value.split(/\s+/).join('')
+    let inputPasswordLoginValue = passwordInputLogin.value
+
+    let authorizedValidation = false
+
+    mailInputLoginError.textContent = ''
+  if (inputMailLoginValue === '') {
+    mailInputLoginError.textContent = 'Please, fill the area'
+    authorizedValidation = true
+  } else if (inputMailLoginValue !== `${localStorage.getItem('UserMail')}` && inputMailLoginValue !== `${localStorage.getItem('CardNumber')}`){
+    mailInputLoginError.textContent = 'Your Email or reader card is incorrect'
+    authorizedValidation = true
+  }
+
+  passwordInputLoginError.textContent = ''
+  if (inputPasswordLoginValue === '') {
+    passwordInputLoginError.textContent = 'Please, fill the area'
+    authorizedValidation = true
+  } else if(inputPasswordLoginValue !== `${localStorage.getItem('UserPassword')}`){
+    passwordInputLoginError.textContent = 'Your password is incorrect. Please try again'
+    authorizedValidation = true
+  }
+
+  if (authorizedValidation === true) {
+    return
+  }
+
+  let userVisits = Number(localStorage.getItem('UserVisits'))
+  increaseUserVisits(userVisits)
+
+  popupClose(popupWindowLogin);
+  location.reload()
+
+  localStorage.setItem("userAuthorized", true);
+
+  })
 });
