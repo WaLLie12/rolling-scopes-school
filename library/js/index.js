@@ -515,6 +515,9 @@ window.addEventListener("DOMContentLoaded", () => {
         body.classList.remove("lock");
       }
 
+      const userVisitsInProfile = document.getElementById('userVisits')
+      userVisitsInProfile.textContent = `${localStorage.getItem('UserVisits')}`
+
       const textToCopyElement = document.getElementById("textToCopy");
       const copyButton = document.getElementById("copyButton");
 
