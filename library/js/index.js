@@ -6,6 +6,7 @@ window.addEventListener("DOMContentLoaded", () => {
   // let accountBtn = document.querySelector('.account__btn')
   const navProfile = document.querySelector(".header__profile__list");
   let imgProfileBtn = document.querySelector(".account__btn");
+  const buyBtn = document.querySelectorAll('.description__button')
 
   burger.addEventListener("click", (event) => {
     event.stopPropagation();
@@ -131,6 +132,19 @@ window.addEventListener("DOMContentLoaded", () => {
 
   let unlock = true;
 
+  function popupOpenPurchase (currentPopup){
+    if (currentPopup && unlock) {
+      const popupActive = document.querySelector(".popup__purchase.open");
+      console.log(popupActive)
+      currentPopup.classList.add("open");
+      currentPopup.addEventListener("click", (e) => {
+        if (!e.target.closest(".popup__content-purchase")) {
+          popupClose(e.target.closest(".modal"));
+        }
+      });
+    }
+  }
+
   if (popupLinkLogin.length > 0) {
     for (let i = 0; i < popupLinkLogin.length; i++) {
       const elements = popupLinkLogin[i];
@@ -228,11 +242,6 @@ window.addEventListener("DOMContentLoaded", () => {
         <path fill-rule="evenodd" clip-rule="evenodd" d="M28 14C28 21.732 21.732 28 14 28C6.26801 28 0 21.732 0 14C0 6.26801 6.26801 0 14 0C21.732 0 28 6.26801 28 14ZM18.6667 7.77778C18.6667 10.3551 16.5774 12.4444 14.0001 12.4444C11.4227 12.4444 9.33339 10.3551 9.33339 7.77778C9.33339 5.20045 11.4227 3.11111 14.0001 3.11111C16.5774 3.11111 18.6667 5.20045 18.6667 7.77778ZM19.4998 16.2781C20.9584 17.7367 21.7778 19.715 21.7778 21.7778H14L6.22225 21.7778C6.22225 19.715 7.0417 17.7367 8.50031 16.2781C9.95893 14.8194 11.9372 14 14 14C16.0628 14 18.0411 14.8194 19.4998 16.2781Z" fill="white"/>
         </svg>
       `;
-      const buyBtn = document.querySelectorAll('.description__button')
-
-      buyBtn.forEach((el) =>{
-        el.classList.add('popup__link-login')
-      })
 
       const cardForm = document.querySelector('.card__searching__bg')
 
@@ -349,6 +358,13 @@ window.addEventListener("DOMContentLoaded", () => {
         }, 10000)
       })
 
+      buyBtn.forEach(el =>{
+        el.addEventListener(('click'), () => {
+          popupOpenLogin(popupWindowLogin)
+        })
+      })
+
+      console.log(buyBtn)
     /* Don't  forget to back nav to first state */
   }
 
@@ -356,15 +372,15 @@ window.addEventListener("DOMContentLoaded", () => {
     localStorage.getItem("userRegistered") === "true" &&
     localStorage.getItem("userAuthorized") === "true"
   ) {
+
+
     //получить инициалы юзера
     let profileNameInitial = localStorage.getItem("UserName");
     let profileSurNameInitial = localStorage.getItem("UserLastName");
     let initials = `${profileNameInitial[0]}${profileSurNameInitial[0]}`;
     const buyBtn = document.querySelectorAll('.description__button')
 
-    buyBtn.forEach((el) =>{
-      el.classList.remove('popup__link-login')
-    })
+    
     /* replace content here */
 
     //если юзернейм есть в БД, то вместо свг иконки в кнопке юзера вставить его инициалы
@@ -456,8 +472,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
       const popupWindowProfile = document.querySelector(".popup__profile");
       const popupLinkProfile = document.querySelectorAll(".my__profile-popup");
-      console.log(popupLinkProfile[0]);
-
       let unlock = true;
 
       if (popupLinkProfile.length > 0) {
@@ -552,6 +566,22 @@ window.addEventListener("DOMContentLoaded", () => {
         });
       }
     }
+
+    
+    const popupWindowPurchase = document.querySelector('.popup__purchase')
+    // buyBtn.forEach(el =>{
+    //   el.removeEventListener(('click'), (e) => {
+    //   })
+    // })
+    buyBtn.forEach(el =>{
+      el.addEventListener(('click'), () =>{
+        console.log('sign a song')
+        popupOpenPurchase(popupWindowPurchase)
+        closeAuthMenu();
+        bodyLock();
+        e.preventDefault(); 
+      })
+    })
   }
 
   const firstName = document.querySelector("#input-name");

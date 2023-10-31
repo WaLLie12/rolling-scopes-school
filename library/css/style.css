@@ -1640,14 +1640,16 @@ nav > ul {
 
 .popup__login.open,
 .popup__register.open,
-.popup__profile.open {
+.popup__profile.open,
+.popup__purchase.open {
   opacity: 1;
   visibility: visible;
 }
 
 .popup__login.open .popup__content,
 .popup__register.open .popup__content,
-.popup__profile.open .content {
+.popup__profile.open .content,
+.popup__purchase.open .popup__content-purchase {
   -webkit-transform: translate(0px, 0%);
           transform: translate(0px, 0%);
   opacity: 1;
