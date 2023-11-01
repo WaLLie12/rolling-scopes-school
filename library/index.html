@@ -913,50 +913,49 @@
                             <span>
                                 Bank card number
                             </span>
-                            <input class="popup__label-input-name input-name" type="text" required>
-                            <span class="name-error"></span>
+                            <input id="purchase-card-number" class="popup__label-input-name input-name" type="password" >
+                            <span class="purchase-card-number-error"></span>
                         </label>
                         <label class="popup__label">
                             <span>
                                 Expiration code
                             </span>
                             <div class="double__input">
-                                    <input class="popup__label-input-name input-surname purchase__input" type="text" required>
-                                <span class="last-name-error"></span>
-                                    <input class="popup__label-input-name input-surname purchase__input" type="text" required>
-                                <span class="last-name-error"></span>
+                                <input class="popup__label-input-name input-surname purchase__input" type="text" required>
+                                <input class="popup__label-input-name input-surname second__purchase__input" type="text" required>
                             </div>
+                            <span class="last-name-error purchase-expiration-date"></span>
                         </label>
                         <label class="popup__label">
                             <span>
                                 CVC
                             </span>
-                            <input class="popup__label-input-name input-email purchase__input" type="text" required>
-                            <span class="email-error"></span>
+                            <input class="popup__label-input-name input-email purchase__input purchase-cvc" type="text" required>
+                            <span class="cvc-error"></span>
                         </label>
                         <label class="popup__label">
                             <span>
                                 Cardholder name
                             </span>
-                            <input class="popup__label-input-password input-password" type="text" required>
-                            <span class="password-error"></span>
+                            <input class="popup__label-input-password input-password purchase-card-name" type="text" required>
+                            <span class="password-error card-holder-error"></span>
                         </label>
                         <label class="popup__label">
                             <span>
                                 Postal code
                             </span>
-                            <input class="popup__label-input-password input-password" type="text" required>
-                            <span class="password-error"></span>
+                            <input class="popup__label-input-password input-password purchase-postal-code" type="text" required>
+                            <span class="password-error postal-code-error"></span>
                         </label>
                         <label class="popup__label">
                             <span>
                                 City / Town
                             </span>
-                            <input  class="popup__label-input-password input-password" type="text" required>
-                            <span class="password-error"></span>
+                            <input  class="popup__label-input-password input-password purchase-city" type="text" required>
+                            <span class="password-error city-error"></span>
                         </label>
                         <div class="purchase__price">
-                            <button class="popup__login-btn sign__up-btn" type="submit">Buy</button>
+                            <button class="popup__login-btn sign__up-btn purchase-btn" type="submit">Buy</button>
                             <span class="popup__text-login-register purchase__cost">
                                 $ 25.00
                             </span>  

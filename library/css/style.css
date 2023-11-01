@@ -2231,7 +2231,8 @@ input {
           column-gap: 10px;
 }
 
-.purchase__input {
+.purchase__input,
+.second__purchase__input {
   border: none;
   outline: 1px solid var(--third-color);
   color: rgb(34, 34, 34);
@@ -2265,4 +2266,16 @@ input {
   font-size: 0.8rem;
   display: block;
   padding: 10px 0 0 5px;
+}
+
+.purchase-card-number-error,
+.cvc-error,
+.card-holder-error,
+.postal-code-error,
+.city-error,
+.purchase-expiration-date {
+  color: #ff0000;
+  font-size: 0.6rem;
+  display: block;
+  padding: 10px 0 0 0;
 }

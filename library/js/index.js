@@ -574,7 +574,7 @@ window.addEventListener("DOMContentLoaded", () => {
     //   })
     // })
     buyBtn.forEach(el =>{
-      el.addEventListener(('click'), () =>{
+      el.addEventListener(('click'), (e) =>{
         console.log('sign a song')
         popupOpenPurchase(popupWindowPurchase)
         closeAuthMenu();
@@ -732,4 +732,123 @@ window.addEventListener("DOMContentLoaded", () => {
   localStorage.setItem("userAuthorized", true);
 
   })
+
+  const purchaseBtn = document.querySelector('.purchase-btn'),
+        cardNumberInput = document.getElementById('purchase-card-number'),
+        cardNumberError = document.querySelector('.purchase-card-number-error'),
+        cardExpirationInput = document.querySelector('.purchase__input'),
+        cardExpirationInput2 = document.querySelector('.second__purchase__input'),
+        cardExpirationError = document.querySelector('.purchase-expiration-date'),
+        cardCvcInput = document.querySelector('.purchase-cvc'),
+        cardCvcError = document.querySelector('.cvc-error'),
+        cardHolderNameInput = document.querySelector('.purchase-card-name'),
+        cardHolderNameError = document.querySelector('.card-holder-error'),
+        postalCodeInput = document.querySelector('.purchase-postal-code'),
+        postalCodeError = document.querySelector('.postal-code-error'),
+        cityInputInput = document.querySelector('.purchase-city'),
+        cityError = document.querySelector('.city-error')
+
+
+
+  if (localStorage.getItem("userAuthorized") === "true") {
+    purchaseBtn.addEventListener(('click'), (e) =>{
+
+      e.stopPropagation()
+      e.preventDefault()
+
+      let cardNumberInputValue = cardNumberInput.value.split(/\s+/).join('')
+      let cardExpirationInputValue = cardExpirationInput.value.split(/\s+/).join('')
+      let cardExpirationInputValue2 = cardExpirationInput2.value.split(/\s+/).join('')
+      let cardCvcInputValue = cardCvcInput.value.split(/\s+/).join('')
+      let cardHolderNameInputValue = cardHolderNameInput.value
+      let postalCodeInputValue = postalCodeInput.value.split(/\s+/).join('')
+      let cityInputInputValue =cityInputInput.value
+
+      let validPurchase = false
+
+      cardNumberError.textContent = ''
+      if (cardNumberInputValue === '') {
+        cardNumberError.textContent = 'Fill the area'
+        validPurchase = true
+      } else if(/^[A-Za-z]+$/.test(cardNumberInputValue)){
+        cardNumberError.textContent = 'Input is invalid. It contains non-numeric characters'
+        validPurchase = true
+      } else if (cardNumberInputValue.length !== 16) {
+        cardNumberError.textContent = 'Card number must contain 16 digits'
+        validPurchase = true
+      };
+
+      function validateCardExpirationInput(inputValue, errorElement) {
+        errorElement.textContent = '';
+      
+        if (inputValue === '') {
+          errorElement.textContent = 'Fill the area';
+          validPurchase = true;
+        } else if (/[A-Za-z]/.test(inputValue)) {
+          errorElement.textContent = 'Input is invalid. It contains non-numeric characters';
+          validPurchase = true;
+        } else if (inputValue.length !== 2) {
+          errorElement.textContent = 'Input must contain 2 digits';
+          validPurchase = true;
+        }
+      }
+      
+      validateCardExpirationInput(cardExpirationInputValue, cardExpirationError);
+      
+      validateCardExpirationInput(cardExpirationInputValue2, cardExpirationError);
+
+      cardCvcError.textContent = ''
+      if (cardCvcInputValue === '') {
+        cardCvcError.textContent = 'Fill the area';
+        validPurchase = true
+      } else if (/[A-Za-z]/.test(cardCvcInputValue)) {
+        cardCvcError.textContent = 'Input is invalid. It contains non-numeric characters';
+        validPurchase = true;
+      } else if (cardCvcInputValue.length !== 3) {
+        cardCvcError.textContent = 'Input must contain 3 digits';
+        validPurchase = true;
+      }
+
+      cardHolderNameError.textContent = ''
+      if (cardHolderNameInputValue === '') {
+        cardHolderNameError.textContent = 'Fill the area';
+        validPurchase = true
+      } else if (/[0-9]/.test(cardHolderNameInputValue)) {
+        cardHolderNameError.textContent = 'Name is invalid. It contains numeric characters';
+        validPurchase = true;
+      } else if (/[А-Яа-я]/.test(cardHolderNameInputValue)) {
+        cardHolderNameError.textContent = 'The name contains non-English characters';
+        validPurchase = true;
+      }
+
+      postalCodeError.textContent = ''
+      if (postalCodeInputValue === '') {
+        postalCodeError.textContent = 'Fill the area';
+        validPurchase = true
+      } else if (postalCodeInputValue.length !== 6) {
+        postalCodeError.textContent = 'Postal code must contain 6 digits';
+        validPurchase = true;
+      } else if (/[A-Za-zА-Яа-яЁё]/.test(postalCodeInputValue)) {
+        postalCodeError.textContent = 'Postal code must contain only numbers';
+        validPurchase = true;
+      }
+
+      cityError.textContent = ''
+      if (cityInputInputValue === '') {
+        cityError.textContent = 'Fill the area';
+        validPurchase = true
+      } else if (/[0-9]/.test(cityInputInputValue)) {
+        cityError.textContent = 'The name of city/town is invalid. It contains numeric characters';
+        validPurchase = true;
+      } else if (/[А-Яа-я]/.test(cityInputInputValue)) {
+        cityError.textContent = 'The name of city/town contains non-English characters';
+        validPurchase = true;
+      }
+
+      if (validPurchase === true) {
+        return
+      }
+
+    })
+  }
 });
