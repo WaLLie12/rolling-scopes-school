@@ -132,14 +132,16 @@ window.addEventListener("DOMContentLoaded", () => {
 
   let unlock = true;
 
-  function popupOpenPurchase (currentPopup){
+  let isModalOpen = false;
+  
+  function popupOpenPurchase(currentPopup) {
     if (currentPopup && unlock) {
       const popupActive = document.querySelector(".popup__purchase.open");
-      console.log(popupActive)
       currentPopup.classList.add("open");
       currentPopup.addEventListener("click", (e) => {
         if (!e.target.closest(".popup__content-purchase")) {
           popupClose(e.target.closest(".modal"));
+          isModalOpen = false; // Mark the modal as closed
         }
       });
     }
@@ -230,6 +232,8 @@ window.addEventListener("DOMContentLoaded", () => {
     userVisits += 1;
     localStorage.setItem('UserVisits', userVisits)
   }
+
+  
 
   if (
     (localStorage.getItem("userRegistered") !== "true" &&
@@ -529,6 +533,21 @@ window.addEventListener("DOMContentLoaded", () => {
         body.classList.remove("lock");
       }
 
+  
+  const popupWindowPurchase = document.querySelector('.popup__purchase');
+  
+  buyBtn.forEach(el => {
+    el.addEventListener('click', (e) => {
+      if (!isModalOpen) {
+        popupOpenPurchase(popupWindowPurchase);
+        closeAuthMenu();
+        bodyLock();
+        isModalOpen = true;
+      }
+      e.preventDefault();
+    });
+  });
+
       const userVisitsInProfile = document.getElementById('userVisits')
       userVisitsInProfile.textContent = `${localStorage.getItem('UserVisits')}`
 
@@ -566,22 +585,6 @@ window.addEventListener("DOMContentLoaded", () => {
         });
       }
     }
-
-    
-    const popupWindowPurchase = document.querySelector('.popup__purchase')
-    // buyBtn.forEach(el =>{
-    //   el.removeEventListener(('click'), (e) => {
-    //   })
-    // })
-    buyBtn.forEach(el =>{
-      el.addEventListener(('click'), (e) =>{
-        console.log('sign a song')
-        popupOpenPurchase(popupWindowPurchase)
-        closeAuthMenu();
-        bodyLock();
-        e.preventDefault(); 
-      })
-    })
   }
 
   const firstName = document.querySelector("#input-name");
@@ -750,7 +753,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
 
-  if (localStorage.getItem("userAuthorized") === "true") {
+  // if (localStorage.getItem("userAuthorized") === "true") {
     purchaseBtn.addEventListener(('click'), (e) =>{
 
       e.stopPropagation()
@@ -849,6 +852,24 @@ window.addEventListener("DOMContentLoaded", () => {
         return
       }
 
+      const popupWindowPurchase = document.querySelector('.popup__purchase');
+
+      popupClose(popupWindowPurchase);
+      isModalOpen = false;
+     
+    
+      location.reload()
+
+      localStorage.setItem('UserSubscription', true)
+
+      cardNumberInputValue = '';
+      cardExpirationInputValue = '';
+      cardExpirationInputValue2 = '';
+      cardCvcInputValue = '';
+      cardHolderNameInputValue = '';
+      postalCodeInputValue = '';
+      cityInputInputValue = '';
+
     })
-  }
-});
+  })
+// });
