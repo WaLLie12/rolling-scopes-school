@@ -233,7 +233,42 @@ window.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem('UserVisits', userVisits)
   }
 
+  if (localStorage.getItem('userAuthorized') === 'true' && localStorage.getItem('UserSubscription') === 'false') {
+    const popupWindowPurchase = document.querySelector('.popup__purchase');
   
+    buyBtn.forEach(el => {
+      el.addEventListener('click', (e) => {
+        e.stopPropagation()
+        popupOpenPurchase(popupWindowPurchase);
+        closeAuthMenu();
+        bodyLock();
+        e.preventDefault();
+      });
+    });
+  }
+
+  if (localStorage.getItem('UserSubscription') === 'true' && localStorage.getItem('userAuthorized') === 'true') {
+    const popupWindowPurchase = document.querySelector('.popup__purchase');
+  
+    buyBtn.forEach(el => {
+      el.addEventListener('click', (e) => {
+       popupClose(popupWindowPurchase)
+       el.classList.add('non__interactive')
+       el.innerHTML = `Own`
+       let countBooks = localStorage.getItem('OwnBooks')
+       countBooks++
+       localStorage.setItem('OwnBooks', countBooks)
+       const countBooksProfile = document.querySelector('.count__books') 
+       countBooksProfile.textContent = localStorage.getItem('OwnBooks');
+       const listCountBooks = document.querySelector('.count__list')
+       listCountBooks.textContent = localStorage.getItem('OwnBooks');
+      });
+    });
+  }
+
+  if (location.reload) {
+    localStorage.setItem('OwnBooks', 0)
+  }
 
   if (
     (localStorage.getItem("userRegistered") !== "true" &&
@@ -333,7 +368,7 @@ window.addEventListener("DOMContentLoaded", () => {
                         <rect x="2" width="1" height="19" fill="#826844"/>
                         <rect x="1" width="1" height="21" fill="white"/>
                     </svg>
-                    <span>0</span>
+                    <span class = "count__list">${localStorage.getItem('OwnBooks')}</span>
                 </li>
             </ul>                        
         </div>`;
@@ -467,7 +502,7 @@ window.addEventListener("DOMContentLoaded", () => {
                             <rect x="2" width="1" height="19" fill="#826844"/>
                             <rect x="1" width="1" height="21" fill="white"/>
                         </svg>
-                        <span>0</span>
+                        <span class="count__list">${localStorage.getItem('OwnBooks')}</span>
                     </li>
                 </ul>                        
             </div>`;
@@ -532,21 +567,6 @@ window.addEventListener("DOMContentLoaded", () => {
       function bodyUnlock() {
         body.classList.remove("lock");
       }
-
-  
-  const popupWindowPurchase = document.querySelector('.popup__purchase');
-  
-  buyBtn.forEach(el => {
-    el.addEventListener('click', (e) => {
-      if (!isModalOpen) {
-        popupOpenPurchase(popupWindowPurchase);
-        closeAuthMenu();
-        bodyLock();
-        isModalOpen = true;
-      }
-      e.preventDefault();
-    });
-  });
 
       const userVisitsInProfile = document.getElementById('userVisits')
       userVisitsInProfile.textContent = `${localStorage.getItem('UserVisits')}`
@@ -683,6 +703,7 @@ window.addEventListener("DOMContentLoaded", () => {
     popupClose(popupWindowRegister);
     location.reload();
 
+    localStorage.setItem('UserSubscription', false)
     localStorage.setItem("userRegistered", true);
     localStorage.setItem("userAuthorized", true);
   });

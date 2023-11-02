@@ -929,21 +929,6 @@ nav > ul {
   transition: all 0.4s;
 }
 
-.description__button__inactive {
-  display: inline-block;
-  width: 74px;
-  color: var(--third-color);
-  text-align: center;
-  font-size: 10px;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: 1px;
-  padding: 9px 23px;
-  background-color: var(--fourth-color);
-  border: 1px solid var(--third-color);
-  border-radius: 2px;
-}
-
 .favorite__books_half {
   /* Стили блока */
   opacity: 1;
@@ -2278,4 +2263,22 @@ input {
   font-size: 0.6rem;
   display: block;
   padding: 10px 0 0 0;
+}
+
+.non__interactive {
+  display: inline-block;
+  width: 74px;
+  color: var(--third-color);
+  text-align: center;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1px;
+  padding: 9px 23px;
+  background-color: var(--fourth-color);
+  border: 1px solid var(--third-color);
+  border-radius: 2px;
+  outline: none;
+  cursor: default;
+  pointer-events: none;
 }
