@@ -1,323 +1,897 @@
-window.addEventListener("DOMContentLoaded", () =>{
+window.addEventListener("DOMContentLoaded", () => {
+  const burger = document.querySelector(".header__burger");
+  const nav = document.querySelector(".header__nav-navigation");
+  const body = document.body;
+  const navProfile = document.querySelector(".header__profile__list");
+  let imgProfileBtn = document.querySelector(".account__btn");
+  const buyBtn = document.querySelectorAll(".description__button");
 
-console.log(`
-1.Вёрстка соответствует макету. Ширина экрана 768px +26 \n
-\t блок <header> +2
-\t секция Welcome +2
-\t секция About +2. Обратите внимание на появление новых элементов в виде стрелок.
-\t ❗Обратите внимание. На макете в секции About расположены 3 точки навигации по слайдам под картинкой. Нужно сделать 5 точек, т.к. картинки лишь скрываются, а не пропадают. Если под картинкой находится 5 точек: +2
-\t секция Favorites +4
-\t секция CoffeShop +4
-\t секция Contacts +4
-\t секция LibraryCard +4
-\t блок <footer> + 2 \n
- 2.Ни на одном из разрешений до 640px включительно не появляется горизонтальная полоса прокрутки. Весь контент страницы при этом сохраняется: не обрезается и не удаляется +12 \n
-\t нет полосы прокрутки при ширине страницы от 1440рх до 640рх +4.
-\t элементы не выходят за пределы окна браузера при ширине страницы от 1440рх до 640рх +4.
-\t элементы не наезжают друг на друга при ширине страницы от 1440рх до 640рх +4. Например, меню в хедере должно преобразоваться в бургер-меню до того, как элементы начнут наезжать друг на друга. \n
-3.На ширине экрана 768рх реализовано адаптивное меню +12 : \n
-\t\t если при ширине страницы в 768рх панель навигации не скрыта, а бургер-иконка не появилась (при этом учитывайте "Особенности проверки адаптивности в DevTools"), то ставим 0 за данный пункт, и дальше его не проверяем. Иначе:
-при нажатии на бургер-иконку плавно появляется адаптивное меню +4
-\t\t при нажатии на крестик, или на область вне меню, адаптивное меню плавно скрывается, уезжая за экран +4
-\t\t ссылки в адаптивном меню работают, обеспечивая плавную прокрутку по якорям при нажатии, а само адаптивное меню при этом плавно скрывается +2
-\t\t размеры открытого бургер-меню соответствуют макету, так же открытое бургер-меню проверяется на PixelPerfect +2 \n
-final band - 50
-`)
-
-const burger = document.querySelector('.header__burger');
-const nav = document.querySelector('.header__nav-navigation');
-const body = document.body;
-
-burger.addEventListener('click', (event) => {
+  burger.addEventListener("click", (event) => {
     event.stopPropagation();
-    burger.classList.toggle('active');
-    if (burger.classList.contains('active')) {
-        disableScroll();
+    burger.classList.toggle("active");
+    if (burger.classList.contains("active")) {
+      disableScroll();
     } else {
-        enableScroll();
+      enableScroll();
     }
-    nav.classList.toggle('active');
-    closeAuthMenu()
-});
+    nav.classList.toggle("active");
+    closeAuthMenu();
+  });
 
-body.addEventListener('click', (event) => {
-    if (!event.target.closest('.header__nav-navigation')){
-        closeNav()
-    } 
-});
+  body.addEventListener("click", (event) => {
+    if (!event.target.closest(".header__nav-navigation")) {
+      closeNav();
+    }
+  });
 
-document.querySelectorAll('.navigation__link').forEach((item) => {
-    item.addEventListener('click', () => {
-        closeNav();
+  document.querySelectorAll(".navigation__link").forEach((item) => {
+    item.addEventListener("click", () => {
+      closeNav();
     });
-});
+  });
 
-function closeNav() {
-    burger.classList.remove('active');
-    nav.classList.remove('active');
+  function closeNav() {
+    burger.classList.remove("active");
+    nav.classList.remove("active");
     enableScroll();
-}
+  }
 
-function disableScroll() {
-    body.classList.add('froze-scroll');
-}
+  function disableScroll() {
+    body.classList.add("froze-scroll");
+  }
 
-function enableScroll() {
-    body.classList.remove('froze-scroll');
-}
+  function enableScroll() {
+    body.classList.remove("froze-scroll");
+  }
 
-function closeAuthMenu () {
-    navProfile.classList.remove('header__profile__list-active')
-}
+  function closeAuthMenu() {
+    navProfile.classList.remove("header__profile__list-active");
+  }
 
-const swiper = new Swiper('.swiper', {
+  const swiper = new Swiper(".swiper", {
     spaceBetween: 26,
     keyboard: true,
     slidesPerView: 3,
-    autoplay:{
-        delay: 2000,
-        stopOnLastSlide: true,
-        disableOnInteraction: false
+    autoplay: {
+      delay: 2000,
+      stopOnLastSlide: true,
+      disableOnInteraction: false,
     },
     speed: 700,
-    breakpoints:{
-        260: {
-            slidesPerView: 1
-        },
-        769: {
-            slidesPerView: 2
-        },
-        1200:{
-            slidesPerView: 3
-        }
+    breakpoints: {
+      260: {
+        slidesPerView: 1,
+      },
+      769: {
+        slidesPerView: 2,
+      },
+      1200: {
+        slidesPerView: 3,
+      },
     },
     pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-    // Navigation arrows
+      el: ".swiper-pagination",
+      clickable: true,
+    },
     navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
       clickable: true,
     },
   });
 
-  const radioButtons = document.querySelectorAll('.custom__input');
-  const contentBlocks = document.querySelectorAll('.favorite__books_half');
+  const radioButtons = document.querySelectorAll(".custom__input");
+  const contentBlocks = document.querySelectorAll(".favorite__books_half");
   const blocksPerPage = 4;
-  
+
   function updateBlocksVisibility(selectedIndex) {
-      contentBlocks.forEach((block, index) => {
-              if (index >= selectedIndex * blocksPerPage && index < (selectedIndex + 1) * blocksPerPage) {
-                      block.classList.add('fade-in', 'fade');
-              } else {
-                  block.classList.remove('fade-in', 'fade');
-              }   
-      });
+    contentBlocks.forEach((block, index) => {
+      if (
+        index >= selectedIndex * blocksPerPage &&
+        index < (selectedIndex + 1) * blocksPerPage
+      ) {
+        block.classList.add("fade-in", "fade");
+      } else {
+        block.classList.remove("fade-in", "fade");
+      }
+    });
   }
-  
+
   radioButtons.forEach((radioButton, index) => {
-      radioButton.addEventListener('change', () => {
-       updateBlocksVisibility(index);
-      });
+    radioButton.addEventListener("change", () => {
+      updateBlocksVisibility(index);
+    });
   });
-  
-  // При загрузке страницы показываем содержимое для первой вкладки
+
   updateBlocksVisibility(0);
 
-    const navProfile = document.querySelector('.header__profile__list')
-    const imgProfileBtn = document.querySelector('.header__profile__img')
+  imgProfileBtn.addEventListener("click", (event) => {
+    event.stopPropagation();
+    if (event.currentTarget === imgProfileBtn) {
+      navProfile.classList.toggle("header__profile__list-active");
+    }
+    burger.classList.remove("active");
+    nav.classList.remove("active");
+  });
 
-    imgProfileBtn.addEventListener('click', (event)=>{
-        event.stopPropagation()
-        if(event.currentTarget === imgProfileBtn){
-        navProfile.classList.toggle('header__profile__list-active')
+  body.addEventListener("click", (event) => {
+    if (!event.target.closest(".header__profile__list")) {
+      closeAuthMenu();
+    }
+  });
+
+  const popupLinkLogin = document.querySelectorAll(".popup__link-login");
+  const popupLinkRegister = document.querySelectorAll(".popup__link-register");
+  const popupWindowLogin = document.querySelector(".popup__login");
+  const popupWindowRegister = document.querySelector(".popup__register");
+
+  let unlock = true;
+
+  let isModalOpen = false;
+
+  function popupOpenPurchase(currentPopup) {
+    if (currentPopup && unlock) {
+      const popupActive = document.querySelector(".popup__purchase.open");
+      currentPopup.classList.add("open");
+      currentPopup.addEventListener("click", (e) => {
+        if (!e.target.closest(".popup__content-purchase")) {
+          popupClose(e.target.closest(".modal"));
+          isModalOpen = false;
         }
-        burger.classList.remove('active');
-        nav.classList.remove('active');
-    })
+      });
+    }
+  }
 
-    body.addEventListener('click', (event) => {
-        if (!event.target.closest('.header__profile__list')){
-            closeAuthMenu ()
-        } 
+  if (popupLinkLogin.length > 0) {
+    for (let i = 0; i < popupLinkLogin.length; i++) {
+      const elements = popupLinkLogin[i];
+      elements.addEventListener("click", (e) => {
+        popupOpenLogin(popupWindowLogin);
+        popupClose(popupWindowRegister);
+        closeAuthMenu();
+        bodyLock();
+        e.preventDefault();
+      });
+    }
+  }
+
+  if (popupLinkRegister.length > 0) {
+    for (let i = 0; i < popupLinkRegister.length; i++) {
+      const elements = popupLinkRegister[i];
+      elements.addEventListener("click", (e) => {
+        popupOpenRegister(popupWindowRegister);
+        popupClose(popupWindowLogin);
+        bodyLock();
+        closeAuthMenu();
+        e.preventDefault();
+      });
+    }
+  }
+
+  const popupCloseIcon = document.querySelectorAll(".popup__close");
+  if (popupCloseIcon.length > 0) {
+    popupCloseIcon.forEach((el) => {
+      el.addEventListener("click", (e) => {
+        popupClose(el.closest(".modal"));
+        e.preventDefault();
+      });
+    });
+  }
+
+  function popupOpenLogin(currentPopupLogin) {
+    if (currentPopupLogin && unlock) {
+      const popupActive = document.querySelector(".popup__login.open");
+      currentPopupLogin.classList.add("open");
+      currentPopupLogin.addEventListener("click", (e) => {
+        if (!e.target.closest(".popup__content")) {
+          popupClose(e.target.closest(".modal"));
+        }
+      });
+    }
+  }
+
+  function popupOpenRegister(currentPopupRegister) {
+    if (currentPopupRegister && unlock) {
+      const popupActive = document.querySelector(".popup__register.open");
+      currentPopupRegister.classList.add("open");
+      currentPopupRegister.addEventListener("click", (e) => {
+        if (!e.target.closest(".popup__content")) {
+          popupClose(e.target.closest(".modal"));
+        }
+      });
+    }
+  }
+
+  function popupClose(popupActive, doUnlock = true) {
+    if (unlock) {
+      popupActive.classList.remove("open");
+      if (doUnlock) {
+        bodyUnlock();
+      }
+    }
+  }
+
+  function bodyLock() {
+    body.classList.add("lock");
+    unlock = false;
+    setTimeout(function () {
+      unlock = true;
+    }, 600);
+  }
+
+  function bodyUnlock() {
+    body.classList.remove("lock");
+  }
+
+  const increaseUserVisits = (userVisits) => {
+    userVisits += 1;
+    localStorage.setItem("UserVisits", userVisits);
+  };
+
+  if (
+    localStorage.getItem("userAuthorized") === "true" &&
+    localStorage.getItem("UserSubscription") === "false"
+  ) {
+    const popupWindowPurchase = document.querySelector(".popup__purchase");
+
+    buyBtn.forEach((el) => {
+      el.addEventListener("click", (e) => {
+        e.stopPropagation();
+        popupOpenPurchase(popupWindowPurchase);
+        closeAuthMenu();
+        bodyLock();
+        e.preventDefault();
+      });
+    });
+  }
+
+  if (
+    localStorage.getItem("UserSubscription") === "true" &&
+    localStorage.getItem("userAuthorized") === "true"
+  ) {
+    const popupWindowPurchase = document.querySelector(".popup__purchase");
+
+    buyBtn.forEach((el) => {
+      el.addEventListener("click", (e) => {
+        popupClose(popupWindowPurchase);
+        el.classList.add("non__interactive");
+        el.innerHTML = `Own`;
+        let countBooks = localStorage.getItem("OwnBooks");
+        countBooks++;
+        localStorage.setItem("OwnBooks", countBooks);
+        const countBooksProfile = document.querySelector(".count__books");
+        countBooksProfile.textContent = localStorage.getItem("OwnBooks");
+        const listCountBooks = document.querySelector(".count__list");
+        listCountBooks.textContent = localStorage.getItem("OwnBooks");
+      });
+    });
+  }
+
+  if (location.reload) {
+    localStorage.setItem("OwnBooks", 0);
+  }
+
+  if (
+    (localStorage.getItem("userRegistered") !== "true" &&
+      localStorage.getItem("userAuthorized") !== "true") ||
+    (localStorage.getItem("userRegistered") === "true" &&
+      localStorage.getItem("userAuthorized") !== "true")
+  ) {
+    imgProfileBtn.innerHTML = `
+        <svg  class="header__profile__img account__btn" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M28 14C28 21.732 21.732 28 14 28C6.26801 28 0 21.732 0 14C0 6.26801 6.26801 0 14 0C21.732 0 28 6.26801 28 14ZM18.6667 7.77778C18.6667 10.3551 16.5774 12.4444 14.0001 12.4444C11.4227 12.4444 9.33339 10.3551 9.33339 7.77778C9.33339 5.20045 11.4227 3.11111 14.0001 3.11111C16.5774 3.11111 18.6667 5.20045 18.6667 7.77778ZM19.4998 16.2781C20.9584 17.7367 21.7778 19.715 21.7778 21.7778H14L6.22225 21.7778C6.22225 19.715 7.0417 17.7367 8.50031 16.2781C9.95893 14.8194 11.9372 14 14 14C16.0628 14 18.0411 14.8194 19.4998 16.2781Z" fill="white"/>
+        </svg>
+      `;
+
+    const cardForm = document.querySelector(".card__searching__bg");
+
+    const cardName = document.querySelector(".input-reader__name");
+    const cardNumber = document.querySelector(".input-card__number");
+
+    const nameError = document.querySelector(".card__name-error");
+    const numberError = document.querySelector(".card__number-error");
+
+    const checkCardBtn = document.querySelector(".user__info__button");
+
+    checkCardBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+
+      let cardNameValue = cardName.value.replace(/(^|\s)\S/g, function (a) {
+        return a.toUpperCase();
+      });
+
+      let cardNumberValue = cardNumber.value.toUpperCase();
+
+      let falseValidation = false;
+
+      nameError.textContent = "";
+      if (cardNameValue === "") {
+        nameError.textContent = "Please, fill the area";
+        falseValidation = true;
+      } else if (
+        cardNameValue !==
+        `${localStorage.getItem("UserName")} ${localStorage.getItem(
+          "UserLastName"
+        )}`
+      ) {
+        nameError.textContent = "Please enter a valid first name and last name";
+        falseValidation = true;
+      }
+
+      numberError.textContent = "";
+      if (cardNumberValue === "") {
+        numberError.textContent = "Please, fill the area";
+        falseValidation = true;
+      } else if (cardNumberValue !== `${localStorage.getItem("CardNumber")}`) {
+        numberError.textContent = "Please, enter a valid card number";
+        falseValidation = true;
+      }
+
+      if (falseValidation === true) {
+        return;
+      }
+
+      cardNumber.value = "";
+      cardName.value = "";
+
+      const userCardInfo = document.querySelector(".card__searching__bg");
+
+      userCardInfo.innerHTML = `
+        <div class="user__info">
+            <p class="user__info__title">
+                Brooklyn Public Library
+            </p>
+            <div class="user__info-form">
+                <span class="user__info-input input-reader__name input__margin"> ${localStorage.getItem(
+                  "UserName"
+                )} ${localStorage.getItem("UserLastName")}</span>
+                <span class="user__info-input input-card__number input__margin"> ${localStorage.getItem(
+                  "CardNumber"
+                )} </span>
+            </div>
+        </div>
+        <div class="user__info__click">
+            <ul class="user__info-list">
+                <li class="user__info-item">
+                    <span>Visits</span>
+                    <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 10C13.2614 10 15.5 7.76142 15.5 5C15.5 2.23858 13.2614 0 10.5 0C7.73858 0 5.5 2.23858 5.5 5C5.5 7.76142 7.73858 10 10.5 10ZM17.5711 13.9289C19.4464 15.8043 20.5 18.3478 20.5 21H10.5L0.5 21C0.5 18.3478 1.55357 15.8043 3.42893 13.9289C5.3043 12.0536 7.84784 11 10.5 11C13.1522 11 15.6957 12.0536 17.5711 13.9289Z" fill="#BB945F"/>
+                    </svg>
+                    <span>${localStorage.getItem("UserVisits")}</span>
+                </li>
+                <li class="user__info-item">
+                    <span>Bonuses</span>
+                    <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 0L12.2249 3.31001L15.8779 2.00532L15.8249 6.05634L19.5106 7.25532L17.2 10.5L19.5106 13.7447L15.8249 14.9437L15.8779 18.9947L12.2249 17.69L10 21L7.77508 17.69L4.12215 18.9947L4.17508 14.9437L0.489435 13.7447L2.8 10.5L0.489435 7.25532L4.17508 6.05634L4.12215 2.00532L7.77508 3.31001L10 0Z" fill="#BB945F"/>
+                    </svg>
+                    <span>1240</span>
+                </li>
+                <li class="user__info-item">
+                    <span>Books</span>
+                    <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="20" height="21" fill="#BB945F"/>
+                        <rect x="2" width="1" height="19" fill="#826844"/>
+                        <rect x="1" width="1" height="21" fill="white"/>
+                    </svg>
+                    <span class = "count__list">${localStorage.getItem(
+                      "OwnBooks"
+                    )}</span>
+                </li>
+            </ul>                        
+        </div>`;
+
+      setTimeout(() => {
+        userCardInfo.innerHTML = `<div class="user__info">
+          <p class="user__info__title">
+              Brooklyn Public Library
+          </p>
+          <form class="user__info-form">
+              <label class="user__info-label">
+                  <input class="user__info-input input-reader__name" placeholder="Reader's name" type="text" required pattern="^[a-zA-Z]+$">
+                  <span class="card__name-error"></span>
+              </label>
+              <label  class="user__info-label">
+                  <input class="user__info-input input-card__number" placeholder="Card number" type="text" required pattern="[A-Z]{1}[0-9]+$">
+                  <span class="card__number-error"></span>
+              </label>
+          </form>
+      </div>
+      <div class="user__info__click">
+          <button class="user__info__button">Check the card</button>
+      </div>`;
+        location.reload();
+      }, 10000);
     });
 
-    const popupLinkLogin = document.querySelectorAll('.popup__link-login')
-    const popupLinkRegister = document.querySelectorAll('.popup__link-register')
-    const popupWindowLogin = document.querySelector('.popup__login')
-    const popupWindowRegister = document.querySelector('.popup__register')
-    // const lockPadding = document.querySelectorAll('.lock-padding')
+    buyBtn.forEach((el) => {
+      el.addEventListener("click", () => {
+        popupOpenLogin(popupWindowLogin);
+      });
+    });
+  }
 
-    let unlock = true
+  if (
+    localStorage.getItem("userRegistered") === "true" &&
+    localStorage.getItem("userAuthorized") === "true"
+  ) {
+    let profileNameInitial = localStorage.getItem("UserName");
+    let profileSurNameInitial = localStorage.getItem("UserLastName");
+    let initials = `${profileNameInitial[0]}${profileSurNameInitial[0]}`;
+    const buyBtn = document.querySelectorAll(".description__button");
 
-    if (popupLinkLogin.length > 0){
-        for(let i =0; i < popupLinkLogin.length; i++){
-            const elements = popupLinkLogin[i]
-            elements.addEventListener(('click'), (e)=>{
-                popupOpenLogin(popupWindowLogin);
-                popupClose(popupWindowRegister)
-                closeAuthMenu ()
-                bodyLock()
-                e.preventDefault()
-            })
+    if (localStorage.getItem("UserName")) {
+      imgProfileBtn.innerHTML = initials;
+      imgProfileBtn.setAttribute(
+        "title",
+        `${localStorage.getItem("UserName")} ${localStorage.getItem(
+          "UserLastName"
+        )}`
+      );
+      imgProfileBtn.classList.add("account__btn-after-register");
+
+      navProfile.classList.add("nav__profile-after-login");
+      navProfile.innerHTML = `
+            <b class="header__profile__list-text">${localStorage.getItem(
+              "CardNumber"
+            )}</b>
+            <li class="header__profile__list-item"> <button class="header__profile__list-login my__profile-popup">My profile</button></li>
+            <li class="header__profile__list-item"> <button class="header__profile__list-register log__out">Log out</button></li>
+            `;
+
+      document.querySelector(
+        ".card__number"
+      ).innerHTML = `${localStorage.getItem("CardNumber")}`;
+      document.querySelector(".aside__initials").innerHTML = initials;
+      document.querySelector(
+        ".aside__name-sur"
+      ).innerHTML = `${localStorage.getItem("UserName")} ${localStorage.getItem(
+        "UserLastName"
+      )}`;
+
+      document.querySelector(".card__getting").innerHTML = `
+            <p class="card__getting__title">
+                Visit your profile
+            </p>
+            <p class="card__getting__text">
+            With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.
+            </p>
+            <div class="card__getting__buttons">
+                <button class="card__getting__button__1  popup__link-register my__profile-popup">Profile</button>
+            </div>
+            <button class="local__clear">`;
+      document.querySelector(".card__searching__bg").innerHTML = `
+            <div class="user__info">
+                <p class="user__info__title">
+                    Brooklyn Public Library
+                </p>
+                <div class="user__info-form">
+                    <span class="user__info-input input-reader__name input__margin"> ${localStorage.getItem(
+                      "UserName"
+                    )} ${localStorage.getItem("UserLastName")}</span>
+                    <span class="user__info-input input-card__number input__margin"> ${localStorage.getItem(
+                      "CardNumber"
+                    )} </span>
+                </div>
+            </div>
+            <div class="user__info__click">
+                <ul class="user__info-list">
+                    <li class="user__info-item">
+                        <span>Visits</span>
+                        <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 10C13.2614 10 15.5 7.76142 15.5 5C15.5 2.23858 13.2614 0 10.5 0C7.73858 0 5.5 2.23858 5.5 5C5.5 7.76142 7.73858 10 10.5 10ZM17.5711 13.9289C19.4464 15.8043 20.5 18.3478 20.5 21H10.5L0.5 21C0.5 18.3478 1.55357 15.8043 3.42893 13.9289C5.3043 12.0536 7.84784 11 10.5 11C13.1522 11 15.6957 12.0536 17.5711 13.9289Z" fill="#BB945F"/>
+                        </svg>
+                        <span>${localStorage.getItem("UserVisits")}</span>
+                    </li>
+                    <li class="user__info-item">
+                        <span>Bonuses</span>
+                        <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 0L12.2249 3.31001L15.8779 2.00532L15.8249 6.05634L19.5106 7.25532L17.2 10.5L19.5106 13.7447L15.8249 14.9437L15.8779 18.9947L12.2249 17.69L10 21L7.77508 17.69L4.12215 18.9947L4.17508 14.9437L0.489435 13.7447L2.8 10.5L0.489435 7.25532L4.17508 6.05634L4.12215 2.00532L7.77508 3.31001L10 0Z" fill="#BB945F"/>
+                        </svg>
+                        <span>1240</span>
+                    </li>
+                    <li class="user__info-item">
+                        <span>Books</span>
+                        <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="20" height="21" fill="#BB945F"/>
+                            <rect x="2" width="1" height="19" fill="#826844"/>
+                            <rect x="1" width="1" height="21" fill="white"/>
+                        </svg>
+                        <span class="count__list">${localStorage.getItem(
+                          "OwnBooks"
+                        )}</span>
+                    </li>
+                </ul>                        
+            </div>`;
+
+      const popupWindowProfile = document.querySelector(".popup__profile");
+      const popupLinkProfile = document.querySelectorAll(".my__profile-popup");
+      let unlock = true;
+
+      if (popupLinkProfile.length > 0) {
+        for (let i = 0; i < popupLinkProfile.length; i++) {
+          const elements = popupLinkProfile[i];
+          elements.addEventListener("click", (e) => {
+            popupOpenProfile(popupWindowProfile);
+            closeAuthMenu();
+            bodyLock();
+            e.preventDefault();
+          });
         }
-    }
-    
-    if (popupLinkRegister.length > 0){
-        for(let i =0; i < popupLinkRegister.length; i++){
-            const elements = popupLinkRegister[i]
-            elements.addEventListener(('click'), (e)=>{
-                popupOpenRegister(popupWindowRegister);
-                popupClose(popupWindowLogin)
-                bodyLock()
-                closeAuthMenu ()
-                e.preventDefault()
-            })
-        }
-    }
+      }
 
-    const popupCloseIcon = document.querySelectorAll('.popup__close')
-    if(popupCloseIcon.length > 0){
-        popupCloseIcon.forEach(el => {
-            el.addEventListener(('click'), (e) => {
-                popupClose(el.closest('.modal'))
-                e.preventDefault()
-            })
-        })
-    }
-
-    function popupOpenLogin(currentPopupLogin){
-        if(currentPopupLogin && unlock){
-            const popupActive = document.querySelector('.popup__login.open')
-            // if(popupActive){
-            //     popupClose(popupActive, false)
-            // }else{
-            //     bodyLock()
-            // }
-            currentPopupLogin.classList.add('open')
-            currentPopupLogin.addEventListener(('click'), (e) =>{
-                if(!e.target.closest('.popup__content')){
-                    popupClose(e.target.closest('.modal'))
-                }
-            })
-        }
-    }
-
-    function popupOpenRegister(currentPopupRegister){
-        if(currentPopupRegister && unlock){
-            const popupActive = document.querySelector('.popup__register.open')
-            // if(popupActive){
-            //     popupClose(popupActive, false)
-            // }else{
-            //     bodyLock()
-            // }
-            currentPopupRegister.classList.add('open')
-            currentPopupRegister.addEventListener(('click'), (e) =>{
-                if(!e.target.closest('.popup__content')){
-                    popupClose(e.target.closest('.modal'))
-                }
-            })
-        }
-    }
-
-    function popupClose(popupActive, doUnlock = true) {
-        if(unlock){
-            popupActive.classList.remove('open')
-            if(doUnlock){
-                bodyUnlock()
+      function popupOpenProfile(currentPopupRegister) {
+        if (currentPopupRegister && unlock) {
+          const popupActive = document.querySelector(".popup__profile.open");
+          currentPopupRegister.classList.add("open");
+          currentPopupRegister.addEventListener("click", (e) => {
+            if (!e.target.closest(".content")) {
+              popupClose(e.target.closest(".modal"));
             }
+          });
         }
+      }
+
+      const popupCloseIcon = document.querySelectorAll(".popup__close");
+      if (popupCloseIcon.length > 0) {
+        popupCloseIcon.forEach((el) => {
+          el.addEventListener("click", (e) => {
+            popupClose(el.closest(".modal"));
+            e.preventDefault();
+          });
+        });
+      }
+
+      function popupClose(popupActive, doUnlock = true) {
+        if (unlock) {
+          popupActive.classList.remove("open");
+          if (doUnlock) {
+            bodyUnlock();
+          }
+        }
+      }
+
+      function bodyLock() {
+        body.classList.add("lock");
+        unlock = false;
+        setTimeout(function () {
+          unlock = true;
+        }, 600);
+      }
+
+      function bodyUnlock() {
+        body.classList.remove("lock");
+      }
+
+      const userVisitsInProfile = document.getElementById("userVisits");
+      userVisitsInProfile.textContent = `${localStorage.getItem("UserVisits")}`;
+
+      const textToCopyElement = document.getElementById("textToCopy");
+      const copyButton = document.getElementById("copyButton");
+
+      const copySuccessMessage = document.getElementById("copySuccessMessage");
+
+      copyButton.addEventListener("click", function () {
+        const textToCopy = textToCopyElement.innerText;
+        const input = document.createElement("input");
+        input.setAttribute("value", textToCopy);
+        document.body.appendChild(input);
+        input.select();
+        input.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+        document.body.removeChild(input);
+
+        copySuccessMessage.style.display = "block";
+
+        setTimeout(function () {
+          copySuccessMessage.style.display = "none";
+        }, 3000);
+      });
+
+      const logOutBtn = document.querySelector(".log__out");
+
+      if (logOutBtn) {
+        logOutBtn.addEventListener("click", () => {
+          localStorage.removeItem("userAuthorized");
+          location.reload();
+        });
+      }
+    }
+  }
+
+  const firstName = document.querySelector("#input-name");
+  const lastName = document.querySelector("#input-surname");
+  const inputEmail = document.querySelector(".input-email");
+  const inputPassword = document.querySelector(".input-password");
+
+  const passwordError = document.querySelector(".password-error");
+  const emailError = document.querySelector(".email-error");
+  const nameError = document.querySelector(".name-error");
+  const surNameError = document.querySelector(".last-name-error");
+
+  const signUpBtn = document.getElementById("register-button-submit");
+
+  signUpBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    disableScroll();
+    e.preventDefault();
+
+    let firstNameValue = firstName.value.split(/\s+/).join("");
+    let lastNameValue = lastName.value.split(/\s+/).join("");
+    let emailValue = inputEmail.value.split(/\s+/).join("");
+    let passwordValue = inputPassword.value.split(/\s+/).join("");
+
+    let validRegistration = false;
+    nameError.textContent = "";
+    if (firstNameValue.length <= 3) {
+      nameError.classList.add("error");
+      nameError.textContent = "must be at least 3 characters";
+      validRegistration = true;
+    } else {
+      registerNameValue = `${firstNameValue[0].toUpperCase()}${firstNameValue
+        .slice(1)
+        .toLowerCase()}`;
+      localStorage.setItem("UserName", registerNameValue);
+    }
+    surNameError.textContent = "";
+    if (lastNameValue.length <= 3) {
+      surNameError.classList.add("error");
+      surNameError.textContent = "must be at least 3 characters";
+      validRegistration = true;
+    } else {
+      registerLastNameValue = `${lastNameValue[0].toUpperCase()}${lastNameValue
+        .slice(1)
+        .toLowerCase()}`;
+      localStorage.setItem("UserLastName", registerLastNameValue);
     }
 
-    function bodyLock() {
-        // const  lockPaddingValue = window.innerWidth - document.querySelector('.wrapper').offsetWidth + 'px'
-        // // for (let i = 0; i < lockPadding.length; i++) {
-        // //     const el = lockPadding[i];
-        // //     el.style.paddingRight = lockPaddingValue
-        // // }
-        // body.style.paddingRight = lockPaddingValue
-        body.classList.add('lock')
-
-        unlock = false
-        setTimeout( function () {
-            unlock = true
-        }, 600)
+    emailError.textContent = "";
+    if (emailValue.length <= 3) {
+      emailError.classList.add("error");
+      emailError.textContent = "must be at least 3 characters";
+      validRegistration = true;
+    } else if (
+      !/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+$/.test(emailValue)
+    ) {
+      emailError.classList.add("error");
+      emailError.textContent = "Email address is incorrect";
+      validRegistration = true;
+    } else if (emailValue === localStorage.getItem("UserEmail")) {
+      emailError.classList.add("error");
+      emailError.textContent = "This email address is already registered";
+      validRegistration = true;
+    } else {
+      localStorage.setItem("UserMail", emailValue);
+    }
+    passwordError.textContent = "";
+    if (passwordValue.length < 8) {
+      passwordError.classList.add("error");
+      passwordError.textContent = "Passwords must be eight characters or more";
+      validRegistration = true;
+    } else {
+      localStorage.setItem("UserPassword", passwordValue);
     }
 
-    function bodyUnlock() {
-        // setTimeout( function () {
-        // for (let i = 0; i < lockPadding.length; i++) {
-        //     const el = lockPadding[i];
-        //     el.style.paddingRight = '0px'
-        //     }
-            body.classList.remove('lock')
-        // }, 600)
+    const randomDecimal = Math.floor(Math.random() * 900000000) + 100000000;
+
+    let randomHex = randomDecimal.toString(16).toUpperCase();
+
+    while (randomHex.length < 9) {
+      randomHex = "0" + randomHex;
     }
 
+    localStorage.setItem("CardNumber", randomHex);
 
-    const inputEmail = document.querySelectorAll('.input-email');
-    const inputPassword = document.querySelectorAll('.input-password')
-    const passwordError = document.querySelectorAll('.password-error')  
-    const emailError = document.querySelector('.email-error')
-    const EMAIL_REGEXP = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    
-    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
-
-    function validEmail (value){
-        return EMAIL_REGEXP.test(value)
+    if (validRegistration === true) {
+      return;
     }
 
-    function validPassword (value){
-        return passwordRegex.test(value)
+    localStorage.removeItem("UserVisits");
+
+    let userVisits = Number(localStorage.getItem("UserVisits"));
+    increaseUserVisits(userVisits);
+
+    popupClose(popupWindowRegister);
+    location.reload();
+
+    localStorage.setItem("UserSubscription", false);
+    localStorage.setItem("userRegistered", true);
+    localStorage.setItem("userAuthorized", true);
+  });
+
+  let mailInputLogin = document.querySelector(".popup__label-input-name");
+  let passwordInputLogin = document.querySelector(
+    ".popup__label-input-password"
+  );
+  let mailInputLoginError = document.querySelector(".email-error-login");
+  let passwordInputLoginError = document.querySelector(".password-error-login");
+
+  const loginBtn = document.querySelector(".popup__login-btn");
+
+  loginBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+
+    let inputMailLoginValue = mailInputLogin.value.split(/\s+/).join("");
+    let inputPasswordLoginValue = passwordInputLogin.value;
+
+    let authorizedValidation = false;
+
+    mailInputLoginError.textContent = "";
+    if (inputMailLoginValue === "") {
+      mailInputLoginError.textContent = "Please, fill the area";
+      authorizedValidation = true;
+    } else if (
+      inputMailLoginValue !== `${localStorage.getItem("UserMail")}` &&
+      inputMailLoginValue !== `${localStorage.getItem("CardNumber")}`
+    ) {
+      mailInputLoginError.textContent =
+        "Your Email or reader card is incorrect";
+      authorizedValidation = true;
     }
 
-    inputPassword.forEach(el=>{
-        el.addEventListener(('input'), ()=>{
-            const password = el.value
-                if(password.length < 8){
-                passwordError.forEach(el =>{
-                    el.classList.add('error')
-                    el.innerHTML = 'Passwords must be eight characters or more'
-                })
-            } else{
-                passwordError.forEach(el =>{
-                    el.innerHTML = ' '
-                })
-            }
-        })
-    })
+    passwordInputLoginError.textContent = "";
+    if (inputPasswordLoginValue === "") {
+      passwordInputLoginError.textContent = "Please, fill the area";
+      authorizedValidation = true;
+    } else if (
+      inputPasswordLoginValue !== `${localStorage.getItem("UserPassword")}`
+    ) {
+      passwordInputLoginError.textContent =
+        "Your password is incorrect. Please try again";
+      authorizedValidation = true;
+    }
 
-    inputEmail.forEach(el=>{
-        el.addEventListener(('input'), ()=>{
-            const email = el.value
-            if(!validEmail(email)){
-                emailError.classList.add('error')
-                    emailError.innerHTML = 'Invalid Email'
-            } else{
-                emailError.innerHTML = ' '
-            }
-        })
-    })
+    if (authorizedValidation === true) {
+      return;
+    }
 
-    const signUpBtn = document.getElementById('register-button-submit')
+    let userVisits = Number(localStorage.getItem("UserVisits"));
+    increaseUserVisits(userVisits);
 
-    signUpBtn.addEventListener(('click'), (e) =>{
-       e.preventDefault()
-    
-    const firstName = document.getElementById('input-name').value
-    const lastName = document.getElementById('input-surname').value
-    const email = document.getElementById('email-input').value
-    const password = document.getElementById('password-input').value
+    popupClose(popupWindowLogin);
+    location.reload();
 
-    const userData = { firstName, lastName, email, password };
-    localStorage.setItem('user_data', JSON.stringify(userData));
+    localStorage.setItem("userAuthorized", true);
+  });
 
+  const purchaseBtn = document.querySelector(".purchase-btn"),
+    cardNumberInput = document.getElementById("purchase-card-number"),
+    cardNumberError = document.querySelector(".purchase-card-number-error"),
+    cardExpirationInput = document.querySelector(".purchase__input"),
+    cardExpirationInput2 = document.querySelector(".second__purchase__input"),
+    cardExpirationError = document.querySelector(".purchase-expiration-date"),
+    cardCvcInput = document.querySelector(".purchase-cvc"),
+    cardCvcError = document.querySelector(".cvc-error"),
+    cardHolderNameInput = document.querySelector(".purchase-card-name"),
+    cardHolderNameError = document.querySelector(".card-holder-error"),
+    postalCodeInput = document.querySelector(".purchase-postal-code"),
+    postalCodeError = document.querySelector(".postal-code-error"),
+    cityInputInput = document.querySelector(".purchase-city"),
+    cityError = document.querySelector(".city-error");
 
-        
-    })
+  purchaseBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    e.preventDefault();
 
+    let cardNumberInputValue = cardNumberInput.value.split(/\s+/).join("");
+    let cardExpirationInputValue = cardExpirationInput.value
+      .split(/\s+/)
+      .join("");
+    let cardExpirationInputValue2 = cardExpirationInput2.value
+      .split(/\s+/)
+      .join("");
+    let cardCvcInputValue = cardCvcInput.value.split(/\s+/).join("");
+    let cardHolderNameInputValue = cardHolderNameInput.value;
+    let postalCodeInputValue = postalCodeInput.value.split(/\s+/).join("");
+    let cityInputInputValue = cityInputInput.value;
 
-})
-  
+    let validPurchase = false;
+
+    cardNumberError.textContent = "";
+    if (cardNumberInputValue === "") {
+      cardNumberError.textContent = "Fill the area";
+      validPurchase = true;
+    } else if (/^[A-Za-z]+$/.test(cardNumberInputValue)) {
+      cardNumberError.textContent =
+        "Input is invalid. It contains non-numeric characters";
+      validPurchase = true;
+    } else if (cardNumberInputValue.length !== 16) {
+      cardNumberError.textContent = "Card number must contain 16 digits";
+      validPurchase = true;
+    }
+
+    function validateCardExpirationInput(inputValue, errorElement) {
+      errorElement.textContent = "";
+
+      if (inputValue === "") {
+        errorElement.textContent = "Fill the area";
+        validPurchase = true;
+      } else if (/[A-Za-z]/.test(inputValue)) {
+        errorElement.textContent =
+          "Input is invalid. It contains non-numeric characters";
+        validPurchase = true;
+      } else if (inputValue.length !== 2) {
+        errorElement.textContent = "Input must contain 2 digits";
+        validPurchase = true;
+      }
+    }
+
+    validateCardExpirationInput(cardExpirationInputValue, cardExpirationError);
+
+    validateCardExpirationInput(cardExpirationInputValue2, cardExpirationError);
+
+    cardCvcError.textContent = "";
+    if (cardCvcInputValue === "") {
+      cardCvcError.textContent = "Fill the area";
+      validPurchase = true;
+    } else if (/[A-Za-z]/.test(cardCvcInputValue)) {
+      cardCvcError.textContent =
+        "Input is invalid. It contains non-numeric characters";
+      validPurchase = true;
+    } else if (cardCvcInputValue.length !== 3) {
+      cardCvcError.textContent = "Input must contain 3 digits";
+      validPurchase = true;
+    }
+
+    cardHolderNameError.textContent = "";
+    if (cardHolderNameInputValue === "") {
+      cardHolderNameError.textContent = "Fill the area";
+      validPurchase = true;
+    } else if (/[0-9]/.test(cardHolderNameInputValue)) {
+      cardHolderNameError.textContent =
+        "Name is invalid. It contains numeric characters";
+      validPurchase = true;
+    } else if (/[А-Яа-я]/.test(cardHolderNameInputValue)) {
+      cardHolderNameError.textContent =
+        "The name contains non-English characters";
+      validPurchase = true;
+    }
+
+    postalCodeError.textContent = "";
+    if (postalCodeInputValue === "") {
+      postalCodeError.textContent = "Fill the area";
+      validPurchase = true;
+    } else if (postalCodeInputValue.length !== 6) {
+      postalCodeError.textContent = "Postal code must contain 6 digits";
+      validPurchase = true;
+    } else if (/[A-Za-zА-Яа-яЁё]/.test(postalCodeInputValue)) {
+      postalCodeError.textContent = "Postal code must contain only numbers";
+      validPurchase = true;
+    }
+
+    cityError.textContent = "";
+    if (cityInputInputValue === "") {
+      cityError.textContent = "Fill the area";
+      validPurchase = true;
+    } else if (/[0-9]/.test(cityInputInputValue)) {
+      cityError.textContent =
+        "The name of city/town is invalid. It contains numeric characters";
+      validPurchase = true;
+    } else if (/[А-Яа-я]/.test(cityInputInputValue)) {
+      cityError.textContent =
+        "The name of city/town contains non-English characters";
+      validPurchase = true;
+    }
+
+    if (validPurchase === true) {
+      return;
+    }
+
+    const popupWindowPurchase = document.querySelector(".popup__purchase");
+
+    popupClose(popupWindowPurchase);
+    isModalOpen = false;
+
+    location.reload();
+
+    localStorage.setItem("UserSubscription", true);
+
+    cardNumberInputValue = "";
+    cardExpirationInputValue = "";
+    cardExpirationInputValue2 = "";
+    cardCvcInputValue = "";
+    cardHolderNameInputValue = "";
+    postalCodeInputValue = "";
+    cityInputInputValue = "";
+  });
+});
